@@ -72,6 +72,9 @@
         };
     };
 
+    services.udisks2.enable = true;
+    security.polkit.enable = true;
+
     environment.systemPackages = with pkgs; [
         vim 
             wget
@@ -103,6 +106,7 @@
             vesktop
             pulseaudio
             jq
+            kdePackages.polkit-kde-agent-1
             ];
 
     fonts.packages = with pkgs; [
