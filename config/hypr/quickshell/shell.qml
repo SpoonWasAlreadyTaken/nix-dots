@@ -26,6 +26,7 @@ ShellRoot {
 
     property string fontFamily: "Cascadia Mono"
     property string fontIcon: "JetBrainsMono Nerd Font"
+    property string fontIconSmall: "Hack Nerd Font Mono"
     property int fontSize: 17
     property int iconSize: 27
 
@@ -46,7 +47,7 @@ ShellRoot {
 
     property string clock: Qt.formatDateTime(new Date(), "HH:mm")
 
-    property string systemIcon: ""
+    property string systemIcon: ""
     property string activeWindow: systemIcon
     function getIcon(activeWindow) {
         switch (activeWindow) {
@@ -325,7 +326,9 @@ ShellRoot {
 
                                 text: isActive ? "" : ""
                                 color: isActive ? colorFG : (ws ? colorPinkDim : colorDim)
-                                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                                font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
+                                
+                                Layout.preferredWidth: 12
 
                                 MouseArea {
                                     anchors.fill: parent
@@ -362,7 +365,9 @@ ShellRoot {
 
                                 text: isActive ? "" : ""
                                 color: isActive ? colorFG : (ws ? colorPinkDim : colorDim)
-                                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                                font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
+
+                                Layout.preferredWidth: 12
 
                                 MouseArea {
                                     anchors.fill: parent
@@ -494,6 +499,8 @@ ShellRoot {
             sequence: "Escape"
             onActivated: { audioWindow.visible = false }
         }
+
+        onVisibleChanged: { if (visible) { audioService.running = true } }
 
         Rectangle {
             anchors.fill: parent

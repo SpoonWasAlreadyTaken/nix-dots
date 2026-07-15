@@ -7,7 +7,8 @@
         ./hardware-configuration.nix
         ];
 
-
+    
+    /* hardware stuff */
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
@@ -18,6 +19,8 @@
     };
 
 
+
+    /* basic system */
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
@@ -46,11 +49,14 @@
 
     users.users.spoon = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" ];
         packages = with pkgs; [
             tree
         ];
     };
+
+
+    /* services and programs */
 
     services.udev.extraRules = ''KERNEL=="hidraw*", ATTRS{idVendor}=="31e3", MODE="0666"'';
 
@@ -100,7 +106,6 @@
             luarocks
             lua-language-server
             fastfetch
-            kdePackages.dolphin
             vlc
             easyeffects
             wootility
@@ -108,18 +113,39 @@
             vesktop
             pulseaudio
             jq
+            wine
+            imv 
+            /* kde stuff try to remove */
             kdePackages.polkit-kde-agent-1
+            kdePackages.dolphin
             ];
 
     fonts.packages = with pkgs; [
         noto-fonts
             noto-fonts-color-emoji
             liberation_ttf
+            cascadia-code
             nerd-fonts.caskaydia-mono
             nerd-fonts.jetbrains-mono
             nerd-fonts.caskaydia-cove
-            cascadia-code
+            nerd-fonts.hack
+            nerd-fonts.iosevka
     ];
+
+
+
+    /* nix specific settings */
+
+    system.autoUpgrade.enable = true;
+    system.autoUpgrade.dates = "weekly";
+    system.autoUpgrade.flake = "/home/spoon/nixos-dotfiles#spoon";
+    system.autoUpgrade.flags = [ "--update-input" "nixpkgs" "--refresh" ];
+
+    nix.gc.automatic = true;
+    nix.gc.dates = "daily";
+    nix.gc.options = "--delete-generations +7";
+    nix.settings.auto-optimise-store = true;
+
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

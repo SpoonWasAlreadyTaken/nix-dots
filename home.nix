@@ -31,8 +31,21 @@ in
 		enableCompletion = true;
 		autosuggestion.enable = true;
 
+        defaultKeymap = "viins";
+
         initContent = ''
             export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+            bindkey -v
+
+            bindkey -M viins '^?' backward-delete-char
+            bindkey -M viins '^H' backward-delete-char
+
+            function zle-line-init {
+                zle reset-prompt
+            }
+
+            zle -N zle-line-init
         '';
 	};
     
@@ -66,6 +79,13 @@ in
     home.file.".local/share/icons/Sweet-hyprcursors" = {
         source = ./theming/Sweet-hyprcursors;
     };
+
+    home.file."imv/config".text = ''
+        bind h prev
+        bind l next
+    '';
+
+    /* home packages */
 
     home.packages = with pkgs; [
         tree-sitter
