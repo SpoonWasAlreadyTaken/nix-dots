@@ -80,6 +80,8 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd('quickshell -p ~/.config/hypr/quickshell')
     hl.exec_cmd('hyprpaper')
     hl.exec_cmd('firefox')
+    hl.exec_cmd('vesktop')
+    hl.exec_cmd('steam')
 end)
 
 

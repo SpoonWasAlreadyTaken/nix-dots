@@ -52,6 +52,8 @@
         ];
     };
 
+    services.udev.extraRules = ''KERNEL=="hidraw*", ATTRS{idVendor}=="31e3", MODE="0666"'';
+
     nixpkgs.config.allowUnfree = true;
 
     programs.firefox.enable = true;

@@ -44,10 +44,11 @@ in
 
 	home.sessionVariables = {
 		EDITOR = "nvim";
+        TERMINAL = "ghostty";
 	};
 
     /* ricing */
-    
+
     
     /* dots and stuff */
 	programs.git = {
@@ -61,6 +62,10 @@ in
 		source = create_symlink "${dotfiles}/${subpath}";
 		recursive = true;
 	}) configs;
+
+    home.file.".local/share/icons/Sweet-cursors" = {
+        source = ./theming/Sweet-cursors;
+    };
 
     home.packages = with pkgs; [
         tree-sitter
