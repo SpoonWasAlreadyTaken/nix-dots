@@ -84,7 +84,7 @@
     security.polkit.enable = true;
 
     environment.systemPackages = with pkgs; [
-        vim 
+            vim 
             wget
             neovim
             ghostty
@@ -115,9 +115,10 @@
             jq
             wine
             imv 
-            /* kde stuff try to remove */
-            kdePackages.polkit-kde-agent-1
-            kdePackages.dolphin
+            krita
+            blender
+            hyprpolkitagent
+            ffmpeg
             ];
 
     fonts.packages = with pkgs; [

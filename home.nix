@@ -62,6 +62,14 @@ in
 
     /* ricing */
 
+    gtk = {
+        enable = true;
+        iconTheme = {
+            name = "Papirus";
+            package = pkgs.papirus-icon-theme;
+        };
+    };
+
     
     /* dots and stuff */
 	programs.git = {
@@ -80,7 +88,7 @@ in
         source = ./theming/Sweet-hyprcursors;
     };
 
-    home.file."imv/config".text = ''
+    home.file.".config/imv/config".text = ''
         bind h prev
         bind l next
     '';
@@ -89,7 +97,49 @@ in
 
     home.packages = with pkgs; [
         tree-sitter
+        ffmpegthumbnailer
+        poppler
+        fd
+        ripgrep
+        zoxide
+        imagemagick
     ];
+
+    programs.yazi = {
+        enable = true;
+        enableZshIntegration = true;
+
+        plugins = {
+            full-border = pkgs.yaziPlugins.full-border;
+            smart-enter = pkgs.yaziPlugins.smart-enter;
+            starship = pkgs.yaziPlugins.starship;
+            recycle-bin = pkgs.yaziPlugins.recycle-bin;
+        };
+
+        settings = {
+            manager = {
+                show_hidden = true;
+                sort_by = "natural";
+                sort_dir_first = true;
+                linemode = "size";
+            };
+            preview = {
+                wrap = "yes";
+                tab_size = 4;
+            };
+
+            opener = {
+                edit = [{
+                    run = "nvim \$@\"";
+                    block = true;
+                }];
+
+                open = [{
+                    run = "xdg-open \"$@\"";
+                }];
+            };
+        };
+    };
 
 	programs.home-manager.enable = true;
 }

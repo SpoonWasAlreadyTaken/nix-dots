@@ -55,9 +55,14 @@
 background = "040405"
 font-family = "Cascadia Mono"
 font-size = "13"
+font-thicken = true
 
 window-width = "120"
 window-height = "30"
 
 custom-shader = ~/.config/ghostty/shaders/shader.glsl
+
+image-storage-limit = "320000000"
+
+shell-integration = "detect"
 

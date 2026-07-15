@@ -56,13 +56,16 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "terminal-2",
-    match = { class = "^(com.mitchellh.ghostty)$" },
+    name = "terminal-3",
+    match = {
+        class = "^(com.mitchellh.ghostty)$",
+        title = "^(?!Yazi).*",
+    },
     workspace = "3 silent",
 })
 
 hl.window_rule({
-    name = "firefox-workspace-3",
+    name = "firefox-workspace-4",
     match = { class = "^(firefox)$" },
     workspace = "4 silent",
 })
@@ -72,6 +75,7 @@ hl.window_rule({
     match = { class = "^(steam)$" },
     workspace = "5 silent",
 })
+
 
 -- autostart
 hl.on("hyprland.start", function ()
