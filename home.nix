@@ -63,7 +63,7 @@ in
 		recursive = true;
 	}) configs;
 
-    home.file.".local/share/icons/Sweet-cursors" = {
+    home.file.".local/share/icons/Sweet-hyprcursors" = {
         source = ./theming/Sweet-hyprcursors;
     };
 
