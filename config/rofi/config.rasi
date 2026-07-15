@@ -1,0 +1,125 @@
+configuration {
+    display-drun: "Application";
+    display-window: "Windows";
+    drun-display-format: "{icon} {name}";
+    font: "CaskaydiaCove Nerd Font Bold 14";
+    modi: "window,run,drun";
+    show-icons: true;
+    icon-theme: "Papirus";
+}
+
+@theme "/dev/null"
+
+
+* {
+    bg: #040405;
+    bg-alt: #16161c;
+
+    fg: #f38ba8;
+    fg-alt: #f2a9be;
+
+    pale: #f2c1cf;
+
+    dim: #424242;
+    dark: #0e0e11;
+
+
+    background-color: @bg;
+    text-color: @fg;
+
+    border: 0;
+    margin: 0;
+    padading: 0;
+    spacing: 0;
+}
+
+window {
+    width: 45%;
+    border: 1px;
+    border-radius: 8px;
+    border-color: @pale;
+}
+
+textbox {
+    padding: 8;
+}
+
+element {
+    text-color: @fg;
+
+    padding: 12;
+    spacing: 8;
+
+    border: 0px 0px 1px 0px;
+    border-color: @dark;
+}
+
+element selected {
+    background-color: @bg-alt;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 30;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element selected normal, element selected active {
+    text-color: @fg-alt;
+}
+
+
+inputbar {
+    children: [prompt, entry];
+    border: 0px 0px 2px 0;
+    border-color: @dark;
+}
+
+entry {
+    background-color: @bg;
+    padding: 12;
+    text-color: #ffffff;
+}
+
+prompt {
+    vertical-align: 0.5;
+    text-color: @dim;
+    padding: 0px 0px 0px 12px;
+}
+
+listview {
+    background-color: @bg;
+    columns: 1;
+    lines: 7;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

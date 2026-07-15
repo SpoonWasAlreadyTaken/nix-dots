@@ -1,0 +1,43 @@
+format = """  
+$directory\
+$git_branch\
+$cmd_duration\
+$fill\
+$shell\
+$line_break\
+$character\
+$sudo"""
+
+[directory]
+format = '[ 󱞬 ](fg:#424242 bg:#040405)[](fg:#f38ba8 bg:#040405)[$path ](fg:#040405 bg:#f38ba8 bold)[](fg:#f38ba8 bg:#f2a9be)'
+truncation_symbol = '.../'
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ](fg:#040405 bg:#f2a9be bold)[](fg:#f2a9be bg:#f2c1cf)'
+
+[cmd_duration]
+min_time = 0
+show_milliseconds = true
+format = '[ $duration ](fg:#040405 bg:#f2c1cf bold)[](fg:#f2c1cf bg:#040405)'
+
+[fill]
+symbol = " "
+
+[shell]
+format = '[](fg:#040405 bg:#c8738b)[ $indicator](fg:#040405 bg:#c8738b bold)'
+bash_indicator =' '
+fish_indicator = ' '
+zsh_indicator = '󰬇 '
+powershell_indicator = ' '
+unknown_indicator = ' '
+disabled = false
+
+[character]
+success_symbol = "[ 󱞪](fg:#424242 bg:#040405)"
+error_symbol = "[ 󱞪](fg:#e62946 bg:#040405)"
+vimcmd_symbol = "[ 󱞪](fg:#ff7c36 bg:#040405)"
+
+[sudo]
+format = '[ ]($style)'
+style = 'fg:#e62946 bg:#040405 bold'
+disabled = false
