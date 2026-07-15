@@ -64,7 +64,7 @@ in
 	}) configs;
 
     home.file.".local/share/icons/Sweet-cursors" = {
-        source = ./theming/Sweet-cursors;
+        source = ./theming/Sweet-hyprcursors;
     };
 
     home.packages = with pkgs; [
