@@ -119,6 +119,8 @@
             blender
             hyprpolkitagent
             ffmpeg
+            _7zz
+            file
             ];
 
     fonts.packages = with pkgs; [

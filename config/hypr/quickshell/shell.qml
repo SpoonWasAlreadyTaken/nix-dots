@@ -68,6 +68,26 @@ ShellRoot {
         }
     }
 
+    function getIconPadding(activeWindow) {
+        switch (activeWindow) {
+            case "com.mitchellh.ghostty":
+            return 0
+            break
+            case "firefox":
+            return 5
+            break
+            case "steam":
+            return 6
+            break
+            case "vesktop":
+            return 12
+            break
+            default:
+            return 8
+        }
+    }
+
+
     property var audioStreams: []
     function setVolume(id, value) {
         Quickshell.execDetached(["wpctl", "set-volume", id.toString(), value.toString()])
@@ -139,7 +159,6 @@ ShellRoot {
         stdout: SplitParser {
             onRead: data => {
                 activeWindow = data.trim()
-
             }
         }
 
@@ -346,7 +365,7 @@ ShellRoot {
                             anchors.centerIn: parent
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
-                            rightPadding: activeWindow === "vesktop" ? 10 : (activeWindow === "com.mitchellh.ghostty" ? 0 : 5)
+                            rightPadding: getIconPadding(activeWindow)
 
                             text: getIcon(activeWindow)
                             color: colorFG

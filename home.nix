@@ -68,6 +68,14 @@ in
             name = "Papirus";
             package = pkgs.papirus-icon-theme;
         };
+
+        gtk3.extraConfig = {
+            gtk-application-prefer-dark-theme = 1;
+        };
+
+        gtk4.extraConfig = {
+            gtk-application-prefer-dark-theme = 1;
+        };
     };
 
     
@@ -88,11 +96,6 @@ in
         source = ./theming/Sweet-hyprcursors;
     };
 
-    home.file.".config/imv/config".text = ''
-        bind h prev
-        bind l next
-    '';
-
     /* home packages */
 
     home.packages = with pkgs; [
@@ -103,6 +106,8 @@ in
         ripgrep
         zoxide
         imagemagick
+        transmission_4-qt
+        wl-clipboard
     ];
 
     programs.yazi = {
@@ -130,15 +135,47 @@ in
 
             opener = {
                 edit = [{
-                    run = "nvim \$@\"";
+                    run = ''nvim "$@"'';
                     block = true;
                 }];
 
                 open = [{
-                    run = "xdg-open \"$@\"";
+                    run = ''xdg-open "$@"'';
+                }];
+
+                image = [{
+                    run = ''~/.local/bin/yazi-imv "$@"'';
+                    orphan = true;
+                }];
+            };
+
+            open = {
+                prepend_rules = [{
+                    mime = "image/*";
+                    use = "image";
                 }];
             };
         };
+    };
+
+    home.file.".local/bin/yazi-imv" = {
+        executable = true;
+        text = ''        
+            #!/usr/bin/env bash
+
+            dir="$(dirname "$1")"
+
+            find "$dir" -maxdepth 1 \
+            -type f \
+            \( \
+                -iname "*.png" -o \
+                -iname "*.jpg" -o \
+                -iname "*.jpeg" -o \
+                -iname "*.webp" -o \
+                -iname "*.gif" \
+            \) \
+            -print0 | xargs -0 imv
+        '';
     };
 
 	programs.home-manager.enable = true;

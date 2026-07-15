@@ -14,6 +14,7 @@ vim.lsp.config('clangd', {
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('clangd')
 vim.lsp.enable('ols')
+vim.lsp.enable('nil')
 
 
 vim.api.nvim_create_autocmd('LspAttach', {

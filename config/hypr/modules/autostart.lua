@@ -57,10 +57,7 @@ hl.window_rule({
 
 hl.window_rule({
     name = "terminal-3",
-    match = {
-        class = "^(com.mitchellh.ghostty)$",
-        title = "^(?!Yazi).*",
-    },
+    match = { class = "^(com.mitchellh.ghostty)$" },
     workspace = "3 silent",
 })
 
