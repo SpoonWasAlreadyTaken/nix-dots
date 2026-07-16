@@ -74,16 +74,16 @@ ShellRoot {
             return 4
             break
             case "firefox":
-            return 5
+            return 6
             break
             case "steam":
             return 6
             break
             case "vesktop":
-            return 12
+            return 13
             break
             default:
-            return 10
+            return 11
         }
     }
 
