@@ -125,8 +125,6 @@ in
             recycle-bin = pkgs.yaziPlugins.recycle-bin;
         };
 
-        theme.flavor = { dark = "spoon"; };
-
         settings = {
             manager = {
                 show_hidden = true;
@@ -185,8 +183,8 @@ in
         '';
     };
 
-    home.file.".config/yazi/flavors/spoon.yazi" = {
-        source = ./theming/yazi/spoon.yazi;
+    home.file.".config/yazi" = {
+        source = ./theming/yazi;
     };
 
 	programs.home-manager.enable = true;

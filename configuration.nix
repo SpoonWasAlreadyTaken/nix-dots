@@ -122,6 +122,7 @@
             _7zz
             file
             htop
+            clang-tools
             ];
 
     fonts.packages = with pkgs; [
