@@ -7,6 +7,8 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- primary setup
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(G.terminal))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(G.fileManager))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(G.menu))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
 
@@ -14,9 +16,7 @@ hl.bind("ALT + F4", hl.dsp.window.close())
 
 -- pane management
 --hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(G.fileManager))
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(G.menu))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/hypr/rofi/powermenu.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + V", hl.dsp.layout("togglesplit"))    -- dwindle only

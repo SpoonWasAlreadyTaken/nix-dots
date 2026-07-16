@@ -165,11 +165,17 @@ in
 
     home.file.".local/bin/yazi-imv" = {
         executable = true;
-        text = ''        
+        text = ''     
             #!/usr/bin/env bash
 
-            dir="$(dirname "$1")"
+            file="$1"
+            dir="$(dirname "$file")"
 
+            images=("$file")
+
+            while IFS= read -r -d $'\0' img; do
+            images+=("$img")
+            done < <(
             find "$dir" -maxdepth 1 \
             -type f \
             \( \
@@ -179,12 +185,16 @@ in
                 -iname "*.webp" -o \
                 -iname "*.gif" \
             \) \
-            -print0 | xargs -0 imv
+            ! -samefile "$file" \
+            -print0
+            )
+
+            imv "''${images[@]}"   
         '';
     };
 
-    home.file.".config/yazi" = {
-        source = ./theming/yazi;
+    home.file.".config/yazi/theme.toml" = {
+        source = ./theming/yazi/theme.toml;
     };
 
 	programs.home-manager.enable = true;

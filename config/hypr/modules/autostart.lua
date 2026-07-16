@@ -76,7 +76,7 @@ hl.window_rule({
 
 -- autostart
 hl.on("hyprland.start", function ()
-    hl.exec_cmd(G.terminal)
+    hl.exec_cmd('[workspace 3 silent] ' .. G.terminal)
     hl.exec_cmd('swaync')
     hl.exec_cmd('quickshell -p ~/.config/hypr/quickshell')
     hl.exec_cmd('hyprpaper')
