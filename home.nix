@@ -104,11 +104,15 @@ in
         poppler
         fd
         ripgrep
-        zoxide
         imagemagick
         transmission_4-qt
         wl-clipboard
     ];
+
+    programs.zoxide = {
+        enable = true;
+        options = [ "--cmd cd" ];
+    };
 
     programs.yazi = {
         enable = true;
@@ -121,9 +125,12 @@ in
             recycle-bin = pkgs.yaziPlugins.recycle-bin;
         };
 
+        theme.flavor = { dark = "spoon"; };
+
         settings = {
             manager = {
                 show_hidden = true;
+                show_symlink = true;
                 sort_by = "natural";
                 sort_dir_first = true;
                 linemode = "size";
@@ -176,6 +183,10 @@ in
             \) \
             -print0 | xargs -0 imv
         '';
+    };
+
+    home.file.".config/yazi/flavors/spoon.yazi" = {
+        source = ./theming/yazi/spoon.yazi;
     };
 
 	programs.home-manager.enable = true;

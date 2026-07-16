@@ -121,6 +121,7 @@
             ffmpeg
             _7zz
             file
+            htop
             ];
 
     fonts.packages = with pkgs; [
