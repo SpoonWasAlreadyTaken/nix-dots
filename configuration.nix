@@ -123,7 +123,9 @@
             file
             htop
             clang-tools
+            gamescope
             ];
+
 
     fonts.packages = with pkgs; [
         noto-fonts

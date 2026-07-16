@@ -1,0 +1,8 @@
+[SddmGreeterTheme]
+Name=Fractal
+Description=Fractal SDDM theme
+Author=Spoon
+Version=1.0
+MainSript=Main.qml
+Theme-Id=fractal
+Theme-API=2.0

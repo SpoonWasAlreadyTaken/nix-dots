@@ -71,7 +71,7 @@ ShellRoot {
     function getIconPadding(activeWindow) {
         switch (activeWindow) {
             case "com.mitchellh.ghostty":
-            return 0
+            return 4
             break
             case "firefox":
             return 5
@@ -83,7 +83,7 @@ ShellRoot {
             return 12
             break
             default:
-            return 8
+            return 10
         }
     }
 
