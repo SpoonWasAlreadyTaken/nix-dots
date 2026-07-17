@@ -38,9 +38,23 @@ ShellRoot {
 
     property int gpuUsage: 0
 
-    property int memUsage: 0
+    property int memUsed: 0
+    property int memTotal: 0
+    property bool showMemoryPrecentage: true
 
-    property bool online: false
+
+    property bool isOnline: false
+    property bool showNetworkSpeed: false
+    property real downloadSpeed: 0
+    property real uploadSpeed: 0
+    property real lastRx: 0
+    property real lastTx: 0
+    property double lastTime: 0
+    function formatNetworkSpeed(bytes) {
+        if (bytes < 1024) return Math.round(bytes) + " B/s"
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + " KiB/s"
+        return (bytes / 1024 / 1024).toFixed(2) + "MiB/s"
+    }
 
     property int volumeLevel: Pipewire.defaultAudioSink ? Math.round(Pipewire.defaultAudioSink.audio.volume * 100) : 0
     function volumeIcon (muted, volume) { return muted ? "" : (volume >= 50 ? "" : (volume > 0 ? "" : "")) }
@@ -96,7 +110,7 @@ ShellRoot {
 
     Process {
         id: cpuProcess
-        command: ["sh", "-c", "head -1 /proc/stat"]
+        command: [ "sh", "-c", "head -1 /proc/stat "]
         stdout: SplitParser {
             onRead: data => {
                 var p = data.trim().split(/\s+/)
@@ -116,7 +130,7 @@ ShellRoot {
 
     Process {
         id: gpuProcess
-        command: ["sh", "-c", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits"]
+        command: [ "sh", "-c", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits "]
         stdout: SplitParser {
             onRead: data => {
                 gpuUsage = parseInt(data.trim()) || 0
@@ -128,13 +142,12 @@ ShellRoot {
 
     Process {
         id: memProcess
-        command: ["sh", "-c", "free | grep Mem"]
+        command: [ "sh", "-c", "free | grep Mem "]
         stdout: SplitParser {
             onRead: data => {
                 var parts = data.trim().split(/\s+/)
-                var total = parseInt(parts[1]) || 1
-                var used = parseInt(parts[2]) || 0
-                memUsage = Math.round(100 * used / total)
+                memTotal = parseInt(parts[1]) || 1
+                memUsed = parseInt(parts[2]) || 0
             }
         }
 
@@ -143,10 +156,49 @@ ShellRoot {
 
     Process {
         id: networkProcess
-        command: ["sh", "-c", "ping -c 1 -W 1 1.1.1.1 >/dev/null 2>&1 && echo online || echo offline"]
+        command: [ "sh", "-c", "ping -c 1 -W 1 1.1.1.1 >/dev/null 2>&1 && echo online || echo offline" ]
         stdout: SplitParser {
             onRead: data => {
-                online = data.trim() === "online"
+                isOnline = data.trim() === "online"
+            }
+        }
+
+        Component.onCompleted: running = true
+    }
+
+    Process {
+        id: networkSpeedProcess
+        command: [ "cat", "/proc/net/dev" ]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                let rx = 0
+                let tx = 0
+
+                let lines = text.split("\n")
+
+                for (let line of lines) {
+                    if (!line.includes(":")) continue
+
+                    let parts = line.trim().split(/\s+/)
+                    let iface = parts[0].replace(":", "")
+
+                    if (iface === "lo") continue
+
+                    rx += Number(parts[1])
+                    tx += Number(parts[9])
+                }
+
+                let now = Date.now()
+
+                if (lastTime !== 0) {
+                    let seconds = (now - lastTime) / 1000
+                    downloadSpeed = (rx - lastRx) / seconds
+                    uploadSpeed = (tx - lastTx) / seconds
+                }
+
+                lastRx = rx
+                lastTx = tx
+                lastTime = now
             }
         }
 
@@ -155,7 +207,7 @@ ShellRoot {
 
     Process {
         id: windowProcess
-        command: ["sh", "-c", "hyprctl activewindow -j | jq -r '.class'"]
+        command: [ "sh", "-c", "hyprctl activewindow -j | jq -r '.class'" ]
         stdout: SplitParser {
             onRead: data => {
                 activeWindow = data.trim()
@@ -167,7 +219,7 @@ ShellRoot {
 
     Process {
         id: audioService
-        command: ["pactl", "list", "sink-inputs"]
+        command: [ "pactl", "list", "sink-inputs" ]
         stdout: StdioCollector {
             onStreamFinished: {
                 let result = []
@@ -225,9 +277,17 @@ ShellRoot {
         repeat: true
         running: audioWindow.visible
 
-        onTriggered: {
-            if (!audioService.running) audioService.running = true
-        }
+        onTriggered: if (!audioService.running) audioService.running = true
+    }
+
+    Timer {
+        id: networkSpeedTimer
+        interval: 1000
+        repeat: true
+        running: showNetworkSpeed && isOnline
+
+        onTriggered: if (!networkSpeedProcess.running) networkSpeedProcess.running = true
+        
     }
 
     Connections {
@@ -294,15 +354,25 @@ ShellRoot {
                     }
 
                     Text { /* MEMORY */
-                        text: memUsage + "%"
+                        text: showMemoryPrecentage ? Math.round(100 * memUsed / memTotal) + "%" : (memUsed / 1024 / 1024).toFixed(2) + "G"
                         color: root.colorFGL
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: showMemoryPrecentage = !showMemoryPrecentage
+                        }
                     }
 
                     Text { /* ICON */
                         text: ""
                         color: root.colorFGL
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: showMemoryPrecentage = !showMemoryPrecentage
+                        }
                     }
 
                     Rectangle {
@@ -405,9 +475,14 @@ ShellRoot {
                     anchors.rightMargin: 12
 
                     Text { /* NETWORK */
-                        text: online ? "online" : "offline"
-                        color: online ? root.colorFGL : root.colorDim
+                        text: isOnline ? (showNetworkSpeed ? formatNetworkSpeed(downloadSpeed) + " 󰇚" + " | " + formatNetworkSpeed(uploadSpeed) + " 󰕒" : "online") : "offline"
+                        color: isOnline ? root.colorFGL : root.colorDim
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: showNetworkSpeed = !showNetworkSpeed
+                        }
                     }
 
 

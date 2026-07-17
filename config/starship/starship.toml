@@ -2,8 +2,8 @@ format = """
 $directory\
 $git_branch\
 $cmd_duration\
-$fill\
 $shell\
+$nix_shell\
 $line_break\
 $character\
 $sudo"""
@@ -20,17 +20,22 @@ min_time = 0
 show_milliseconds = true
 format = '[ $duration ](fg:#040405 bg:#f2c1cf bold)[](fg:#f2c1cf bg:#040405)'
 
-[fill]
-symbol = " "
-
 [shell]
-format = '[](fg:#040405 bg:#c8738b)[ $indicator](fg:#040405 bg:#c8738b bold)'
+format = '[ $indicator](fg:#6f009c bg:#040405 bold)'
 bash_indicator =' '
 fish_indicator = ' '
 zsh_indicator = '󰬇 '
 powershell_indicator = ' '
 unknown_indicator = ' '
 disabled = false
+
+[nix_shell]
+format = '[ $name](fg:#a769ff bg:#040405 bold)[ $symbol $state ](fg:#a769ff bg:#040405 bold)'
+symbol = ''
+unknown_msg = ''
+impure_msg = ''
+pure_msg = ''
+
 
 [character]
 success_symbol = "[ 󱞪](fg:#424242 bg:#040405)"

@@ -1,12 +1,31 @@
 
 { config, lib, pkgs, ... }:
 
+let
+    spoonsert.fractal-theme = pkgs.stdenv.mkDerivation {
+        pname = "spoonsert.fractal-theme";
+        version = "1.0";
+        src = ./config/sddm-theme;
+
+        installPhase = ''
+            mkdir -p $out/share/sddm/themes/fractal
+            cp -r ./* $out/share/sddm/themes/fractal/
+        '';
+    };
+in
 {
     imports =
         [ 
         ./hardware-configuration.nix
         ];
 
+
+
+
+
+    /* custom package stuff */
+
+    
     
     /* hardware stuff */
     hardware.graphics.enable = true;
@@ -44,8 +63,14 @@
         xwayland.enable = true;
         withUWSM = true;
     };
-    services.displayManager.sddm.enable = true;
-    services.displayManager.sddm.wayland.enable = true;
+
+    services.displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+
+        theme = "fractal";
+    };
+
 
     users.users.spoon = {
         isNormalUser = true;
@@ -124,6 +149,10 @@
             htop
             clang-tools
             gamescope
+
+            /* custom */
+            spoonsert.fractal-theme
+
             ];
 
 

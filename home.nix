@@ -58,6 +58,7 @@ in
 	home.sessionVariables = {
 		EDITOR = "nvim";
         TERMINAL = "ghostty";
+        SHELL = "zsh";
 	};
 
     /* ricing */
@@ -96,18 +97,6 @@ in
         source = ./theming/Sweet-hyprcursors;
     };
 
-    /* home packages */
-
-    home.packages = with pkgs; [
-        tree-sitter
-        ffmpegthumbnailer
-        poppler
-        fd
-        ripgrep
-        imagemagick
-        transmission_4-qt
-        wl-clipboard
-    ];
 
     programs.zoxide = {
         enable = true;
@@ -193,9 +182,23 @@ in
         '';
     };
 
+
+
     home.file.".config/yazi/theme.toml" = {
         source = ./theming/yazi/theme.toml;
     };
+
+    /* home packages */
+    home.packages = with pkgs; [
+        tree-sitter
+        ffmpegthumbnailer
+        poppler
+        fd
+        ripgrep
+        imagemagick
+        transmission_4-qt
+        wl-clipboard
+    ];
 
 	programs.home-manager.enable = true;
 }
