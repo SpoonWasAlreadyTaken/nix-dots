@@ -9,7 +9,7 @@ let
 
         installPhase = ''
             mkdir -p $out/share/sddm/themes/fractal
-            cp -r ./* $out/share/sddm/themes/fractal/
+            cp -r $src/* $out/share/sddm/themes/fractal/
         '';
     };
 in
@@ -67,7 +67,6 @@ in
     services.displayManager.sddm = {
         enable = true;
         wayland.enable = true;
-
         theme = "fractal";
     };
 

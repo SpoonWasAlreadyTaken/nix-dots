@@ -58,7 +58,6 @@ in
 	home.sessionVariables = {
 		EDITOR = "nvim";
         TERMINAL = "ghostty";
-        SHELL = "zsh";
 	};
 
     /* ricing */
