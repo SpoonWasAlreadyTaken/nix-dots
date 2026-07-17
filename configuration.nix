@@ -70,7 +70,6 @@ in
         theme = "fractal";
     };
 
-
     users.users.spoon = {
         isNormalUser = true;
         extraGroups = [ "networkmanager" "wheel" ];
