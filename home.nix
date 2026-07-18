@@ -155,8 +155,9 @@ in
         executable = true;
         text = ''     
             #!/usr/bin/env bash
+            set -euo pipefail
 
-            file="$1"
+            file="$(realpath "$1")"
             dir="$(dirname "$file")"
 
             images=("$file")
@@ -164,20 +165,24 @@ in
             while IFS= read -r -d $'\0' img; do
             images+=("$img")
             done < <(
-            find "$dir" -maxdepth 1 \
+            find "$dir" \
+            -maxdepth 1 \
             -type f \
             \( \
-                -iname "*.png" -o \
-                -iname "*.jpg" -o \
-                -iname "*.jpeg" -o \
-                -iname "*.webp" -o \
-                -iname "*.gif" \
+                -iname "*.png"   -o \
+                -iname "*.jpg"   -o \
+                -iname "*.jpeg"  -o \
+                -iname "*.webp"  -o \
+                -iname "*.gif"   -o \
+                -iname "*.avif"  -o \
+                -iname "*.tiff"  -o \
+                -iname "*.bmp" \
             \) \
-            ! -samefile "$file" \
-            -print0
+            ! -path "$file" \
+            -print0 | sort -z
             )
 
-            imv "''${images[@]}"   
+            imv "''${images[@]}"
         '';
     };
 

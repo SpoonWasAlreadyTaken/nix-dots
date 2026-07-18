@@ -6,8 +6,7 @@ import SddmComponents 2.0
 Rectangle {
     id: root
     focus: true
-    width: 1920
-    height: 1080
+    anchors.fill: parent
 
 
 
@@ -394,9 +393,14 @@ Component.onCompleted: {
                         anchors.margins: -4
                         hoverEnabled: true
 
-                        onClicked: sddm.login(userField.text, passField.text, sessionModel.lastIndex)
                         onEntered: loginBorder.focused = true
                         onExited: loginBorder.focused = false
+                        
+                        onClicked: {
+                            loginText.color = root.colorAccent
+                            loginTimer.restart()
+                            sddm.login(userField.text, passField.text, sessionModel.lastIndex)
+                        }
                     }
 
                     Text {
