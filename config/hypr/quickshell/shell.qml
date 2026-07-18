@@ -5,6 +5,7 @@ import Quickshell.Io
 import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Effects
 
 
 
@@ -287,7 +288,7 @@ ShellRoot {
         running: showNetworkSpeed && isOnline
 
         onTriggered: if (!networkSpeedProcess.running) networkSpeedProcess.running = true
-        
+
     }
 
     Connections {
@@ -300,7 +301,7 @@ ShellRoot {
         }
     }
 
-    
+
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
     }
@@ -416,7 +417,7 @@ ShellRoot {
                                 text: isActive ? "" : ""
                                 color: isActive ? colorFG : (ws ? colorPinkDim : colorDim)
                                 font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
-                                
+
                                 Layout.preferredWidth: 12
 
                                 MouseArea {
@@ -531,7 +532,7 @@ ShellRoot {
                             visible: audioWindow.visible
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.bottom: parent.bottom
-                            
+
                             width: parent.width * 1.2
                             height: 2
                             radius: 2
@@ -552,7 +553,17 @@ ShellRoot {
                         text: clock
                         color: root.colorFGL
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            anchors.centerIn: parent
+
+                            onPressed: (mouse) => { timeWindow.visible = true }
+                            onReleased: (mouse) => { timeWindow.visible = false }
+                        }
                     }
+
+
                 }
             }
         }
@@ -589,6 +600,9 @@ ShellRoot {
 
         color: "transparent"
 
+        property bool maxValueRaised: false
+        property double maxValue: maxValueRaised ? 1.5 : 1
+
         Shortcut {
             sequence: "Escape"
             onActivated: { audioWindow.visible = false }
@@ -602,6 +616,7 @@ ShellRoot {
             anchors.margins: 4
 
             gradient: Gradient {
+                orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
                     color: colorFG
@@ -620,9 +635,67 @@ ShellRoot {
 
             color: colorDark
 
+            Rectangle {
+                id: volumeButton
+                anchors.margins: 10
+                anchors.right: parent.right
+                anchors.top: parent.top
+
+                border.width: 2
+                border.color: audioWindow.maxValueRaised ? root.colorBG : root.colorTertiary
+
+                property bool focused: false
+
+                width: 15
+                height: 15
+                radius: volumeButton.height / 2
+
+                color: audioWindow.maxValueRaised ? root.colorTertiary : root.colorBG
+
+                Rectangle {
+                    id: volumeButtonGlow
+
+                    anchors.fill: parent
+                    anchors.margins: -2
+                    radius: parent.radius + 2
+                    color: root.colorTertiary
+
+                    visible: false
+                }
+
+                MultiEffect {
+                    anchors.fill: volumeButtonGlow
+                    source: volumeButtonGlow
+
+                    blurEnabled: true
+                    blur: 0.8
+
+                    opacity: volumeButton.focused ? 0.5 : 0
+                    Behavior on opacity {
+                        NumberAnimation { duration: 180 }
+                    }
+
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    anchors.margins: -2
+
+                    hoverEnabled: true
+
+                    onEntered: volumeButton.focused = true
+                    onExited: volumeButton.focused = false
+
+                    onClicked: audioWindow.maxValueRaised = !audioWindow.maxValueRaised
+                }
+            }
+
             Flickable {
                 anchors.fill: parent
-                anchors.margins: 20
+                anchors.leftMargin: 12
+                anchors.rightMargin: 20
+                anchors.topMargin: 20
+                anchors.bottomMargin: 20
                 contentHeight: streamColumn.height + 15
                 clip: true
 
@@ -631,6 +704,7 @@ ShellRoot {
                     width: parent.width
                     spacing: 15
 
+                    x: 8
 
                     Repeater { 
                         model: audioStreams
@@ -638,11 +712,11 @@ ShellRoot {
                         delegate: Item {
                             id: slider
 
-
+                            property bool focused: false
 
                             property real value: modelData.volume
                             property int streamId: modelData.id
-                            width: parent.width * 0.85
+                            width: parent.width * 0.84
                             height: 40
 
                             Column {
@@ -660,7 +734,34 @@ ShellRoot {
 
                                     Item {
                                         width: slider.width
-                                        height: 6
+                                        height: track.height
+
+
+                                        Rectangle {
+                                            id: glowSource
+
+                                            anchors.fill: parent
+                                            anchors.margins: -2
+                                            radius: parent.radius + 2
+                                            color: root.colorTertiary
+
+                                            visible: false
+                                        }
+
+                                        MultiEffect {
+                                            anchors.fill: glowSource
+                                            source: glowSource
+
+                                            blurEnabled: true
+                                            blur: 0.8
+
+                                            opacity: slider.focused ? 0.5 : 0
+                                            Behavior on opacity {
+                                                NumberAnimation { duration: 180 }
+                                            }
+
+                                        }
+
 
                                         Rectangle {
                                             id: track
@@ -669,8 +770,10 @@ ShellRoot {
                                             radius: 3
                                             color: colorBG
 
+
+
                                             Rectangle {
-                                                width: track.width * slider.value
+                                                width: (track.width * slider.value) / audioWindow.maxValue
                                                 height: parent.height
                                                 radius: parent.radius
                                                 gradient: Gradient {
@@ -696,7 +799,7 @@ ShellRoot {
                                             color: colorBG
                                             border.width: 2
                                             border.color: colorTertiary
-                                            x: (slider.value * (parent.width - width))
+                                            x: (slider.value * (parent.width - width)) / audioWindow.maxValue
                                             y: (parent.height - height) / 2
                                         }
 
@@ -707,18 +810,22 @@ ShellRoot {
                                             height: parent.height * 2
 
                                             preventStealing: true
+                                            hoverEnabled: true
 
-                                            onPressed: (mouse) => { updateValue(mouse.x); audioTimer.running = false; }
-                                            onReleased: (mouse) => { audioTimer.running = audioWindow.visible }
+                                            onEntered: slider.focused = true
+                                            onExited: slider.focused = false
+
+                                            onPressed: (mouse) => { updateValue(mouse.x); audioTimer.running = false; slider.focused = true; }
+                                            onReleased: (mouse) => { audioTimer.running = audioWindow.visible; slider.focused = false; }
                                             onPositionChanged: (mouse) => { if (pressed) updateValue(mouse.x) }
 
                                             onWheel: (event) => {
-                                                slider.value = Math.max(0, Math.min(1, slider.value + (event.angleDelta.y > 0 ? 0.01 : -0.01)))
+                                                slider.value = Math.max(0, Math.min(audioWindow.maxValue, slider.value + (event.angleDelta.y > 0 ? 0.01 : -0.01)))
                                                 setVolume(slider.streamId, slider.value)
                                             }
 
                                             function updateValue(x) { 
-                                                slider.value = Math.max(0, Math.min(1, x / slider.width))
+                                                slider.value = Math.max(0, Math.min(1, x / slider.width)) * audioWindow.maxValue
                                                 slider.value = Math.round(slider.value * 100) / 100
                                                 rateLimiter.restart()
                                             }
@@ -738,7 +845,7 @@ ShellRoot {
 
                                     Text {
                                         text: Math.round(slider.value * 100) + "%"
-                                        color: colorFGL
+                                        color: slider.value > 1 ? root.colorTertiary : colorFGL
                                         font { family: root.fontFamily; pixelSize: 14; bold: true }
                                         Layout.preferredWidth: 50
                                         horizontalAlignment: Text.AlignRight
@@ -746,7 +853,7 @@ ShellRoot {
 
                                     Text {
                                         text: volumeIcon(false, slider.value * 100)
-                                        color: root.colorFGL
+                                        color: slider.value > 1 ? root.colorTertiary : root.colorFGL
                                         font { family: root.fontIcon; pixelSize: 14; bold: true } 
                                         Layout.preferredWidth: 15
                                     }
@@ -762,6 +869,62 @@ ShellRoot {
             }
 
 
+        }
+    }
+
+    PanelWindow {
+        id: timeWindow
+        anchors.top: true
+        anchors.right: true
+
+        width: timeWindowText.width + 30
+        height: timeWindowText.height + 20
+        color: "transparent"
+
+        visible: false
+
+        onVisibleChanged: { if (visible) { timeWindowText.text = Qt.formatDateTime(new Date(), "yyyy MMMM d dddd HH:mm:ss") } }
+
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 4
+
+            radius: 11
+
+            gradient: Gradient {
+                orientation: Gradient.Horizontal
+                GradientStop {
+                    position: 0.0
+                    color: colorFG
+                }
+                GradientStop {
+                    position: 1.0
+                    color: colorTertiary
+                }
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                anchors.margins: 1
+
+                radius: 10
+                color: root.colorDark
+
+                Text {
+                    id: timeWindowText
+                    anchors.centerIn: parent
+                    text: Qt.formatDateTime(new Date(), "yyyy MMMM d dddd HH:mm:ss")
+                    color: root.colorFGL
+                    font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                }
+            }
+        }
+
+        Timer {
+            interval: 1000
+            running: timeWindow.visible
+            repeat: true
+            onTriggered: timeWindowText.text = Qt.formatDateTime(new Date(), "yyyy MMMM d dddd HH:mm:ss")
         }
     }
 
