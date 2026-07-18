@@ -20,11 +20,7 @@ in
         ];
 
 
-
-
-
     /* custom package stuff */
-
     
     
     /* hardware stuff */
@@ -36,7 +32,6 @@ in
         open = true;
         nvidiaSettings = true;
     };
-
 
 
     /* basic system */
@@ -69,6 +64,7 @@ in
         wayland.enable = true;
         theme = "fractal";
     };
+
 
     users.users.spoon = {
         isNormalUser = true;

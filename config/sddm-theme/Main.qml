@@ -6,6 +6,9 @@ import SddmComponents 2.0
 Rectangle {
     id: root
     focus: true
+    anchors.fill: parent
+    width: Screen.width
+    height: Screen.height
 
     property color colorBG: "#040405"
     property color colorFG: "#f38ba8"
