@@ -11,6 +11,7 @@ let
 		swaync = "swaync";
 		tmux = "tmux";
 		starship = "starship";
+        yazi = "yazi";
 	};
 in
 
@@ -87,10 +88,13 @@ in
 	};
 
 
+    /* symlink dotfiles */
 	xdg.configFile = builtins.mapAttrs (name: subpath: {
 		source = create_symlink "${dotfiles}/${subpath}";
 		recursive = true;
 	}) configs;
+
+
 
     home.file.".local/share/icons/Sweet-hyprcursors" = {
         source = ./theming/Sweet-hyprcursors;
@@ -187,10 +191,6 @@ in
     };
 
 
-
-    home.file.".config/yazi/theme.toml" = {
-        source = ./theming/yazi/theme.toml;
-    };
 
     /* home packages */
     home.packages = with pkgs; [
