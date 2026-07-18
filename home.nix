@@ -11,7 +11,6 @@ let
 		swaync = "swaync";
 		tmux = "tmux";
 		starship = "starship";
-        yazi = "yazi";
 	};
 in
 
@@ -88,7 +87,7 @@ in
 	};
 
 
-    /* symlink dotfiles */
+    /* config symlinks */
 	xdg.configFile = builtins.mapAttrs (name: subpath: {
 		source = create_symlink "${dotfiles}/${subpath}";
 		recursive = true;
@@ -191,6 +190,10 @@ in
     };
 
 
+
+    home.file.".config/yazi/theme.toml" = {
+        source = ./theming/yazi/theme.toml;
+    };
 
     /* home packages */
     home.packages = with pkgs; [
