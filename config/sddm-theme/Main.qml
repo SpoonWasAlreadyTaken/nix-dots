@@ -294,6 +294,9 @@ Rectangle {
 
                         anchors.centerIn: parent
 
+                        horizontalAlignment: TextInput.AlignHCenter
+                        verticalAlignment: TextInput.AlignVCenter
+
                         visible: input.text.length === 0
                     }
 
@@ -303,10 +306,17 @@ Rectangle {
                         focus: false
                         onFocusChanged: passwordBorder.focused = input.focus
 
+                        Keys.onPressed: function(event) { 
+                            if (event.key === Qt.Key_Return || event.key === Qt.Key_Y) sddm.login(userField.text, passwordField.text, sessionModel.lastIndex) 
+                        }
+
+
                         width: passwordText.width
                         height: passwordText.height
 
                         anchors.centerIn: parent
+                        horizontalAlignment: TextInput.AlignHCenter
+                        verticalAlignment: TextInput.AlignVCenter
 
                         color: root.colorText
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
@@ -332,8 +342,6 @@ Rectangle {
                 Keys.onPressed: function(event) { 
                     if (event.key === Qt.Key_Return || event.key === Qt.Key_Y) sddm.login(userField.text, passwordField.text, sessionModel.lastIndex) 
                 }
-
-
 
                 implicitWidth: loginText.width + 25
                 implicitHeight: loginText.height + 15
@@ -468,118 +476,5 @@ Rectangle {
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-        /*
-         Rectangle {
-             id: userBorder
-
-             implicitWidth: userField.text.width * 1.4 
-             implicitHeight: userField.text.height * 1.4 + 5
-             radius: userField.text.height / 2
-
-             gradient: Gradient {
-                 orientation: Gradient.Horizontal
-                 GradientStop {
-                     position: 0.0
-                     color: colorSecondary
-                 }
-                 GradientStop {
-                     position: 1.0
-                     color: colorAccent
-                 }
-             }
-
-             TextField {
-                 id: userField
-                 color: root.colorText
-
-                 placeholderText: "Username:"
-                 placeholderTextColor: root.colorDim
-
-                 font { family: root.fontFamily;  pixelSize: root.fontSize; bold: true }
-
-
-                 background: Rectangle {
-                     color: root.colorBG
-                     radius: userBorder.radius - 1
-                 }
-
-
-             }
-         }
-
-         Rectangle {
-             id: passwordBorder
-
-             implicitWidth: passField.text.width * 1.4 
-             implicitHeight: passField.text.height * 1.4 + 5
-             radius: passField.text.height / 2
-
-             gradient: Gradient {
-                 orientation: Gradient.Horizontal
-                 GradientStop {
-                     position: 0.0
-                     color: colorSecondary
-                 }
-                 GradientStop {
-                     position: 1.0
-                     color: colorAccent
-                 }
-             }
-
-
-             TextField {
-                 id: passField
-                 color: root.colorText
-
-                 placeholderText: "Password"
-                 placeholderTextColor: root.colorDim
-
-                 font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
-
-
-                 echoMode: TextInput.Password
-
-                 Keys.onReturnPressed: loginButton.clicked()
-
-                 passwordCharacter: "\uf29f"
-
-                 background: Rectangle {
-                     color: root.colorBG
-                     radius: passwordBorder.radius - 1
-                 }
-
-             }
-         }
-         Button {
-             id: loginButton
-             anchors.horizontalCenter: parent.horizontalCenter
-
-
-             text: "Login"
-             textColor: root.colorText
-
-             radius: loginButton.height / 2
-
-             color: root.colorDark
-             disabledColor: root.colorDim
-             activeColor: root.colorDark
-             pressedColor: root.colorAccent
-
-             onClicked: {
-                 sddm.login(userField.text, passField.text, session.index)
-             }
-         }
-         */
     }
 }
