@@ -2,7 +2,7 @@
 Name=Fractal
 Description=Fractal SDDM theme
 Author=Spoon
-Version=1.3
+Version=1.4
 MainScript=Main.qml
 Type=sddm-theme
 QtVersion=6

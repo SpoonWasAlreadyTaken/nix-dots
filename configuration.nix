@@ -4,7 +4,7 @@
 let
     spoonsert.fractal-theme = pkgs.stdenv.mkDerivation {
         pname = "spoonsert.fractal-theme";
-        version = "1.0";
+        version = "1.4";
         src = ./config/sddm-theme;
 
         installPhase = ''

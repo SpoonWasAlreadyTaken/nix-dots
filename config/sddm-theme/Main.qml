@@ -77,7 +77,7 @@ Rectangle {
 
     Timer {
         id: loginTimer
-        interval: 1000
+        interval: 1500
         running: true
         repeat: false
         onTriggered: loginText.color = root.colorText
