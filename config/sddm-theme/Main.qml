@@ -6,9 +6,6 @@ import SddmComponents 2.0
 Rectangle {
     id: root
     focus: true
-    anchors.fill: parent
-
-
 
     property color colorBG: "#040405"
     property color colorFG: "#f38ba8"
@@ -54,26 +51,37 @@ Rectangle {
 
         function onLoginFailed() {
             loginText.color = colorWarning
-            loginTimer.restart()
             input.enabled = false
             input.text = ""
             passwordText.text = "Fuck You"
+            lockoutTimer.restart()
+        }
+
+        function onLoginSucceeded() {
+            loginText.color = root.colorAccent
+            loginTimer.restart()
         }
     }
 
     Timer {
         id: lockoutTimer
-        interval: 1000
+        interval: 3000
         running: true
         repeat: false
         onTriggered: {
             input.enabled = true
             passwordText.text = "Password"
+            loginText.color = root.colorText
         }
     }
-Component.onCompleted: {
-    console.log(Object.keys(sddm))
-}
+
+    Timer {
+        id: loginTimer
+        interval: 1000
+        running: true
+        repeat: false
+        onTriggered: loginText.color = root.colorText
+    }
 
     Column {
         anchors.bottom: parent.bottom
@@ -322,20 +330,10 @@ Component.onCompleted: {
                 property bool focused: false
 
                 Keys.onPressed: function(event) { 
-                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Y) {
-                        loginText.color = root.colorAccent
-                        loginTimer.restart()
-                        sddm.login(userField.text, passwordField.text, sessionModel.lastIndex) 
-                    }
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Y) sddm.login(userField.text, passwordField.text, sessionModel.lastIndex) 
                 }
 
-                Timer {
-                    id: loginTimer
-                    interval: 1000
-                    running: true
-                    repeat: false
-                    onTriggered: loginText.color = root.colorText
-                }
+
 
                 implicitWidth: loginText.width + 25
                 implicitHeight: loginText.height + 15
@@ -395,12 +393,8 @@ Component.onCompleted: {
 
                         onEntered: loginBorder.focused = true
                         onExited: loginBorder.focused = false
-                        
-                        onClicked: {
-                            loginText.color = root.colorAccent
-                            loginTimer.restart()
-                            sddm.login(userField.text, passField.text, sessionModel.lastIndex)
-                        }
+
+                        onClicked: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
                     }
 
                     Text {
