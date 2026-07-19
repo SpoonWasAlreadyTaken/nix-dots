@@ -59,13 +59,14 @@ in
         withUWSM = true;
     };
 
-
     services.xserver.enable = true;
     services.displayManager.sddm = {
         enable = true;
 
         theme = "fractal";
     };
+
+
 
     users.users.spoon = {
         isNormalUser = true;
