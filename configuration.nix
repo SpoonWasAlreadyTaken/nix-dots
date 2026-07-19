@@ -59,12 +59,13 @@ in
         withUWSM = true;
     };
 
+
+    services.xserver.enable = true;
     services.displayManager.sddm = {
         enable = true;
-        wayland.enable = true;
+
         theme = "fractal";
     };
-
 
     users.users.spoon = {
         isNormalUser = true;
@@ -173,7 +174,7 @@ in
 
     nix.gc.automatic = true;
     nix.gc.dates = "daily";
-    nix.gc.options = "--delete-generations +7";
+    nix.gc.options = "--delete-older-than 3d";
     nix.settings.auto-optimise-store = true;
 
 

@@ -13,17 +13,17 @@ import QtQuick.Effects
 ShellRoot {
     id: root
 
-    property color colorBG: "#040405"
-    property color colorFG: "#f38ba8"
-    property color colorFGL: "#f2a9be"
-    property color colorDim: "#424242"
-    property color colorPink: "#f24878"
-    property color colorPinkDim: "#7f4858"
-    property color colorPinkDark: "#3f242c"
-    property color colorAccent: "#ff7c36"
-    property color colorSecondary: "#938bb4"
-    property color colorTertiary: "#ff005d"
-    property color colorDark: "#16161c"
+    property color colorBG: "#040405"                
+    property color colorFG: "#f38ba8"           
+    property color colorFGL: "#f2a9be"          
+    property color colorDim: "#424242"        
+    property color colorPink: "#f24878"        
+    property color colorPinkDim: "#7f4858"    
+    property color colorPinkDark: "#3f242c"  
+    property color colorAccent: "#ff7c36"    
+    property color colorSecondary: "#938bb4" 
+    property color colorTertiary: "#ff005d"  
+    property color colorDark: "#16161c"         
 
     property string fontFamily: "Cascadia Mono"
     property string fontIcon: "JetBrainsMono Nerd Font"

@@ -17,17 +17,17 @@ overall = { bg = "#040405" }
 
 [mgr]
 cwd = { fg = "#424242", bg = "#040405", bold = true, italic = true }
-find_keyword = { bold = true, italic = true }
+find_keyword = { fg = "#ff005d", italic = true }
 find_position = { bold = true }
 symlink_target = { italic = true }
 marker_copied = { fg = "#938bb4" }
 marker_cut = { fg = "#424242" }
-marker_marked = { fg = "#c3a3ff" }
-marker_selected = { fg = "#ffb5fd" }
+marker_marked = { fg = "#ff7c36" }
+marker_selected = { fg = "#ff005d" }
 count_copied = { fg = "#ff7c36" }
 count_cut = { fg = "#ff7c36" }
 count_selected = { fg = "#ff7c36" }
-border_style = { fg = "#ffffff" }
+border_style = { fg = "#4b4673", bold = true }
 
 
 [indicator]
@@ -47,7 +47,7 @@ sep_outer = { open = "",  close = "" }
 [mode]
 normal_main = { fg = "#040405", bg = "#f38ba8", bold = true }
 normal_alt = { fg = "#040405", bg = "#804a5a", bold = true }
-select_main = { fg = "#040405", bg = "#f38ba8", bold = true }
+select_main = { fg = "#040405", bg = "#f1cfff", bold = true }
 select_alt = { fg = "#040405", bg = "#804a5a", bold = true }
 unset_main = { fg = "#040405", bg = "#f38ba8", bold = true }
 unset_alt = { fg = "#040405", bg = "#804a5a", bold = true }

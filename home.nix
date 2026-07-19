@@ -189,8 +189,6 @@ in
         '';
     };
 
-
-
     home.file.".config/yazi/theme.toml" = {
         source = ./theming/yazi/theme.toml;
     };
