@@ -13,7 +13,6 @@ let
 		starship = "starship";
 	};
 in
-
 {
     /* Basic user */
 	home.username = "spoon";
@@ -60,6 +59,7 @@ in
         TERMINAL = "ghostty";
 	};
 
+
     /* ricing */
 
     gtk = {
@@ -93,17 +93,18 @@ in
 		recursive = true;
 	}) configs;
 
-
-
     home.file.".local/share/icons/Sweet-hyprcursors" = {
         source = ./theming/Sweet-hyprcursors;
     };
 
 
+
+    /* home programs */
     programs.zoxide = {
         enable = true;
         options = [ "--cmd cd" ];
     };
+
 
     programs.yazi = {
         enable = true;
@@ -192,6 +193,7 @@ in
     home.file.".config/yazi/theme.toml" = {
         source = ./theming/yazi/theme.toml;
     };
+
 
     /* home packages */
     home.packages = with pkgs; [

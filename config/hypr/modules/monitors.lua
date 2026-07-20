@@ -13,7 +13,7 @@ hl.monitor({
 
 hl.monitor({
     output   = G.secondaryMonitor,
-    mode     = "1920x1080@60",
+    mode     = "preferred",
     position = "1920x0",
     scale    = "auto",
 })

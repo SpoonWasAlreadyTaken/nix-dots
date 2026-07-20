@@ -38,20 +38,13 @@ in
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages_zen;
 
     networking.hostName = "spoon";
 
     networking.networkmanager.enable = true;
 
     time.timeZone = "Europe/Riga";
-
-    services.pulseaudio.enable = false;
-    services.pipewire = {
-        enable = true;
-        pulse.enable = true;
-    };
-
 
     programs.hyprland = {
         enable = true;
@@ -65,7 +58,6 @@ in
 
         theme = "fractal";
     };
-
 
 
     users.users.spoon = {
@@ -83,14 +75,17 @@ in
 
     nixpkgs.config.allowUnfree = true;
 
+
     programs.firefox.enable = true;
     programs.steam = {
         enable = true;
         extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
+
     programs.zsh.enable = true;
     users.users.spoon.shell = pkgs.zsh;
+
 
     services.openssh = {
         enable = true;
@@ -103,6 +98,15 @@ in
 
     services.udisks2.enable = true;
     security.polkit.enable = true;
+
+    services.pulseaudio.enable = false;
+    services.pipewire = {
+        enable = true;
+        pulse.enable = true;
+    };
+
+
+
 
     environment.systemPackages = with pkgs; [
             vim 
@@ -135,6 +139,8 @@ in
             pulseaudio
             jq
             wine
+            winetricks
+            wine64Packages.fonts
             imv 
             krita
             blender
