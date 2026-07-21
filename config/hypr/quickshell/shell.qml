@@ -413,9 +413,10 @@ ShellRoot {
                                 property int wsID: index + 1
                                 property var ws: Hyprland.workspaces.values.find(w => w.id === wsID)
                                 property bool isActive: Hyprland.focusedWorkspace?.id === (wsID)
+                                property bool isUrgent: ws?.urgent ?? false
 
                                 text: isActive ? "" : ""
-                                color: isActive ? colorFG : (ws ? colorPinkDim : colorDim)
+                                color: isActive ? root.colorFG : (ws ? (isUrgent ? root.colorAccent : root.colorPinkDim) : colorDim)
                                 font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
 
                                 Layout.preferredWidth: 12
@@ -452,9 +453,10 @@ ShellRoot {
                                 property int wsID: 5 + index + 1
                                 property var ws: Hyprland.workspaces.values.find(w => w.id === wsID)
                                 property bool isActive: Hyprland.focusedWorkspace?.id === (wsID)
+                                property bool isUrgent: ws?.urgent ?? false
 
                                 text: isActive ? "" : ""
-                                color: isActive ? colorFG : (ws ? colorPinkDim : colorDim)
+                                color: isActive ? root.colorFG : (ws ? (isUrgent ? root.colorAccent : root.colorPinkDim) : colorDim)
                                 font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
 
                                 Layout.preferredWidth: 12
