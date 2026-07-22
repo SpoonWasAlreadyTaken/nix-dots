@@ -6,11 +6,15 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+        blender-bin.url = "https://flakehub.com/f/edolstra/blender-bin/*";
 	};
 
-	outputs = { self, nixpkgs, home-manager, ... }: {
+	outputs = { self, nixpkgs, home-manager, blender-bin, ... }: {
 		nixosConfigurations.spoon = nixpkgs.lib.nixosSystem {
 			system = "x86_64-linux";
+            specialArgs = {
+                inherit blender-bin;
+            };
 			modules = [
 				./configuration.nix
 				home-manager.nixosModules.home-manager

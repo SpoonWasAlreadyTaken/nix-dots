@@ -1,5 +1,5 @@
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, blender-bin, ... }:
 
 let
     spoonsert.fractal-theme = pkgs.stdenv.mkDerivation {
@@ -25,6 +25,7 @@ in
     
     /* hardware stuff */
     hardware.graphics.enable = true;
+    hardware.graphics.enable32Bit = true;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
         modesetting.enable = true;
@@ -143,7 +144,7 @@ in
             wine64Packages.fonts
             imv 
             krita
-            blender
+            blender-bin.packages.${pkgs.system}.default
             hyprpolkitagent
             ffmpeg
             _7zz
@@ -151,6 +152,7 @@ in
             htop
             clang-tools
             gamescope
+            vulkan-tools
 
             /* custom */
             spoonsert.fractal-theme
@@ -169,6 +171,8 @@ in
             nerd-fonts.hack
             nerd-fonts.iosevka
     ];
+
+    fonts.fontDir.enable = true;
 
 
 
