@@ -60,6 +60,11 @@ in
         theme = "fractal";
     };
 
+    xdg.portal = {
+        enable = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    };
+
 
     users.users.spoon = {
         isNormalUser = true;
@@ -78,12 +83,15 @@ in
 
 
     programs.firefox.enable = true;
+
     programs.steam = {
         enable = true;
         extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
-    programs.gamescope.enable = true;
 
+    programs.gamescope.enable = true;
+    
+    programs.gamemode.enable = true;
 
     programs.zsh.enable = true;
     users.users.spoon.shell = pkgs.zsh;

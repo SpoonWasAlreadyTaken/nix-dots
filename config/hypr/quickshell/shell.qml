@@ -111,7 +111,7 @@ ShellRoot {
 
     Process {
         id: cpuProcess
-        command: [ "sh", "-c", "head -1 /proc/stat "]
+        command: [ "sh", "-c", "head -1 /proc/stat " ]
         stdout: SplitParser {
             onRead: data => {
                 var p = data.trim().split(/\s+/)
@@ -131,7 +131,7 @@ ShellRoot {
 
     Process {
         id: gpuProcess
-        command: [ "sh", "-c", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits "]
+        command: [ "sh", "-c", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits " ]
         stdout: SplitParser {
             onRead: data => {
                 gpuUsage = parseInt(data.trim()) || 0
@@ -143,7 +143,7 @@ ShellRoot {
 
     Process {
         id: memProcess
-        command: [ "sh", "-c", "free | grep Mem "]
+        command: [ "sh", "-c", "free | grep Mem " ]
         stdout: SplitParser {
             onRead: data => {
                 var parts = data.trim().split(/\s+/)
@@ -220,32 +220,15 @@ ShellRoot {
 
     Process {
         id: audioService
-        command: [ "pactl", "list", "sink-inputs" ]
+        command: [ "pactl", "-f", "json", "list", "sink-inputs" ]
         stdout: StdioCollector {
             onStreamFinished: {
-                let result = []
-
-                let blocks = text.split("\n\n")
-
-                for (let block of blocks) {
-
-                    let idMatch = block.match(/object\.id = "(\d+)"/)
-                    if (!idMatch)
-                    continue
-
-                    let nameMatch = block.match(/media\.name = "(.+)"/)
-
-                    let volumeMatch = block.match(/Volume:.*?(\d+)%/)
-
-                    result.push({
-                        id: Number(idMatch[1]),
-                        name: nameMatch ? nameMatch[1] : "Unknown",
-                        volume: volumeMatch ? Number(volumeMatch[1]) / 100 : 0
-                    })
-                }
-
-                audioStreams = result
-
+                let streams = JSON.parse(text)
+                audioStreams = streams.map(stream => ({
+                    id: stream.properties["object.id"],
+                    name: stream.properties["media.name"],
+                    volume: stream.volume["front-left"].value / 65536,
+                }))
             }
         }
 
@@ -254,7 +237,7 @@ ShellRoot {
 
 
     Timer {
-        interval: 2000
+        interval: 1000
         running: true
         repeat: true
         onTriggered: { 
@@ -879,8 +862,8 @@ ShellRoot {
         anchors.top: true
         anchors.right: true
 
-        width: timeWindowText.width + 30
-        height: timeWindowText.height + 20
+        implicitWidth: timeWindowText.width + 30
+        implicitHeight: timeWindowText.height + 20
         color: "transparent"
 
         visible: false
