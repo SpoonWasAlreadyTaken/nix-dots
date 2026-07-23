@@ -82,6 +82,7 @@ in
         enable = true;
         extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
+    programs.gamescope.enable = true;
 
 
     programs.zsh.enable = true;
@@ -138,21 +139,21 @@ in
             starship
             vesktop
             pulseaudio
-            jq
-            wine
+            jq    
+            wineWow64Packages.staging
             winetricks
             wine64Packages.fonts
             imv 
             krita
-            blender-bin.packages.${pkgs.system}.default
+            blender-bin.packages.${pkgs.stdenv.hostPlatform.system}.default
             hyprpolkitagent
             ffmpeg
             _7zz
             file
             htop
             clang-tools
-            gamescope
             vulkan-tools
+            gamescope-wsi
 
             /* custom */
             spoonsert.fractal-theme

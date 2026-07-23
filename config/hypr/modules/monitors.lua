@@ -6,7 +6,7 @@ local G = require('modules.globals')
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = G.mainMonitor,
-    mode     = "1920x1080",
+    mode     = "1920x1080@144",
     position = "0x0",
     scale    = "auto",
     vrr      = 3,
