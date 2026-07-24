@@ -174,17 +174,18 @@ in
                     {
                         on = "M";
                         run = "plugin mount";
-                        desc = "Mount devices";
+                    }
+                    {
+                        on = [ "g" "m" ];
+                        run = "cd /run/media/$USER";
                     }
                     {
                         on = [ "g" "r" ];
                         run = "plugin recycle-bin";
-                        desc = "Recycle Bin";
                     }
                     {
                         on = "l";
                         run = "plugin smart-enter";
-                        desc = "Smart enter";
                     }
                 ];
             };
