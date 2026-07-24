@@ -7,7 +7,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- primary setup
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(G.terminal))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(G.fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(G.fileManager, { workspace = 'unset' }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(G.menu))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
