@@ -1,7 +1,4 @@
 local G = require('modules.globals')
-------------------
----- MONITORS ----
-------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({

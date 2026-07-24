@@ -187,6 +187,14 @@ in
                         on = "l";
                         run = "plugin smart-enter";
                     }
+                    {
+                        on  = "y";
+                        run = [ "yank" "plugin clipboard -- --action=copy" ];
+                    }
+                    {
+                        on  = "<C-p>";
+                        run = "plugin clipboard -- --action=paste";
+                    }
                 ];
             };
         };
