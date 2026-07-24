@@ -115,7 +115,17 @@ in
             smart-enter = pkgs.yaziPlugins.smart-enter;
             starship = pkgs.yaziPlugins.starship;
             recycle-bin = pkgs.yaziPlugins.recycle-bin;
+            clipboard = pkgs.yaziPlugins.clipboard;
+            git = pkgs.yaziPlugins.git;
+            mount = pkgs.yaziPlugins.mount;
         };
+
+        initLua = ''
+            require("full-border"):setup()
+            require("starship"):setup()
+            require("git"):setup()
+            require("smart-enter"):setup({})
+        '';
 
         settings = {
             manager = {
@@ -125,9 +135,14 @@ in
                 sort_dir_first = true;
                 linemode = "size";
             };
+
             preview = {
                 wrap = "yes";
                 tab_size = 4;
+            };
+
+            plugin = {
+                prepend_fetcher = [ { id = "git"; } ];
             };
 
             opener = {
@@ -151,6 +166,29 @@ in
                     mime = "image/*";
                     use = "image";
                 }];
+            };
+
+
+        };
+        keymap = {
+            manager = {
+                prepend_keymap = [
+                    {
+                        on = "M";
+                        run = "plugin mount";
+                        desc = "Mount devices";
+                    }
+                    {
+                        on = [ "g" "r" ];
+                        run = "plugin recycle-bin";
+                        desc = "Recycle Bin";
+                    }
+                    {
+                        on = "l";
+                        run = "plugin smart-enter";
+                        desc = "Smart enter";
+                    }
+                ];
             };
         };
     };
