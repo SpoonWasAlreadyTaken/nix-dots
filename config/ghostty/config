@@ -14,4 +14,6 @@ custom-shader = ~/.config/ghostty/shaders/shader.glsl
 image-storage-limit = "320000000"
 
 shell-integration = "detect"
+cursor-opacity = 0
+shell-integration = "zsh"
 
