@@ -73,7 +73,10 @@ local plugins = {
                     if vim.bo[args.buf].buftype ~= "" then return end
                     if vim.bo[args.buf].filetype == "" then return end
 
-                    local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+                    local ft = vim.bo[args.buf].filetype
+                    local lang = vim.treesitter.language.get_lang(ft)
+
+                    if not lang or not vim.list_contains(treesitter.get_available(), lang) then return end
 
                     local function start_treesitter()
                         if vim.list_contains(treesitter.get_installed(), lang) then
@@ -109,6 +112,23 @@ local plugins = {
     'saadparwaiz1/cmp_luasnip',
 
     'onsails/lspkind.nvim',
+    {
+        'catgoose/nvim-colorizer.lua',
+        event = 'BufReadPre',
+        opts = {
+            filetypes = { '*' },
+            user_commands = true,
+
+            options = {
+                parsers = {
+                    css = true,
+                    css_fn = true,
+                    names = false,
+                    hex = true,
+                },
+            },
+        },
+    },
 }
 
 local opts = {}
