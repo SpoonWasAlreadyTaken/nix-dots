@@ -113,7 +113,6 @@ in
         plugins = {
             full-border = pkgs.yaziPlugins.full-border;
             smart-enter = pkgs.yaziPlugins.smart-enter;
-            starship = pkgs.yaziPlugins.starship;
             recycle-bin = pkgs.yaziPlugins.recycle-bin;
             clipboard = pkgs.yaziPlugins.clipboard;
             git = pkgs.yaziPlugins.git;
@@ -122,9 +121,9 @@ in
 
         initLua = ''
             require("full-border"):setup()
-            require("starship"):setup()
             require("git"):setup()
             require("smart-enter"):setup({})
+            require("recycle-bin"):setup()
         '';
 
         settings = {
@@ -167,11 +166,10 @@ in
                     use = "image";
                 }];
             };
-
-
         };
+
         keymap = {
-            manager = {
+            mgr = {
                 prepend_keymap = [
                     {
                         on = "M";
@@ -243,6 +241,9 @@ in
         imagemagick
         transmission_4-qt
         wl-clipboard
+        udisks
+        udiskie
+        trash-cli
     ];
 
 	programs.home-manager.enable = true;
