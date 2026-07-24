@@ -562,6 +562,7 @@ ShellRoot {
         anchors.bottom: true
         anchors.left: true
         anchors.right: true
+
         color: "transparent"
 
         MouseArea {

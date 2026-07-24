@@ -25,6 +25,11 @@ in
 		enable = true;
 	};
 
+    programs.fzf = {
+        enable = true;
+        enableZshIntegration = true;
+    };
+
 	programs.zsh = {
 		enable = true;
 		enableCompletion = true;
@@ -212,26 +217,26 @@ in
             images=("$file")
 
             while IFS= read -r -d $'\0' img; do
-            images+=("$img")
+              [[ "$img" != "$file" ]] && images+=("$img")
             done < <(
-            find "$dir" \
-            -maxdepth 1 \
-            -type f \
-            \( \
-                -iname "*.png"   -o \
-                -iname "*.jpg"   -o \
-                -iname "*.jpeg"  -o \
-                -iname "*.webp"  -o \
-                -iname "*.gif"   -o \
-                -iname "*.avif"  -o \
-                -iname "*.tiff"  -o \
-                -iname "*.bmp" \
-            \) \
-            ! -path "$file" \
-            -print0 | sort -z
+              fd \
+                --absolute-path \
+                --max-depth 1 \
+                --type f \
+                --extension png \
+                --extension jpg \
+                --extension jpeg \
+                --extension webp \
+                --extension gif \
+                --extension avif \
+                --extension tiff \
+                --extension bmp \
+                --print0 \
+                . "$dir" |
+                sort -z
             )
 
-            imv "''${images[@]}"
+            exec imv "''${images[@]}"
         '';
     };
 
