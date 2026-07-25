@@ -187,10 +187,26 @@ in
 
     /* nix specific settings */
 
+    systemd.services.nixos-flake-update = {
+        description = "Auto update flake";
+        serviceConfig.Type = "oneshot";
+        script = ''
+           cd /home/spoon/nixos-dotfiles
+           ${pkgs.nix}/bin/nix flake update
+        '';
+    };
+    systemd.timers.nixos-flae-update = {
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+            OnCalendar = "weekly";
+            Persistent = true;
+        };
+    };
+
     system.autoUpgrade.enable = true;
     system.autoUpgrade.dates = "weekly";
     system.autoUpgrade.flake = "/home/spoon/nixos-dotfiles#spoon";
-    system.autoUpgrade.flags = [ "nixpkgs" "--refresh" ];
+    system.autoUpgrade.flags = [ "--refresh" "--commit-lock-file" ];
 
     nix.gc.automatic = true;
     nix.gc.dates = "daily";
