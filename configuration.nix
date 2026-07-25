@@ -190,12 +190,21 @@ in
     system.autoUpgrade.enable = true;
     system.autoUpgrade.dates = "weekly";
     system.autoUpgrade.flake = "/home/spoon/nixos-dotfiles#spoon";
-    system.autoUpgrade.flags = [ "--update-input" "nixpkgs" "--refresh" ];
+    system.autoUpgrade.flags = [ "nixpkgs" "--refresh" ];
 
     nix.gc.automatic = true;
     nix.gc.dates = "daily";
     nix.gc.options = "--delete-older-than 3d";
     nix.settings.auto-optimise-store = true;
+
+    programs.git = {
+        enable = true;
+        config = {
+            safe = {
+                directory = "/home/spoon/nixos-dotfiles";
+            };
+        };
+    };
 
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
