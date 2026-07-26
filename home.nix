@@ -98,6 +98,10 @@ in
 		recursive = true;
 	}) configs;
 
+    home.file.".local/share/hypr-stubs" = {
+        source = "${pkgs.hyprland}/share/hypr/stubs";
+    };
+
     home.file.".local/share/icons/Sweet-hyprcursors" = {
         source = ./theming/Sweet-hyprcursors;
     };
