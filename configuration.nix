@@ -204,7 +204,8 @@ in
     };
 
     system.autoUpgrade.enable = true;
-    system.autoUpgrade.dates = "weekly";
+    system.autoUpgrade.dates = "weekly";  
+    system.autoUpgrade.persistent = true;
     system.autoUpgrade.flake = "/home/spoon/nixos-dotfiles#spoon";
     system.autoUpgrade.flags = [ "--refresh" "--commit-lock-file" ];
 
@@ -223,7 +224,7 @@ in
     };
 
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" "--commit-lock-file" ];
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
     system.stateVersion = "26.05";
