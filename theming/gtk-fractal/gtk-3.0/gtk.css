@@ -1,4 +1,4 @@
-@define-color colorBG rgba(4,4,5,0.3);
+@define-color colorBG rgba(4,4,5,0.5);
 @define-color colorFG #f38ba8;
 @define-color colorFGL #f2a9be;
 @define-color colorDim #424242;
@@ -8,9 +8,10 @@
 @define-color colorAccent #ff7c36;
 @define-color colorSecondary #938bb4;
 @define-color colorTertiary #ff005d;
-@define-color colorDark rgba(21,21,27,0.3);
+@define-color colorDark rgba(21,21,27,0.5);
 @define-color colorDarkL rgba(21,21,24,0.8);
 @define-color colorBorder #4b4673;
+@define-color colorTextDark #040405;
 
 * {
     font: 13pt "Cascadia Mono";
@@ -71,18 +72,18 @@ button:hover {
 
 button:active {
     background: @colorPink;
-    color: @colorBG;
+    color: @colorTextDark;
 }
 
 button:checked {
     background: @colorTertiary;
-    color: @colorBG;
+    color: @colorTextDark;
 }
 
 
 button.suggested-action {
     background: @colorTertiary;
-    color: @colorBG;
+    color: @colorTextDark;
 }
 
 button.suggested-action:hover {
@@ -116,7 +117,7 @@ entry:focus {
 
 entry selection {
     background: @colorPink;
-    color: @colorBG;
+    color: @colorTextDark;
 }
 
 
@@ -140,11 +141,11 @@ notebook tab:checked {
     border-bottom: 2px solid @colorTertiary;
 }
 
-
+panel,
 menu,
 popover,
 .menu {
-    background: @colorDark;
+    background: @colorBG;
 
     border: 1px solid @colorBorder;
 }
@@ -244,7 +245,7 @@ textview {
 
 textview text selection {
     background: @colorPink;
-    color: @colorBG;
+    color: @colorTextDark;
 }
 
 
@@ -283,7 +284,7 @@ link:hover {
 
 selection {
     background: @colorDim;
-    color: @colorBG;
+    color: @colorTextDark;
 }
 
 
