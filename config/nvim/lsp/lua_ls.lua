@@ -14,7 +14,7 @@ return {
                 globals = { 'vim', 'hl' },
             },
             workspace = {
-                library = { '/usr/share/hypr/stubs',
+                library = { '~/.local/share/hypr/stubs',
                 vim.env.VIMRUNTIME,
             },
             checkThirdParty = false,
