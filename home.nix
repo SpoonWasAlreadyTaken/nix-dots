@@ -28,6 +28,8 @@ in
     programs.fzf = {
         enable = true;
         enableZshIntegration = true;
+        fuzzyCompletion = true;
+        keybindings = true;
     };
 
 	programs.zsh = {

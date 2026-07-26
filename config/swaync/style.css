@@ -1,11 +1,11 @@
 :root {
-  --cc-bg: #16161c1f;
+  --cc-bg: #16161c5f;
   --noti-border-color: #f38ba8ff;
   --noti-border-color2: #ff005dff;
-  --noti-bg: #16161c1f;
+  --noti-bg: #16161c5f;
   --noti-bg-alpha: 0.8;
   --noti-bg-darker: #040405ff;
-  --noti-bg-hover: #16161c3f;
+  --noti-bg-hover: #16161c7f;
   --noti-bg-focus: #0404053f;
   --noti-close-bg: #040405ff;
   --noti-close-bg-hover: #16161cff;
