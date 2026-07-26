@@ -74,13 +74,15 @@ in
             package = pkgs.papirus-icon-theme;
         };
 
-        gtk3.extraConfig = {
-            gtk-application-prefer-dark-theme = 1;
+        theme = {
+            name = "gtk-fractal";
+            package = null;
         };
 
-        gtk4.extraConfig = {
-            gtk-application-prefer-dark-theme = 1;
-        };
+    };
+
+    home.file.".themes/gtk-fractal" = {
+        source = ./theming/gtk-fractal;
     };
 
     

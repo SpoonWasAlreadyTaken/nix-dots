@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Fractal
+Comment=Fractal theme by Spoon
+Encoding=UTF-8
+
+
+[X-GNOME-Metatheme]
+GtkTheme=Fractal
+IconTheme=Papirus
+MetacityTheme=Fractal

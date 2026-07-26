@@ -188,7 +188,7 @@ in
     /* nix specific settings */
 
     systemd.services.nixos-flake-update = {
-        description = "Auto update flake";
+        description = "Auto-update flake";
         serviceConfig.Type = "oneshot";
         script = ''
            cd /home/spoon/nixos-dotfiles

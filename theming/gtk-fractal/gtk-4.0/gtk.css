@@ -1,0 +1,300 @@
+@define-color colorBG rgba(4,4,5,0.3);
+@define-color colorFG #f38ba8;
+@define-color colorFGL #f2a9be;
+@define-color colorDim #424242;
+@define-color colorPink #f24878;
+@define-color colorPinkDim #7f4858;
+@define-color colorPinkDark #3f242c;
+@define-color colorAccent #ff7c36;
+@define-color colorSecondary #938bb4;
+@define-color colorTertiary #ff005d;
+@define-color colorDark rgba(21,21,27,0.3);
+@define-color colorDarkL rgba(21,21,24,0.8);
+@define-color colorBorder #4b4673;
+
+* {
+    font: 13pt "Cascadia Mono";
+
+    color: @colorFGL;
+
+    background-color: transparent;
+
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+
+    outline: none;
+
+    -gtk-icon-shadow: none;
+    text-shadow: none;
+
+    transition: 180ms ease;
+}
+
+
+window,
+.background-color {
+    background-color: @colorBG;
+    color: @colorFGL;
+}
+
+
+headerbar {
+    background-color: @colorDark;
+    color: @colorFGL;
+
+    border-bottom: 1px solid @colorBorder;
+
+    padding: 6px;
+}
+
+headerbar button {
+    background-color: @colorDarkL;
+}
+
+
+button {
+    background-color: @colorDark;
+
+    color: @colorFG;
+
+    border: 1px solid @colorBorder;
+
+    padding: 8px 14px;
+}
+
+button:hover {
+    background-color: @colorPinkDark;
+    border-color: @colorPink;
+}
+
+button:active {
+    background-color: @colorPink;
+    color: @colorBG;
+}
+
+button:checked {
+    background-color: @colorTertiary;
+    color: @colorBG;
+}
+
+
+button.suggested-action {
+    background-color: @colorTertiary;
+    color: @colorBG;
+}
+
+button.suggested-action:hover {
+    background-color: shade(@colorTertiary,1.15);
+}
+
+/* Destructive */
+
+button.destructive-action {
+    background-color: @colorAccent;
+    color: white;
+}
+
+
+entry,
+spinbutton,
+combobox box {
+    background-color: @colorDark;
+
+    color: @colorFG;
+
+    border: 1px solid @colorBorder;
+
+    padding: 6px;
+}
+
+entry:focus-within {
+    border-color: @colorTertiary;
+    box-shadow: inset 0 0 0 1px @colorTertiary;
+}
+
+entry selection {
+    background-color: @colorPink;
+    color: @colorBG;
+}
+
+
+notebook {
+    background-color: @colorBG;
+}
+
+notebook header {
+    background-color: @colorDark;
+}
+
+notebook tab {
+    background-color: @colorDarkL;
+    color: @colorDim;
+}
+
+notebook tab:checked {
+    background-color: @colorPinkDark;
+    color: @colorFG;
+
+    border-bottom: 2px solid @colorTertiary;
+}
+
+
+menu,
+popover,
+.menu {
+    background-color: @colorDark;
+
+    border: 1px solid @colorBorder;
+}
+
+menuitem {
+    padding: 8px;
+}
+
+menuitem:hover {
+    background-color: @colorDarkL;
+    border: 1px solid @colorBorder;
+    border-radius: 0px;
+}
+
+
+scrollbar {
+    background-color: transparent;
+}
+
+scrollbar slider {
+    background-color: @colorDim;
+
+    min-width: 8px;
+    min-height: 8px;
+}
+
+scrollbar slider:hover {
+    background-color: @colorSecondary;
+}
+
+
+check,
+radio {
+    color: @colorFG;
+    border-radius: 2px;
+}
+
+check:checked,
+radio:checked,
+toggle:checked {
+    color: @colorAccent;
+}
+
+
+progressbar trough {
+    background-color: @colorDark;
+}
+
+progressbar progress {
+    background-color: @colorSecondary;
+}
+
+
+scale trough {
+    background-color: @colorDark;
+}
+
+scale highlight {
+    background-color: @colorAccent;
+}
+
+scale slider {
+    background-color: @colorPink;
+}
+
+
+switch {
+    background-color: @colorDark;
+}
+
+switch:checked {
+    background-color: @colorAccent;
+}
+
+switch slider {
+    background-color: @colorFG;
+}
+
+
+treeview,
+list,
+listview {
+    background-color: @colorBG;
+    color: @colorFG;
+}
+
+treeview:selected,
+list row:selected {
+    background-color: @colorDarkL;
+    color: @colorFGL;
+}
+
+
+textview {
+    background-color: @colorBG;
+    color: @colorFGL;
+}
+
+textview text selection {
+    background-color: @colorPink;
+    color: @colorBG;
+}
+
+
+tooltip {
+    background-color: @colorDark;
+
+    border: 1px solid @colorBorder;
+
+    color: @colorFG;
+}
+
+
+separator {
+    background-color: @colorBorder;
+}
+
+
+*:disabled {
+    color: @colorDim;
+}
+
+
+link {
+    color: @colorAccent;
+}
+
+link:hover {
+    color: @colorPink;
+}
+
+
+*:focus {
+    border-color: @colorTertiary;
+}
+
+
+selection {
+    background-color: @colorDim;
+    color: @colorBG;
+}
+
+
+
+
+
+
+
+
+
+
+
+
