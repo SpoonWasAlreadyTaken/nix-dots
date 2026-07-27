@@ -1,15 +1,15 @@
-@define-color colorBG rgba(4,4,5,0.5);
+@define-color colorBG rgba(4,4,5,0.3);
 @define-color colorFG #f38ba8;
 @define-color colorFGL #f2a9be;
-@define-color colorDim #424242;
+@define-color colorDim #422549;
 @define-color colorPink #f24878;
 @define-color colorPinkDim #7f4858;
 @define-color colorPinkDark #3f242c;
 @define-color colorAccent #ff7c36;
 @define-color colorSecondary #938bb4;
 @define-color colorTertiary #ff005d;
-@define-color colorDark rgba(21,21,27,0.5);
-@define-color colorDarkL rgba(21,21,24,0.8);
+@define-color colorDark rgba(21,21,27,0.3);
+@define-color colorDarkL rgba(21,21,24,0.7);
 @define-color colorBorder #4b4673;
 @define-color colorTextDark #040405;
 
@@ -54,6 +54,9 @@ headerbar button {
     background: @colorDarkL;
 }
 
+box {
+    spacing: 8px;
+}
 
 button {
     background: @colorDark;
@@ -76,8 +79,8 @@ button:active {
 }
 
 button:checked {
-    background: @colorTertiary;
-    color: @colorTextDark;
+    background: @colorBorder;
+    color: @colorFG;
 }
 
 
@@ -144,6 +147,7 @@ notebook tab:checked {
 panel,
 menu,
 popover,
+popover.background,
 .menu {
     background: @colorBG;
 
@@ -154,6 +158,7 @@ menuitem {
     padding: 8px;
 }
 
+menuitem:selected,
 menuitem:hover {
     background: @colorDarkL;
     border: 1px solid @colorBorder;
@@ -226,12 +231,15 @@ switch slider {
 
 treeview,
 list,
+treeview.view,
 listview {
     background: @colorBG;
     color: @colorFG;
 }
 
 treeview:selected,
+treeview.view:selected,
+treeview.view:selected:focus,
 list row:selected {
     background: @colorDarkL;
     color: @colorFGL;
@@ -286,16 +294,6 @@ selection {
     background: @colorDim;
     color: @colorTextDark;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
