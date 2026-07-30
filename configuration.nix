@@ -162,6 +162,7 @@ in
             clang-tools
             vulkan-tools
             gamescope-wsi
+            sfml
 
             /* custom */
             spoonsert.fractal-theme
