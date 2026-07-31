@@ -169,13 +169,24 @@ in
                     run = ''~/.local/bin/yazi-imv "$@"'';
                     orphan = true;
                 }];
+
+                wine = [{
+                    run = ''wine "$@"'';
+                    orphan = true;
+                }];
             };
 
             open = {
-                prepend_rules = [{
-                    mime = "image/*";
-                    use = "image";
-                }];
+                prepend_rules = [
+                    {
+                        mime = "image/*";
+                        use = "image";
+                    }
+                    {
+                        url = "*.exe";
+                        use = "wine";
+                    }
+                ];
             };
         };
 
