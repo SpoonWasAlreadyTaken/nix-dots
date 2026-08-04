@@ -116,8 +116,8 @@ in
     };
 
 
-
-
+    programs.nix-ld.enable = true;
+    
     environment.systemPackages = with pkgs; [
             vim 
             wget
@@ -136,6 +136,8 @@ in
             fzf
             clang
             cmake
+            gnumake
+            gcc
             nil
             luajit
             luarocks
@@ -163,6 +165,9 @@ in
             vulkan-tools
             gamescope-wsi
             sfml
+            glibc
+            zlib
+
 
             /* custom */
             spoonsert.fractal-theme
