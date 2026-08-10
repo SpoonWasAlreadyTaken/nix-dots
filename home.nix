@@ -128,6 +128,7 @@ in
             clipboard = pkgs.yaziPlugins.clipboard;
             git = pkgs.yaziPlugins.git;
             mount = pkgs.yaziPlugins.mount;
+            compress = pkgs.yaziPlugins.compress;
         };
 
         initLua = ''
@@ -135,6 +136,7 @@ in
             require("git"):setup()
             require("smart-enter"):setup({})
             require("recycle-bin"):setup()
+            require("compress"):setup()
         '';
 
         settings = {
@@ -173,6 +175,10 @@ in
                 wine = [{
                     run = ''wine "$@"'';
                     orphan = true;
+                }];
+                
+                extract = [{
+                    run = ''ya pub extract --list %s'';
                 }];
             };
 
@@ -262,6 +268,7 @@ in
     };
 
 
+
     /* home packages */
     home.packages = with pkgs; [
         tree-sitter
@@ -275,6 +282,7 @@ in
         udisks
         udiskie
         trash-cli
+        obs-studio
     ];
 
 	programs.home-manager.enable = true;
