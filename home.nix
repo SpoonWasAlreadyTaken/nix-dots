@@ -136,7 +136,6 @@ in
             require("git"):setup()
             require("smart-enter"):setup({})
             require("recycle-bin"):setup()
-            require("compress"):setup()
         '';
 
         settings = {
