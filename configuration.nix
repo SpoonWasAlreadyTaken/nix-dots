@@ -201,7 +201,7 @@ in
            ${pkgs.nix}/bin/nix flake update
         '';
     };
-    systemd.timers.nixos-flae-update = {
+    systemd.timers.nixos-flake-update = {
         wantedBy = [ "timers.target" ];
         timerConfig = {
             OnCalendar = "weekly";
