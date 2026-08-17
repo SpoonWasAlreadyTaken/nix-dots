@@ -196,6 +196,7 @@ in
     systemd.services.nixos-flake-update = {
         description = "Auto-update flake";
         serviceConfig.Type = "oneshot";
+        path = with pkgs; [ git ];
         script = ''
            cd /home/spoon/nixos-dotfiles
            ${pkgs.nix}/bin/nix flake update
