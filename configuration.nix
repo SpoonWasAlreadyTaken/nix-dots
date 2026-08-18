@@ -167,6 +167,8 @@ in
             sfml
             glibc
             zlib
+            ripgrep
+            resvg
 
 
             /* custom */
