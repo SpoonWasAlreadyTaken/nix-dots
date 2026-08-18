@@ -158,26 +158,27 @@ in
 
             opener = {
                 edit = [{
-                    run = ''nvim "$@"'';
+                    run = ''nvim %s'';
                     block = true;
                 }];
 
                 open = [{
-                    run = ''xdg-open "$@"'';
+                    run = ''xdg-open %s'';
                 }];
 
                 image = [{
-                    run = ''~/.local/bin/yazi-imv "$@"'';
+                    run = ''~/.local/bin/yazi-imv %s'';
                     orphan = true;
                 }];
 
                 wine = [{
-                    run = ''wine "$@"'';
+                    run = ''wine %s'';
                     orphan = true;
                 }];
                 
                 extract = [{
                     run = ''ya pub extract --list %s'';
+                    desc = "Extract";
                 }];
             };
 
@@ -186,6 +187,10 @@ in
                     {
                         mime = "image/*";
                         use = "image";
+                    }
+                    {
+                        mime = "application/vnd.microsoft.portable-executabe";
+                        use = "wine";
                     }
                     {
                         url = "*.exe";
@@ -203,10 +208,6 @@ in
                         run = "plugin mount";
                     }
                     {
-                        on = [ "g" "m" ];
-                        run = "cd /run/media/$USER";
-                    }
-                    {
                         on = [ "g" "r" ];
                         run = "plugin recycle-bin";
                     }
@@ -221,6 +222,11 @@ in
                     {
                         on  = "<C-p>";
                         run = "plugin clipboard -- --action=paste";
+                    }
+                    {
+                        on = [ "c" "a" ];
+                        run = "plugin compress";
+                        desc = "Archive";
                     }
                 ];
             };
