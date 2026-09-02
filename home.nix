@@ -288,6 +288,7 @@ in
         udiskie
         trash-cli
         obs-studio
+        r2modman
     ];
 
 	programs.home-manager.enable = true;
