@@ -125,7 +125,7 @@ in
             full-border = pkgs.yaziPlugins.full-border;
             smart-enter = pkgs.yaziPlugins.smart-enter;
             recycle-bin = pkgs.yaziPlugins.recycle-bin;
-            clipboard = pkgs.yaziPlugins.clipboard;
+            system-clipboard = pkgs.yaziPlugins.clipboard;
             git = pkgs.yaziPlugins.git;
             mount = pkgs.yaziPlugins.mount;
             compress = pkgs.yaziPlugins.compress;
@@ -217,11 +217,11 @@ in
                     }
                     {
                         on  = "y";
-                        run = [ "yank" "plugin clipboard -- --action=copy" ];
+                        run = [ "yank" "plugin system-clipboard -- --action=copy" ];
                     }
                     {
                         on  = "<C-p>";
-                        run = "plugin clipboard -- --action=paste";
+                        run = "plugin system-clipboard -- --action=paste";
                     }
                     {
                         on = [ "c" "a" ];
