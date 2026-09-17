@@ -2,6 +2,7 @@ background = "040405"
 font-family = "Cascadia Mono"
 font-size = "13"
 font-thicken = true
+font-variation-bold = wght=700
 
 custom-shader = ~/.config/ghostty/shaders/shader.glsl
 
