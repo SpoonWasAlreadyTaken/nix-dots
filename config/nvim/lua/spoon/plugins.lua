@@ -51,7 +51,7 @@ local plugins = {
             local config = require('nvim-treesitter.config')
             local treesitter = require('nvim-treesitter')
 
-            local ensure_installed = { 'odin', 'cpp', 'c', 'c_sharp', 'lua', 'vim', 'vimdoc', 'bash', 'markdown', 'markdown_inline' }
+            local ensure_installed = { 'odin', 'cpp', 'c', 'c_sharp', 'lua', 'vim', 'vimdoc', 'bash', 'markdown', 'markdown_inline', 'latex', }
             local already_installed = config.get_installed()
             local to_install = {}
 
@@ -128,6 +128,12 @@ local plugins = {
                 },
             },
         },
+    },
+
+    {
+        'MeanderingProgrammer/render-markdown.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons', },
+        opts = {},
     },
 }
 
