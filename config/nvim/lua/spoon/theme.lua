@@ -24,7 +24,7 @@ require("nightfox").setup({
                 dim = "#000000" -- nothing yet
             },
             pink = {
-                base = "#ffffff", -- nothing yet
+                base = "#ffffff", -- markdown block text
                 bright = "#b568d4", -- include
                 dim = "#000000" -- nothing yet
             },

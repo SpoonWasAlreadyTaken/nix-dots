@@ -150,7 +150,7 @@ in
             vesktop
             pulseaudio
             jq    
-            wineWow64Packages.staging
+            wineWow64Packages.stagingFull
             winetricks
             wine64Packages.fonts
             imv 
@@ -169,6 +169,7 @@ in
             zlib
             ripgrep
             resvg
+            protontricks
 
 
             /* custom */
