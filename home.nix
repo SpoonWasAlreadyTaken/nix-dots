@@ -52,6 +52,8 @@ in
             zle -N zle-line-init
         '';
 	};
+
+    services.hyprpolkitagent.enable = true;
     
     programs.starship = {
         enable = true;

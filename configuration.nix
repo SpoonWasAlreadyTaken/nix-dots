@@ -133,7 +133,6 @@ in
             hyprshot
             hyprlock
             hyprshutdown
-            hyprpolkitagent
             fzf
             clang
             cmake
@@ -171,7 +170,6 @@ in
             ripgrep
             resvg
             protontricks
-            input-remapper
 
 
             /* custom */
