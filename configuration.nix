@@ -68,7 +68,7 @@ in
 
     users.users.spoon = {
         isNormalUser = true;
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "input" ];
         packages = with pkgs; [
             tree
         ];
@@ -133,6 +133,7 @@ in
             hyprshot
             hyprlock
             hyprshutdown
+            hyprpolkitagent
             fzf
             clang
             cmake
@@ -170,6 +171,7 @@ in
             ripgrep
             resvg
             protontricks
+            input-remapper
 
 
             /* custom */
@@ -179,7 +181,7 @@ in
 
 
     fonts.packages = with pkgs; [
-        noto-fonts
+            noto-fonts
             noto-fonts-color-emoji
             liberation_ttf
             cascadia-code
