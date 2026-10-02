@@ -170,6 +170,7 @@ in
             ripgrep
             resvg
             protontricks
+            prismlauncher
 
 
             /* custom */

@@ -9,7 +9,7 @@ cmp.setup({
     },
 
     completion = {
-        autocomplete = false,
+        autocomplete = { cmp.TriggerEvent.TextChanged },
     },
 
     window = {
@@ -49,9 +49,9 @@ cmp.setup({
     },
 })
 
-cmp.setup.filetype({ 'lua', 'c', 'cpp', 'cs', 'hpp', 'h' }, {
+cmp.setup.filetype({ 'txt', 'text', }, {
     completion = {
-        autocomplete = { cmp.TriggerEvent.TextChanged },
+        autocomplete = false,
     },
 })
 

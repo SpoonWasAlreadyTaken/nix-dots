@@ -108,6 +108,15 @@ ShellRoot {
         Quickshell.execDetached(["wpctl", "set-volume", id.toString(), value.toString()])
     }
 
+    function lerpColor(a, b, t) {
+        return Qt.rgba( 
+            a.r + (b.r - a.r) * t,
+            a.g + (b.g - a.g) * t,
+            a.b + (b.b - a.b) * t,
+            a.a + (b.a - a.a) * t
+        )
+    }
+
 
     Process {
         id: cpuProcess
@@ -317,14 +326,14 @@ ShellRoot {
 
                     Text { /* CPU */
                         text: cpuUsage + "%"
-                        color: root.colorFGL
+                        color: lerpColor(root.colorFGL, root.colorTertiary, cpuUsage / 100)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                         Layout.alignment: Qt.AlignBaseline
                     } 
 
                     Text { /* ICON */
                         text: ""
-                        color: root.colorFGL
+                        color: lerpColor(root.colorFGL, root.colorTertiary, cpuUsage / 100)
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
                     }
 
@@ -339,7 +348,7 @@ ShellRoot {
 
                     Text { /* MEMORY */
                         text: showMemoryPrecentage ? Math.round(100 * memUsed / memTotal) + "%" : (memUsed / 1024 / 1024).toFixed(2) + "G"
-                        color: root.colorFGL
+                        color: lerpColor(root.colorFGL, root.colorTertiary, memUsed / memTotal)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
 
                         MouseArea {
@@ -350,7 +359,8 @@ ShellRoot {
 
                     Text { /* ICON */
                         text: ""
-                        color: root.colorFGL
+                        color: lerpColor(root.colorFGL, root.colorTertiary, memUsed / memTotal)
+
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
 
                         MouseArea {
@@ -370,13 +380,14 @@ ShellRoot {
 
                     Text { /* GPU */
                         text: gpuUsage + "%"
-                        color: root.colorFGL
+                        color: lerpColor(root.colorFGL, root.colorTertiary, gpuUsage / 100)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                     } 
 
                     Text { /* ICON */
                         text: "󰩪"
-                        color: root.colorFGL
+                        color: lerpColor(root.colorFGL, root.colorTertiary, gpuUsage / 100)
+
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
                     }
                 }
@@ -917,3 +928,10 @@ ShellRoot {
 
 }
 
+
+
+
+
+
+
+/* little menu for the middle app icon when clicked to send to workspace and close it and shit add option to close and kill process and choosing which window in the workspace. Also add confirmation on close and kill. */ 
