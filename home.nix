@@ -83,6 +83,12 @@ in
 
     };
 
+    qt = {
+        enable = true;
+        platformTheme.name = "qtct";
+        style.name = "adwaita-dark";
+    };
+
     home.file.".themes/gtk-fractal" = {
         source = ./theming/gtk-fractal;
     };

@@ -167,6 +167,7 @@ in
             sfml
             glibc
             zlib
+            ntfs3g
             ripgrep
             resvg
             protontricks
