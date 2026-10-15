@@ -56,12 +56,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "terminal-3",
-    match = { class = "^(com.mitchellh.ghostty)$" },
-    workspace = "3 silent",
-})
-
-hl.window_rule({
     name = "firefox-workspace-4",
     match = { class = "^(firefox)$" },
     workspace = "4 silent",
@@ -76,13 +70,14 @@ hl.window_rule({
 
 -- autostart
 hl.on("hyprland.start", function ()
-    hl.exec_cmd('[workspace 3 silent] ' .. G.terminal)
+    hl.exec_cmd(G.terminal, { workspace = '3 silent' })
     hl.exec_cmd('swaync')
     hl.exec_cmd('quickshell -p ~/.config/hypr/quickshell')
     hl.exec_cmd('hyprpaper')
     hl.exec_cmd('firefox')
     hl.exec_cmd('vesktop')
     hl.exec_cmd('steam')
+    hl.exec_cmd(G.fileManager, { workspace = '6 silent' })
 end)
 
 
