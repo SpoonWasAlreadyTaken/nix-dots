@@ -245,11 +245,7 @@ in
             file="$(realpath "$1")"
             dir="$(dirname "$file")"
 
-            images=("$file")
-
-            while IFS= read -r -d $'\0' img; do
-              [[ "$img" != "$file" ]] && images+=("$img")
-            done < <(
+            mapfile -d $'\0' images < <(
               fd \
                 --absolute-path \
                 --max-depth 1 \
@@ -264,10 +260,12 @@ in
                 --extension bmp \
                 --print0 \
                 . "$dir" |
-                sort -z
+                sort -zV
             )
 
-            exec imv "''${images[@]}"
+
+
+            exec imv -n "$file" -- "''${images[@]}"
         '';
     };
 
