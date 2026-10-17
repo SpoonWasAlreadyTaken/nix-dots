@@ -146,9 +146,14 @@ switch {
 }
 
 check:checked,
-radio:checked,
-switch:checked {
+radio:checked {
+    background: @colorAccent;
     color: @colorAccent;
+}
+switch slider {
+    background: @colorBG;
+    border-radius: 2px;
+    border-color: @colorBG;
 }
 
 panel,
@@ -211,7 +216,7 @@ textview text selection {
     color: @colorTextDark;
 }
 
-*disabled {
+*:disabled {
     color: @colorDim;
 }
 
