@@ -16,11 +16,11 @@
 * {
     font: 13pt "Cascadia Mono";
 
-    color: @colorFGL;
+    color: transparent;
 
     background: transparent;
 
-    border-radius: 8px;
+    border-radius: 0px;
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
@@ -29,10 +29,8 @@
 
     -gtk-icon-shadow: none;
     text-shadow: none;
-
     transition: 180ms ease;
 }
-
 
 window,
 .background {
@@ -40,6 +38,193 @@ window,
     color: @colorFGL;
 }
 
+cellview {
+    color: @colorFGL;
+}
+
+headerbar {
+    padding: 2px 8px;
+}
+
+button { 
+    background: @colorDark;
+    color: @colorFG;
+    padding: 2px 7px;
+    margin: 1px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+button:hover {
+    background: @colorDarkL;
+    border-color: @colorDim;
+    border-radius: 7px;
+}
+button:active {
+    background: @colorDim;
+}
+button:checked {
+    background: @colorTextDark;
+}
+button.suggested-action {
+    background: @colorTertiary;
+    color: @colorTextDark;
+}
+button.suggested-action:hover {
+    background: @colorDark;
+    color: @colorTertiary;
+
+}
+button.destructive-action {
+    background: @colorAccent;
+    color: @colorDark;
+}
+
+entry,
+spinbutton {
+    background: @colorDark;
+    color: @colorFGL;
+    padding: 4px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+entry:focus {
+    border-color: @colorDim;
+}
+entry selection {
+    background: @colorPink;
+    color: @colorTextDark;
+}
+
+notebook {
+    background: @colorBG;
+    border: 2px solid @colorBG;
+    border-radius: 3px;
+}
+notebook header {
+    background: @colorDark;
+    border: 2px solid @colorBG;
+    border-radius: 3px;
+}
+notebook tab {
+    background: @colorDarkL;
+    color: @colorDim; 
+    margin: 0px 2px;
+}
+notebook tab:checked,
+notebook tab:active {
+    background: @colorPinkDark;
+    color: @colorFG;
+
+    border-bottom: 2px solid @colorTertiary;
+}
+
+
+label {
+    color: @colorFGL;
+}
+
+scrollbar {
+    background: transparent;
+}
+scrollbar slider {
+    background: @colorFG;
+    min-width: 7px;
+    min-height: 7px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+scrollbar slider:hover {
+    background: @colorSecondary;
+}
+
+check,
+radio,
+switch {
+    background: @colorDarkL;
+    color: @colorFG;
+    border-radius: 2px;
+}
+
+check:checked,
+radio:checked,
+switch:checked {
+    color: @colorAccent;
+}
+
+panel,
+menu,
+popover,
+popover.background,
+.menu {
+    background: @colorBG;
+
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+menuitem {
+    border-color: @colorBG;
+    border-radius: 3px;
+}
+menuitem:hover {
+    background: @colorDarkL;
+    border-color: @colorDim;
+}
+
+treeview,
+list,
+treeview.view,
+listview {
+    background: @colorBG;
+    color: @colorFG;
+}
+
+scrolledwindow {
+    border: 2px solid @colorBG;
+    border-radius: 3px;
+}
+
+treeview:hover,
+treeview.view:hover,
+list row:hover {
+    background: @colorDark;
+    color: @colorFGL;
+}
+
+treeview:selected,
+treeview.view:selected,
+treeview.view:selected:focus,
+list row:selected {
+    background: @colorDarkL;
+    color: @colorFGL;
+}
+
+
+textview {
+    background: @colorBG;
+    color: @colorFGL;
+}
+textview text {
+    color: @colorFGL;
+}
+textview text selection {
+    background: @colorPink;
+    color: @colorTextDark;
+}
+
+*disabled {
+    color: @colorDim;
+}
+
+separator {
+    color: @colorSecondary;
+}
+
+image {
+    color: @colorFGL;
+}
+
+
+/*
 
 headerbar {
     background: @colorDark;
@@ -55,50 +240,11 @@ headerbar button {
 }
 
 box {
-    spacing: 8px;
-}
-
-button {
-    background: @colorDark;
-
-    color: @colorFG;
-
-    border: 1px solid @colorBorder;
-
-    padding: 8px 14px;
-}
-
-button:hover {
-    background: @colorPinkDark;
-    border-color: @colorPink;
-}
-
-button:active {
-    background: @colorPink;
-    color: @colorTextDark;
-}
-
-button:checked {
-    background: @colorBorder;
-    color: @colorFG;
+    padding: 8px;
 }
 
 
-button.suggested-action {
-    background: @colorTertiary;
-    color: @colorTextDark;
-}
 
-button.suggested-action:hover {
-    background: shade(@colorTertiary,1.15);
-}
-
-/* Destructive */
-
-button.destructive-action {
-    background: @colorAccent;
-    color: white;
-}
 
 
 entry,
@@ -296,4 +442,4 @@ selection {
 }
 
 
-
+*/

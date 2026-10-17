@@ -16,11 +16,11 @@
 * {
     font: 13pt "Cascadia Mono";
 
-    color: @colorFGL;
+    color: transparent;
 
-    background-color: transparent;
+    background: transparent;
 
-    border-radius: 8px;
+    border-radius: 0px;
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
@@ -29,20 +29,205 @@
 
     -gtk-icon-shadow: none;
     text-shadow: none;
-
     transition: 180ms ease;
 }
 
-
 window,
-.background-color {
-    background-color: @colorBG;
+.background {
+    background: @colorBG;
+    color: @colorFGL;
+}
+
+cellview {
+    color: @colorFGL;
+}
+
+headerbar {
+    padding: 2px 8px;
+}
+
+button { 
+    background: @colorDark;
+    color: @colorFG;
+    padding: 2px 7px;
+    margin: 1px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+button:hover {
+    background: @colorDarkL;
+    border-color: @colorDim;
+    border-radius: 7px;
+}
+button:active {
+    background: @colorDim;
+}
+button:checked {
+    background: @colorTextDark;
+}
+button.suggested-action {
+    background: @colorTertiary;
+    color: @colorTextDark;
+}
+button.suggested-action:hover {
+    background: @colorDark;
+    color: @colorTertiary;
+
+}
+button.destructive-action {
+    background: @colorAccent;
+    color: @colorDark;
+}
+
+entry,
+spinbutton {
+    background: @colorDark;
+    color: @colorFGL;
+    padding: 4px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+entry:focus {
+    border-color: @colorDim;
+}
+entry selection {
+    background: @colorPink;
+    color: @colorTextDark;
+}
+
+notebook {
+    background: @colorBG;
+    border: 2px solid @colorBG;
+    border-radius: 3px;
+}
+notebook header {
+    background: @colorDark;
+    border: 2px solid @colorBG;
+    border-radius: 3px;
+}
+notebook tab {
+    background: @colorDarkL;
+    color: @colorDim; 
+    margin: 0px 2px;
+}
+notebook tab:checked,
+notebook tab:active {
+    background: @colorPinkDark;
+    color: @colorFG;
+
+    border-bottom: 2px solid @colorTertiary;
+}
+
+
+label {
+    color: @colorFGL;
+}
+
+scrollbar {
+    background: transparent;
+}
+scrollbar slider {
+    background: @colorFG;
+    min-width: 7px;
+    min-height: 7px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+scrollbar slider:hover {
+    background: @colorSecondary;
+}
+
+check,
+radio,
+switch {
+    background: @colorDarkL;
+    color: @colorFG;
+    border-radius: 2px;
+}
+
+check:checked,
+radio:checked,
+switch:checked {
+    color: @colorAccent;
+}
+
+panel,
+menu,
+popover,
+popover.background,
+.menu {
+    background: @colorBG;
+
+    border: 2px solid @colorBG;
+    border-radius: 5px;
+}
+menuitem {
+    border-color: @colorBG;
+    border-radius: 3px;
+}
+menuitem:hover {
+    background: @colorDarkL;
+    border-color: @colorDim;
+}
+
+treeview,
+list,
+treeview.view,
+listview {
+    background: @colorBG;
+    color: @colorFG;
+}
+
+scrolledwindow {
+    border: 2px solid @colorBG;
+    border-radius: 3px;
+}
+
+treeview:hover,
+treeview.view:hover,
+list row:hover {
+    background: @colorDark;
+    color: @colorFGL;
+}
+
+treeview:selected,
+treeview.view:selected,
+treeview.view:selected:focus,
+list row:selected {
+    background: @colorDarkL;
     color: @colorFGL;
 }
 
 
+textview {
+    background: @colorBG;
+    color: @colorFGL;
+}
+textview text {
+    color: @colorFGL;
+}
+textview text selection {
+    background: @colorPink;
+    color: @colorTextDark;
+}
+
+*disabled {
+    color: @colorDim;
+}
+
+separator {
+    color: @colorSecondary;
+}
+
+image {
+    color: @colorFGL;
+}
+
+
+/*
+
 headerbar {
-    background-color: @colorDark;
+    background: @colorDark;
     color: @colorFGL;
 
     border-bottom: 1px solid @colorBorder;
@@ -51,60 +236,21 @@ headerbar {
 }
 
 headerbar button {
-    background-color: @colorDarkL;
+    background: @colorDarkL;
 }
 
 box {
-    spacing: 8px;
-}
-
-button {
-    background-color: @colorDark;
-
-    color: @colorFG;
-
-    border: 1px solid @colorBorder;
-
-    padding: 8px 14px;
-}
-
-button:hover {
-    background-color: @colorPinkDark;
-    border-color: @colorPink;
-}
-
-button:active {
-    background-color: @colorPink;
-    color: @colorTextDark;
-}
-
-button:checked {
-    background-color: @colorBorder;
-    color: @colorTextDark;
+    padding: 8px;
 }
 
 
-button.suggested-action {
-    background-color: @colorTertiary;
-    color: @colorTextDark;
-}
 
-button.suggested-action:hover {
-    background-color: shade(@colorTertiary,1.15);
-}
-
-/* Destructive */
-
-button.destructive-action {
-    background-color: @colorAccent;
-    color: white;
-}
 
 
 entry,
 spinbutton,
 combobox box {
-    background-color: @colorDark;
+    background: @colorDark;
 
     color: @colorFG;
 
@@ -113,33 +259,33 @@ combobox box {
     padding: 6px;
 }
 
-entry:focus-within {
+entry:focus {
     border-color: @colorTertiary;
     box-shadow: inset 0 0 0 1px @colorTertiary;
 }
 
 entry selection {
-    background-color: @colorPink;
-    color: @colorBG;
+    background: @colorPink;
+    color: @colorTextDark;
 }
 
 
 notebook {
-    background-color: @colorBG;
+    background: @colorBG;
 }
 
 notebook header {
-    background-color: @colorDark;
+    background: @colorDark;
 }
 
 notebook tab {
-    background-color: @colorDarkL;
+    background: @colorDarkL;
     color: @colorDim;
 }
 
 notebook tab:checked {
-    background-color: @colorPinkDark;
-    color: @colorTextDark;
+    background: @colorPinkDark;
+    color: @colorFG;
 
     border-bottom: 2px solid @colorTertiary;
 }
@@ -149,7 +295,7 @@ menu,
 popover,
 popover.background,
 .menu {
-    background-color: @colorBG;
+    background: @colorBG;
 
     border: 1px solid @colorBorder;
 }
@@ -158,26 +304,27 @@ menuitem {
     padding: 8px;
 }
 
+menuitem:selected,
 menuitem:hover {
-    background-color: @colorDarkL;
+    background: @colorDarkL;
     border: 1px solid @colorBorder;
     border-radius: 0px;
 }
 
 
 scrollbar {
-    background-color: transparent;
+    background: transparent;
 }
 
 scrollbar slider {
-    background-color: @colorDim;
+    background: @colorDim;
 
     min-width: 8px;
     min-height: 8px;
 }
 
 scrollbar slider:hover {
-    background-color: @colorSecondary;
+    background: @colorSecondary;
 }
 
 
@@ -188,44 +335,43 @@ radio {
 }
 
 check:checked,
-radio:checked,
-toggle:checked {
+radio:checked {
     color: @colorAccent;
 }
 
 
 progressbar trough {
-    background-color: @colorDark;
+    background: @colorDark;
 }
 
 progressbar progress {
-    background-color: @colorSecondary;
+    background: @colorSecondary;
 }
 
 
 scale trough {
-    background-color: @colorDark;
+    background: @colorDark;
 }
 
 scale highlight {
-    background-color: @colorAccent;
+    background: @colorAccent;
 }
 
 scale slider {
-    background-color: @colorPink;
+    background: @colorPink;
 }
 
 
 switch {
-    background-color: @colorDark;
+    background: @colorDark;
 }
 
 switch:checked {
-    background-color: @colorAccent;
+    background: @colorAccent;
 }
 
 switch slider {
-    background-color: @colorFG;
+    background: @colorFG;
 }
 
 
@@ -233,7 +379,7 @@ treeview,
 list,
 treeview.view,
 listview {
-    background-color: @colorBG;
+    background: @colorBG;
     color: @colorFG;
 }
 
@@ -241,24 +387,24 @@ treeview:selected,
 treeview.view:selected,
 treeview.view:selected:focus,
 list row:selected {
-    background-color: @colorDarkL;
+    background: @colorDarkL;
     color: @colorFGL;
 }
 
 
 textview {
-    background-color: @colorBG;
+    background: @colorBG;
     color: @colorFGL;
 }
 
 textview text selection {
-    background-color: @colorPink;
+    background: @colorPink;
     color: @colorTextDark;
 }
 
 
 tooltip {
-    background-color: @colorDark;
+    background: @colorDark;
 
     border: 1px solid @colorBorder;
 
@@ -267,7 +413,7 @@ tooltip {
 
 
 separator {
-    background-color: @colorBorder;
+    background: @colorBorder;
 }
 
 
@@ -291,15 +437,9 @@ link:hover {
 
 
 selection {
-    background-color: @colorDim;
+    background: @colorDim;
     color: @colorTextDark;
 }
 
 
-
-
-
-
-
-
-
+*/
