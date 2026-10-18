@@ -44,8 +44,6 @@ ShellRoot {
     property bool showMemoryPrecentage: true
 
 
-    property bool systemWorking: false
-    property bool showSystem: false
     property bool isOnline: false
     property bool showNetworkSpeed: false
     property real downloadSpeed: 0
@@ -102,36 +100,6 @@ ShellRoot {
             default:
             return 11
         }
-    }
-
-    property string progressIcon: " "
-    property int systemProgress: 0
-    function setProgressIcon() {
-        switch (systemProgress) {
-            case 0:
-            progressIcon = ""
-            break
-            case 1:
-            progressIcon = ""
-            break
-            case 2:
-            progressIcon = ""
-            break 
-            case 3:
-            progressIcon = ""
-            break 
-            case 4:
-            progressIcon = ""
-            break
-            case 5: 
-            progressIcon = ""
-            break
-            default:
-            progressIcon = ""
-        }
-
-        systemProgress++ 
-        if (systemProgress > 5) { systemProgress = 0 }
     }
 
 
@@ -313,15 +281,6 @@ ShellRoot {
 
         onTriggered: if (!networkSpeedProcess.running) networkSpeedProcess.running = true
 
-    }
-
-    Timer {
-        id: systemTimer
-        interval: 66
-        repeat: true
-        running: systemWorking
-
-        onTriggered: setProgressIcon() 
     }
 
     Connections {
@@ -512,22 +471,6 @@ ShellRoot {
                     spacing: 8
                     anchors.rightMargin: 12
 
-                    Text { /* system services */
-                        text: root.systemWorking ? progressIcon : ""
-                        color: systemWorking ? root.colorAccent : root.colorTertiary
-                        font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
-                        visible: root.showSystem || root.systemWorking
-                    }
-
-                    Rectangle {
-                        Layout.preferredWidth: 2
-                        Layout.preferredHeight: 16
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 8
-                        Layout.rightMargin: 8
-                        color: root.colorDark
-                        visible: root.showSystem || root.systemWorking
-                    }
 
                     Text { /* NETWORK */
                         text: isOnline ? (showNetworkSpeed ? formatNetworkSpeed(downloadSpeed) + " 󰇚" + " | " + formatNetworkSpeed(uploadSpeed) + " 󰕒" : "online") : "offline"
