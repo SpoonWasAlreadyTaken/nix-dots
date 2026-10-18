@@ -171,6 +171,7 @@ menuitem {
 }
 menuitem:hover {
     background: @colorDarkL;
+    color: @colorTertiary;
     border-color: @colorDim;
 }
 
