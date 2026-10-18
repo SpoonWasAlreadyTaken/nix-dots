@@ -516,7 +516,7 @@ ShellRoot {
                         text: root.systemWorking ? progressIcon : ""
                         color: systemWorking ? root.colorAccent : root.colorTertiary
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
-                        visible: root.showSystem
+                        visible: root.showSystem || root.systemWorking
                     }
 
                     Rectangle {
@@ -526,7 +526,7 @@ ShellRoot {
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
                         color: root.colorDark
-                        visible: root.showSystem
+                        visible: root.showSystem || root.systemWorking
                     }
 
                     Text { /* NETWORK */
@@ -672,11 +672,11 @@ ShellRoot {
                 orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
-                    color: colorFG
+                    color: root.colorFG
                 }
                 GradientStop {
                     position: 1.0
-                    color: colorTertiary
+                    color: root.colorTertiary
                 }
             }
         }
@@ -686,7 +686,7 @@ ShellRoot {
             radius: 10
             anchors.margins: 5
 
-            color: colorDark
+            color: root.colorDark
 
             Rectangle {
                 id: volumeButton
@@ -821,7 +821,7 @@ ShellRoot {
                                             width: slider.width
                                             height: 6
                                             radius: 3
-                                            color: colorBG
+                                            color: root.colorBG
 
 
 
@@ -833,11 +833,11 @@ ShellRoot {
                                                     orientation: Gradient.Horizontal
                                                     GradientStop {
                                                         position: 0.0
-                                                        color: colorSecondary
+                                                        color: root.colorSecondary
                                                     }
                                                     GradientStop {
                                                         position: 1.0
-                                                        color: colorTertiary
+                                                        color: root.colorTertiary
                                                     }
                                                 }
 
@@ -849,9 +849,9 @@ ShellRoot {
                                             width: 14
                                             height: 14
                                             radius: 7
-                                            color: colorBG
+                                            color: root.colorBG
                                             border.width: 2
-                                            border.color: colorTertiary
+                                            border.color: root.colorTertiary
                                             x: (slider.value * (parent.width - width)) / audioWindow.maxValue
                                             y: (parent.height - height) / 2
                                         }
@@ -948,11 +948,11 @@ ShellRoot {
                 orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
-                    color: colorFG
+                    color: root.colorFG
                 }
                 GradientStop {
                     position: 1.0
-                    color: colorTertiary
+                    color: root.colorTertiary
                 }
             }
 
