@@ -183,6 +183,11 @@ in
                     run = ''ya pub extract --list %s'';
                     desc = "Extract";
                 }];
+
+                play = [{
+                    run = ''vlc %s'';
+                    orphan = true;
+                }];
             };
 
             open = {
@@ -198,6 +203,10 @@ in
                     {
                         url = "*.exe";
                         use = "wine";
+                    }
+                    {
+                        mime = "video/*";
+                        use = "play";
                     }
                 ];
             };
