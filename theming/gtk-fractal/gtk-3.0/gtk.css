@@ -228,6 +228,12 @@ image {
     color: @colorFGL;
 }
 
+tooltip {
+    background: @colorDark;
+    border: 1px solid @colorBG;
+    border-radius: 5px;
+}
+
 
 /*
 
