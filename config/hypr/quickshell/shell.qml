@@ -304,6 +304,7 @@ ShellRoot {
 
         // actual bar
         PanelWindow {
+            id: bar
             property var modelData
             screen: modelData
 
@@ -813,7 +814,7 @@ ShellRoot {
 
                                             onPressed: (mouse) => { updateValue(mouse.x); audioTimer.running = false; slider.focused = true; }
                                             onReleased: (mouse) => { audioTimer.running = audioWindow.visible; slider.focused = false; }
-                                            onPositionChanged: (mouse) => { if (pressed) updateValue(mouse.x) }
+                                            onPositionChanged: (mouse) => { if (pressed) { updateValue(mouse.x); slider.focused = true; }}
 
                                             onWheel: (event) => {
                                                 slider.value = Math.max(0, Math.min(audioWindow.maxValue, slider.value + (event.angleDelta.y > 0 ? 0.01 : -0.01)))
@@ -868,7 +869,7 @@ ShellRoot {
         }
     }
 
-    PanelWindow {
+    PanelWindow { /* time window */
         id: timeWindow
         anchors.top: true
         anchors.right: true
@@ -921,6 +922,42 @@ ShellRoot {
             running: timeWindow.visible
             repeat: true
             onTriggered: timeWindowText.text = Qt.formatDateTime(new Date(), "yyyy MMMM d dddd HH:mm:ss")
+        }
+    }
+
+    
+    PanelWindow {
+        id: optionsWindow
+        visible: false
+
+        anchors.top: true
+        exclusionMode: ExclusionMode.Ignore
+        margins.top: 32
+
+        implicitWidth: 150
+        implicitHeight: 200
+
+        color: "transparent"
+
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 4
+
+            radius: 10
+            color: root.colorDark
+
+            Column {
+                spacing: 8
+                y: 4
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Text {
+                    text: activeWindow ?? "None"
+                    color: root.colorFGL
+                    font { family: root.fontIcon; pixelSize: root.fontSize; bold: true } 
+                }
+
+            }
         }
     }
 
