@@ -135,6 +135,10 @@ scrollbar slider {
 }
 scrollbar slider:hover {
     background: @colorSecondary;
+    min-width: 7px;
+    min-height: 7px;
+    border: 2px solid @colorBG;
+    border-radius: 5px;
 }
 
 check,
