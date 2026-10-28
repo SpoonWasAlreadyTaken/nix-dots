@@ -235,7 +235,7 @@ ShellRoot {
                 let streams = JSON.parse(text)
                 audioStreams = streams.map(stream => ({
                     id: stream.properties["object.id"],
-                    name: stream.properties["media.name"],
+                    name: stream.properties["media.name"] && stream.properties["media.name"] !== "Audio Stream" && stream.properties["media.name"] !== "audio stream" && stream.properties["media.name"] !== "Playback Stream" && stream.properties["media.name"] !== "(null)" ? stream.properties["media.name"] : ( stream.properties["application.name"] ? stream.properties["application.name"] : stream.properties["node.name"] ),
                     volume: stream.volume["front-left"].value / 65536,
                 }))
             }
