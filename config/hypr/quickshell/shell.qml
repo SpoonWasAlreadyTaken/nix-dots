@@ -240,7 +240,7 @@ ShellRoot {
                         const app = stream.properties["application.name"]
                         const node = stream.properties["node.name"]
 
-                        const isGeneric = !media || /^(?:\(null\)|AudioStream(?:\s*#?\s*\d+)?|audio stream(?:\s*#?\s*\d+)?|Playback Stream(?:\s*#?\s*\d+)?)$/i.test(media.trim())
+                        const isGeneric = !media || /^(?:\(null\)|AudioStream(?:\s*#?\s*\d+)?|audio stream(?:\s*#?\s*\d+)?|playback stream(?:\s*#?\s*\d+)?)$/i.test(media.trim())
 
                         if (!isGeneric) return media
                         return app || node
