@@ -1,0 +1,72 @@
+format = """  
+$directory\
+$git_branch\
+$cmd_duration\
+$shell\
+$nix_shell\
+$line_break\
+$character\
+$sudo"""
+
+[directory]
+format = '[ 󱞬 ](fg:@dim@ bg:#040405)[](fg:@primary@ bg:#040405)[$path ](fg:#040405 bg:@primary@ bold)[](fg:@primary@ bg:@pLight@)'
+truncation_symbol = '.../'
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ](fg:#040405 bg:@pLight@ bold)[](fg:@pLight@ bg:@pLighter@)'
+
+[cmd_duration]
+min_time = 0
+show_milliseconds = true
+format = '[ $duration ](fg:#040405 bg:@pLighter@ bold)[](fg:@pLighter@ bg:#040405)'
+
+[shell]
+format = '[ $indicator](fg:#6f009c bg:#040405 bold)'
+bash_indicator =' '
+fish_indicator = ' '
+zsh_indicator = '󰬇 '
+powershell_indicator = ' '
+unknown_indicator = ' '
+disabled = false
+
+[nix_shell]
+format = '[ $name](fg:#a769ff bg:#040405 bold)[ $symbol $state ](fg:#a769ff bg:#040405 bold)'
+symbol = ''
+unknown_msg = ''
+impure_msg = ''
+pure_msg = ''
+
+
+[character]
+success_symbol = "[ 󱞪](fg:@dim@ bg:#040405)"
+error_symbol = "[ 󱞪](fg:#e62946 bg:#040405)"
+vimcmd_symbol = "[ 󱞪](fg:@accent@ bg:#040405)"
+
+[sudo]
+format = '[ ]($style)'
+style = 'fg:#e62946 bg:#040405 bold'
+disabled = false
+
+
+
+
+
+
+#   @background@
+#   @primary@
+#   @dim@
+#   @saturated@
+#   @accent@
+#   @secondary@
+#   @tertiary@
+#   @dark@
+#   @background@
+#   @pDark@
+#   @pDarker@
+#   @pVeryDark@
+#   @pLight@
+#   @pLighter@
+#   @pVeryLight@
+#   @sPrimary@
+#   @sSecondary@
+#   @sTertiary@

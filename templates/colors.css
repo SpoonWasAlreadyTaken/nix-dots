@@ -1,0 +1,20 @@
+@define-color colorBG @background@;
+@define-color colorFG @primary@;
+@define-color colorDim @dim@;
+@define-color colorSaturated @saturated@;
+@define-color colorAccent @accent@;
+@define-color colorSecondary @secondary@;
+@define-color colorTertiary @tertiary@;
+@define-color colorDark @dark@;
+@define-color colorTextDark @background@;
+
+@define-color colorPrimaryDark @pDark@;
+@define-color colorPrimaryDarker @pDarker@;
+@define-color colorPrimaryVeryDark @pVeryDark@;
+@define-color colorPrimaryLight @pLight@;
+@define-color colorPrimaryLighter @pLighter@;
+@define-color colorPrimaryVeryLight @pVeryLight@;
+
+@define-color colorSaturatedPrimary @sPrimary@;
+@define-color colorSaturatedSecondary @sSecondary@;
+@define-color colorSaturatedTertiary @sTertiary@;

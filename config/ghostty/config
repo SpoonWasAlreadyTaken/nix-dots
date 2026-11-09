@@ -12,3 +12,5 @@ shell-integration = "detect"
 shell-integration = "zsh"
 
 
+
+keybind = ctrl+enter=unbind

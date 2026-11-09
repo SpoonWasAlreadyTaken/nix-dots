@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
 	dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
@@ -10,8 +10,18 @@ let
 		rofi = "rofi";
 		swaync = "swaync";
 		tmux = "tmux";
-		starship = "starship";
 	};
+
+    theme = import ./colors.nix { inherit lib; };
+    colors = theme.colors;
+    themeVars = colors;
+
+    generated = {
+        css = pkgs.replaceVars ./templates/colors.css themeVars;
+        lua = pkgs.replaceVars ./templates/colors.lua themeVars;
+        qml = pkgs.replaceVars ./templates/colors.qml themeVars;
+        starship = pkgs.replaceVars ./templates/starship.toml themeVars;
+    };
 in
 {
     /* Basic user */
@@ -98,10 +108,17 @@ in
 
 
     /* config symlinks */
-	xdg.configFile = builtins.mapAttrs (name: subpath: {
+	xdg.configFile = (builtins.mapAttrs (name: subpath: {
 		source = create_symlink "${dotfiles}/${subpath}";
 		recursive = true;
-	}) configs;
+	}) configs)
+    // {
+        "theme/colors.css".source = generated.css;
+        "theme/colors.lua".source = generated.lua;
+        "theme/Colors.qml".source = generated.qml;
+        "starship/starship.toml".source = generated.starship;
+    };
+
 
     home.file.".local/share/hypr-stubs" = {
         source = "${pkgs.hyprland}/share/hypr/stubs";

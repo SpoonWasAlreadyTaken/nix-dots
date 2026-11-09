@@ -1,9 +1,6 @@
+local colors = require('../theme/colors.lua')
 
------------------------
----- LOOK AND FEEL ----
------------------------
 
--- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
         gaps_in  = 5,
@@ -12,8 +9,8 @@ hl.config({
         border_size = 1,
 
         col = {
-            active_border   = { colors = {"rgba(f38ba8ff)", "rgba(ff005dff)"}, angle = 45 },
-            inactive_border = "rgba(422549aa)",
+            active_border   = { colors = {colors.primary .. "ff", colors.tertiary .. "ff"}, angle = 45 },
+            inactive_border = colors.saturated .. "aa",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -54,7 +51,7 @@ hl.config({
             enabled = false,
             range = 10,
             render_power = 3,
-            color = "rgba(ff005df0)",
+            color = colors.tertiary .. "f0",
         },
     },
 
