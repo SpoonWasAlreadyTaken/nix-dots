@@ -200,7 +200,12 @@ in
 
     systemd.services.nixos-flake-update = {
         description = "Auto-update flake";
-        serviceConfig.Type = "oneshot";
+        serviceConfig = {
+            Type = "oneshot";
+            Restart = "on-failure";
+            RestartSec = "5min";
+        };
+
         path = with pkgs; [ git ];
         script = ''
            cd /home/spoon/nixos-dotfiles
