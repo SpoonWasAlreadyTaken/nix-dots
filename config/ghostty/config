@@ -1,4 +1,5 @@
-background = "040405"
+config-file = ../theme/colors.conf
+
 font-family = "Cascadia Mono"
 font-size = "13"
 font-thicken = true

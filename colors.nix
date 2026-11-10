@@ -94,5 +94,7 @@ in
         sPrimary = saturateColor colors.primary 0.5;
         sSecondary = saturateColor colors.secondary 0.5;
         sTertiary = saturateColor colors.tertiary 0.5;
+
+        darker = mixColors colors.background colors.dark 0.5;
     };
 }

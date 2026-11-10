@@ -9,23 +9,12 @@ configuration {
 }
 
 @theme "/dev/null"
+@import "~/.config/theme/colors.rasi"
 
 
 * {
-    bg: #040405;
-    bg-alt: #16161c;
-
-    fg: #f38ba8;
-    fg-alt: #f2a9be;
-
-    pale: #f2c1cf;
-
-    dim: #424242;
-    dark: #0e0e11;
-
-
-    background-color: @bg;
-    text-color: @fg;
+    background-color: @colorBG;
+    text-color: @colorFG;
 
     border: 0;
     margin: 0;
@@ -37,7 +26,7 @@ window {
     width: 45%;
     border: 1px;
     border-radius: 8px;
-    border-color: @pale;
+    border-color: @colorFGLighter;
 }
 
 textbox {
@@ -45,17 +34,17 @@ textbox {
 }
 
 element {
-    text-color: @fg;
+    text-color: @colorFG;
 
     padding: 12;
     spacing: 8;
 
     border: 0px 0px 1px 0px;
-    border-color: @dark;
+    border-color: @colorDarker;
 }
 
 element selected {
-    background-color: @bg-alt;
+    background-color: @colorDark;
 }
 
 element-text {
@@ -71,30 +60,30 @@ element-icon {
 }
 
 element selected normal, element selected active {
-    text-color: @fg-alt;
+    text-color: @colorFGLight;
 }
 
 
 inputbar {
     children: [prompt, entry];
     border: 0px 0px 2px 0;
-    border-color: @dark;
+    border-color: @colorDarker;
 }
 
 entry {
-    background-color: @bg;
+    background-color: @colorBG;
     padding: 12;
     text-color: #ffffff;
 }
 
 prompt {
     vertical-align: 0.5;
-    text-color: @dim;
+    text-color: @colorDim;
     padding: 0px 0px 0px 12px;
 }
 
 listview {
-    background-color: @bg;
+    background-color: @colorBG;
     columns: 1;
     lines: 7;
 }

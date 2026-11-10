@@ -78,6 +78,7 @@ in
     /* services and programs */
 
     services.udev.extraRules = ''KERNEL=="hidraw*", ATTRS{idVendor}=="31e3", MODE="0666"'';
+    hardware.wooting.enable = true;
 
     nixpkgs.config.allowUnfree = true;
 
@@ -145,7 +146,6 @@ in
             fastfetch
             vlc
             easyeffects
-            wootility
             starship
             vesktop
             pulseaudio

@@ -19,4 +19,6 @@ return {
     primarySaturated = "@sPrimary@",
     secondarySaturated = "@sSecondary@",
     tertiarySaturated = "@sTertiary@",
+
+    colorDarker = "@darker@",
 }

@@ -1,3 +1,5 @@
+@import url("../theme/colors.css");
+
 :root {
   --cc-bg: #16161c5f;
   --noti-border-color: #f38ba8ff;
@@ -15,7 +17,7 @@
   --notification-icon-size: 64px;
   --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
   --notification-group-icon-size: 32px;
-  --border: 1px solid var(--noti-border-color);
+  --border: 1px solid @colorFG;
   --border-radius: 12px;
   --notification-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3),
     0 1px 3px 1px rgba(0, 0, 0, 0.7), 0 2px 6px 2px rgba(0, 0, 0, 0.3);
@@ -53,7 +55,7 @@ notificationwindow, blankwindow {
 
 .close-button {
   /* The notification Close Button */
-  background: var(--noti-close-bg);
+  background: @colorBG;
   color: var(--text-color);
   text-shadow: none;
   padding: 0;
@@ -68,7 +70,7 @@ notificationwindow, blankwindow {
 
 .close-button:hover {
   box-shadow: none;
-  background: var(--noti-close-bg-hover);
+  background: @colorDark;
   transition: var(--hover-tranistion);
   border: none;
 }
@@ -79,7 +81,7 @@ notificationwindow, blankwindow {
 }
 
 .notification-row:focus {
-  background: var(--noti-bg-focus);
+  background: @colorBGT2;
 }
 
 .notification-row .notification-background {
@@ -92,7 +94,7 @@ notificationwindow, blankwindow {
   border: var(--border);
   padding: 0;
   transition: var(--hover-tranistion);
-  background: var(--noti-bg);
+  background: @colorDarkT1;
 }
 
 .notification-row .notification-background .notification.low {
@@ -121,7 +123,7 @@ notificationwindow, blankwindow {
 
 .notification-row .notification-background .notification .notification-default-action:hover {
   -gtk-icon-filter: none;
-  background: var(--noti-bg-hover);
+  background: @colorDarkT2;
 }
 
 .notification-row .notification-background .notification .notification-default-action:not(:only-child) {
@@ -206,7 +208,7 @@ notificationwindow, blankwindow {
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-entry {
-  background: var(--noti-bg-darker);
+  background: @colorBG;
   color: var(--text-color);
   caret-color: var(--text-color);
   border: var(--border);
@@ -215,7 +217,7 @@ notificationwindow, blankwindow {
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button {
   margin-left: 4px;
-  background: var(--noti-bg);
+  background: @colorDarkT1;
   border: var(--border);
   border-radius: var(--border-radius);
   color: var(--text-color);
@@ -223,13 +225,13 @@ notificationwindow, blankwindow {
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:disabled {
   background: initial;
-  color: var(--text-color-disabled);
+  color: @colorDim;
   border: var(--border);
   border-color: transparent;
 }
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .inline-reply .inline-reply-button:hover {
-  background: var(--noti-bg-hover);
+  background: @colorDarkT2;
 }
 
 .notification-row .notification-background .notification .notification-alt-actions {
@@ -257,7 +259,7 @@ notificationwindow, blankwindow {
 }
 
 .notification-group:focus {
-  background: var(--noti-bg-focus);
+  background: @colorBGT2;
 }
 
 .notification-group.low {
@@ -307,7 +309,7 @@ notificationwindow, blankwindow {
 }
 
 .notification-group.collapsed .notification-row .notification {
-  background-color: var(--noti-bg);
+  background-color: @colorDarkT1;
 }
 
 .notification-group.collapsed .notification-row:not(:last-child) {
@@ -321,14 +323,14 @@ notificationwindow, blankwindow {
 }
 
 .notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
-  background-color: var(--noti-bg-hover);
+  background-color: @colorDarkT2;
 }
 
 .control-center {
   /* The Control Center which contains the old notifications + widgets */
-  background: var(--cc-bg);
+  background: @colorDarkT1;
   color: var(--text-color);
-  border: 1px solid var(--noti-border-color);
+  border: 1px solid @colorFG;
   border-radius: var(--border-radius);
 }
 
@@ -353,7 +355,7 @@ notificationwindow, blankwindow {
 
 .control-center .control-center-list .notification .notification-default-action:hover,
 .control-center .control-center-list .notification .notification-action:hover {
-  background-color: var(--noti-bg-hover);
+  background-color: @colorDarkT2;
 }
 
 .blank-window {
@@ -438,7 +440,7 @@ notificationwindow, blankwindow {
 
 .widget-mpris .widget-mpris-player .mpris-overlay button:hover {
   /* The media player buttons (play, pause, next, etc...) */
-  background: var(--noti-bg-hover);
+  background: @colorDarkT2;
 }
 
 .widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
@@ -485,7 +487,7 @@ notificationwindow, blankwindow {
 .widget-menubar {
   /* The revealer buttons */
   /* .AnyName { Name defined in config after #
-    background-color: rgba(var(--noti-bg), 1.0);
+    background-color: rgba(@colorDarkT1, 1.0);
     padding: 8px;
     margin: 8px;
     border-radius: 12px;
@@ -497,7 +499,7 @@ notificationwindow, blankwindow {
   }
 
   .AnyName>button:hover {
-    background-color: var(--noti-bg-hover);
+    background-color: @colorDarkT2;
   } */
 }
 

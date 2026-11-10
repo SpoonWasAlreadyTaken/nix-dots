@@ -8,13 +8,22 @@
 @define-color colorDark @dark@;
 @define-color colorTextDark @background@;
 
-@define-color colorPrimaryDark @pDark@;
-@define-color colorPrimaryDarker @pDarker@;
-@define-color colorPrimaryVeryDark @pVeryDark@;
-@define-color colorPrimaryLight @pLight@;
-@define-color colorPrimaryLighter @pLighter@;
-@define-color colorPrimaryVeryLight @pVeryLight@;
+@define-color colorFGDark @pDark@;
+@define-color colorFGDarker @pDarker@;
+@define-color colorFGVeryDark @pVeryDark@;
+@define-color colorFGLight @pLight@;
+@define-color colorFGLighter @pLighter@;
+@define-color colorFGVeryLight @pVeryLight@;
 
 @define-color colorSaturatedPrimary @sPrimary@;
 @define-color colorSaturatedSecondary @sSecondary@;
 @define-color colorSaturatedTertiary @sTertiary@;
+
+@define-color colorDarker @darker@;
+
+
+
+@define-color colorBGT1 @background@f0;
+@define-color colorBGT2 @background@3f;
+@define-color colorDarkT1 @dark@5f;
+@define-color colorDarkT2 @dark@7f;

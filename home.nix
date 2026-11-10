@@ -9,7 +9,6 @@ let
 		ghostty = "ghostty";
 		rofi = "rofi";
 		swaync = "swaync";
-		tmux = "tmux";
 	};
 
     theme = import ./colors.nix { inherit lib; };
@@ -21,6 +20,10 @@ let
         lua = pkgs.replaceVars ./templates/colors.lua themeVars;
         qml = pkgs.replaceVars ./templates/colors.qml themeVars;
         starship = pkgs.replaceVars ./templates/starship.toml themeVars;
+        tmux = pkgs.replaceVars ./templates/tmux.conf themeVars;
+        rasi = pkgs.replaceVars ./templates/colors.rasi themeVars;
+        yazi = pkgs.replaceVars ./templates/theme.toml themeVars;
+        conf = pkgs.replaceVars ./templates/colors.conf themeVars;
     };
 in
 {
@@ -114,7 +117,12 @@ in
         "theme/colors.css".source = generated.css;
         "theme/colors.lua".source = generated.lua;
         "theme/Colors.qml".source = generated.qml;
+        "theme/colors.rasi".source = generated.rasi;
+        "theme/colors.conf".source = generated.conf;
+
         "starship.toml".source = generated.starship;
+        "tmux/tmux.conf".source = generated.tmux;
+        "yazi/theme.toml".source = generated.yazi;
     };
 
 
@@ -292,11 +300,6 @@ in
             exec imv -n "$file" -- "''${images[@]}"
         '';
     };
-
-    home.file.".config/yazi/theme.toml" = {
-        source = ./theming/yazi/theme.toml;
-    };
-
 
 
     /* home packages */

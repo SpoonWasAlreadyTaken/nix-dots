@@ -1,0 +1,24 @@
+* {
+    colorBG: @background@;
+    colorFG: @primary@;
+    colorDim: @dim@;
+    colorSaturated: @saturated@;
+    colorAccent: @accent@;
+    colorSecondary: @secondary@;
+    colorTertiary: @tertiary@;
+    colorDark: @dark@;
+    colorTextDark: @background@;
+    
+    colorFGDark: @pDark@;
+    colorFGDarker: @pDarker@;
+    colorFGVeryDark: @pVeryDark@;
+    colorFGLight: @pLight@;
+    colorFGLighter: @pLighter@;
+    colorFGVeryLight: @pVeryLight@;
+    
+    colorSaturatedPrimary: @sPrimary@;
+    colorSaturatedSecondary: @sSecondary@;
+    colorSaturatedTertiary: @sTertiary@;
+
+    colorDarker: @darker@;
+}
