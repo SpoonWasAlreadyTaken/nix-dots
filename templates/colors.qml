@@ -10,7 +10,6 @@ QtObject {
     readonly property color colorSecondary: "@secondary@";
     readonly property color colorTertiary: "@tertiary@";
     readonly property color colorDark: "@dark@";
-    readonly property color colorTextDark: "@background@";
 
     readonly property color colorFGDark: "@pDark@";
     readonly property color colorFGDarker: "@pDarker@";

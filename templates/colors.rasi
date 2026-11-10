@@ -7,7 +7,6 @@
     colorSecondary: @secondary@;
     colorTertiary: @tertiary@;
     colorDark: @dark@;
-    colorTextDark: @background@;
     
     colorFGDark: @pDark@;
     colorFGDarker: @pDarker@;

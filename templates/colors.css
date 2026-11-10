@@ -6,7 +6,6 @@
 @define-color colorSecondary @secondary@;
 @define-color colorTertiary @tertiary@;
 @define-color colorDark @dark@;
-@define-color colorTextDark @background@;
 
 @define-color colorFGDark @pDark@;
 @define-color colorFGDarker @pDarker@;

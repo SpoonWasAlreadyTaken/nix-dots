@@ -1,17 +1,29 @@
-@define-color colorBG rgba(4,4,5,0.3);
-@define-color colorFG #f38ba8;
-@define-color colorFGL #f2a9be;
-@define-color colorDim #422549;
-@define-color colorPink #f24878;
-@define-color colorPinkDim #7f4858;
-@define-color colorPinkDark #3f242c;
-@define-color colorAccent #ff7c36;
-@define-color colorSecondary #938bb4;
-@define-color colorTertiary #ff005d;
-@define-color colorDark rgba(21,21,27,0.3);
-@define-color colorDarkL rgba(21,21,24,0.7);
-@define-color colorBorder #4b4673;
-@define-color colorTextDark #040405;
+@define-color colorBG alpha(@background@,0.3);
+@define-color colorFG @primary@;
+@define-color colorFGL @pLight@;
+@define-color colorDim @saturated@;
+@define-color colorPink @sPrimary@;
+@define-color colorPinkDim @pDark@;
+@define-color colorPinkDark @pDarker@;
+@define-color colorAccent @accent@;
+@define-color colorSecondary @secondary@;
+@define-color colorTertiary @tertiary@;
+@define-color colorDark alpha(@dark@,0.3);
+@define-color colorDarkL alpha(@darker@,0.7);
+@define-color colorBorder @sSecondary@;
+@define-color colorTextDark @background@;
+
+@define-color colorGray @dim@;
+@define-color colorFGDark @pDark@;
+@define-color colorFGDarker @pDarker@;
+@define-color colorFGVeryDark @pVeryDark@;
+@define-color colorFGLight @pLight@;
+@define-color colorFGLighter @pLighter@;
+@define-color colorFGVeryLight @pVeryLight@;
+
+@define-color colorSaturatedPrimary @sPrimary@;
+@define-color colorSaturatedSecondary @sSecondary@;
+@define-color colorSaturatedTertiary @sTertiary@;
 
 * {
     font: 13pt "Cascadia Mono";

@@ -136,7 +136,6 @@ icon_error = { fg = "#e62946", bold = true }
 #@secondary@
 #@tertiary@
 #@dark@
-#@background@
 #@pDark@
 #@pDarker@
 #@pVeryDark@

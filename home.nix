@@ -24,6 +24,7 @@ let
         rasi = pkgs.replaceVars ./templates/colors.rasi themeVars;
         yazi = pkgs.replaceVars ./templates/theme.toml themeVars;
         conf = pkgs.replaceVars ./templates/colors.conf themeVars;
+        gtk = pkgs.replaceVars ./templates/gtk.css themeVars;
     };
 in
 {
@@ -95,8 +96,10 @@ in
     };
 
 
-    home.file.".themes/gtk-fractal" = {
-        source = ./theming/gtk-fractal;
+    home.file = { 
+        ".themes/gtk-fractal/index.theme".source = ./theming/gtk-fractal/index.theme;
+        ".themes/gtk-fractal/gtk-3.0/gtk.css".source = generated.gtk;
+        ".themes/gtk-fractal/gtk-4.0/gtk.css".source = generated.gtk;
     };
 
     
