@@ -48,8 +48,6 @@ in
         defaultKeymap = "viins";
 
         initContent = ''
-            export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
-
             bindkey -v
 
             bindkey -M viins '^?' backward-delete-char
@@ -116,7 +114,7 @@ in
         "theme/colors.css".source = generated.css;
         "theme/colors.lua".source = generated.lua;
         "theme/Colors.qml".source = generated.qml;
-        "starship/starship.toml".source = generated.starship;
+        "starship.toml".source = generated.starship;
     };
 
 
