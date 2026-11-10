@@ -26,11 +26,12 @@ cmp.setup({
         ['<CR>'] = function(fallback)
             fallback()
         end,
-        ['<C-CR'] = cmp.mapping.abort(),
+        ['<C-e'] = cmp.mapping.abort(),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<Tab>'] = cmp.mapping.select_next_item(),
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     }),
+
 
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
