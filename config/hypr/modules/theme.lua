@@ -114,18 +114,10 @@ hl.window_rule({
  })
 
 
--- swaync 
+-- dunst 
 hl.layer_rule({
-    name = "swaync-notifs",
-    match = { namespace = "swaync-notification-window", },
-    blur = true,
-    blur_popups = true,
-    ignore_alpha = 0.1,
-})
-
-hl.layer_rule({
-    name = "swaync-notifs-center",
-    match = { namespace = "swaync-control-center", },
+    name = "notifications",
+    match = { namespace = "notifications", },
     blur = true,
     blur_popups = true,
     ignore_alpha = 0.1,

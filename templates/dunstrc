@@ -1,0 +1,72 @@
+[global]
+    monitor = 1
+    follow = none
+    notification_limit = 3
+    progress_bar = true
+    padding = 12
+    horizontal_padding = 12
+    text_icon_padding = 8
+    line_height = 3
+
+    font = "Cascadia Mono"
+
+    origin = top-right
+    width = 360
+    height = (20,200)
+    offset = (20,50)
+    corner_radius = 12
+
+    icon_corner_radius = 12
+
+    frame_width = 1
+
+    
+    foreground = "#ffffff"
+    background = "@dark@20"
+    frame_color = "@primary@"
+    separator_color = "@dim@"
+
+
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
+    mouse_right_click = context
+    
+
+    dmenu = /run/current-system/sw/bin/rofi -dmenu -p dunst
+
+
+
+[urgency_low]
+frame_color = "@dim@"
+
+[urgency_normal]
+frame_color = "@primary@"
+
+[urgency_critical]
+frame_color = "@tertiary@"
+timeout = 0
+
+
+
+[experimental]
+    pause_on_mouse_over = true
+
+
+#@background@
+#@primary@
+#@dim@
+#@saturated@
+#@accent@
+#@secondary@
+#@tertiary@
+#@dark@
+#@pDark@
+#@pDarker@
+#@pVeryDark@
+#@pLight@
+#@pLighter@
+#@pVeryLight@
+#@sPrimary@
+#@sSecondary@
+#@sTertiary@
+#@darker@

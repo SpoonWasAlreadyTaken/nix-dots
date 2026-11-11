@@ -8,7 +8,6 @@ let
 		hypr = "hypr";
 		ghostty = "ghostty";
 		rofi = "rofi";
-		swaync = "swaync";
 	};
 
     theme = import ./colors.nix { inherit lib; };
@@ -25,6 +24,7 @@ let
         yazi = pkgs.replaceVars ./templates/theme.toml themeVars;
         conf = pkgs.replaceVars ./templates/colors.conf themeVars;
         gtk = pkgs.replaceVars ./templates/gtk.css themeVars;
+        dunst = pkgs.replaceVars ./templates/dunstrc themeVars;
     };
 in
 {
@@ -126,6 +126,7 @@ in
         "starship.toml".source = generated.starship;
         "tmux/tmux.conf".source = generated.tmux;
         "yazi/theme.toml".source = generated.yazi;
+        "dunst/dunstrc".source = generated.dunst;
     };
 
 

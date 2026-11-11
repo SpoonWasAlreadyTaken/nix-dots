@@ -74,9 +74,20 @@ let
             saturated = "#422549";
             dim = "#424242";
         };
+
+        lavanderVoid = {
+            primary = "#b58fff";
+            secondary = "#938bb4";
+            tertiary = "#ff005d";
+            accent = "#ff7c36";
+            background = "#040405";
+            dark = "#16161c";
+            saturated = "#422549";
+            dim = "#424242";
+        };
     };
     
-    active = "peach";
+    active = "lavanderVoid";
     colors = palettes.${active};
 
 in 

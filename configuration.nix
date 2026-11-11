@@ -128,7 +128,7 @@ in
             git
             quickshell
             rofi
-            swaynotificationcenter
+            dunst
             hyprpaper
             hyprpicker
             hyprshot
