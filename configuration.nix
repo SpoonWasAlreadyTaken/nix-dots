@@ -15,7 +15,7 @@ let
         installPhase = ''
             mkdir -p $out/share/sddm/themes/fractal
             cp -r $src/* $out/share/sddm/themes/fractal/
-            cp ${sddmcolors}$out/share/sddm/themes/fractal/colors.js
+            cp ${sddmcolors} $out/share/sddm/themes/fractal/colors.js
         '';
     };
 in
