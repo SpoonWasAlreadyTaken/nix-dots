@@ -7,6 +7,7 @@
     horizontal_padding = 12
     text_icon_padding = 8
     line_height = 3
+    sort = false
 
     font = "Cascadia Mono"
 
@@ -29,7 +30,7 @@
 
     mouse_left_click = do_action, close_current
     mouse_middle_click = close_current
-    mouse_right_click = context
+    mouse_right_click = context, open_url
     
 
     dmenu = /run/current-system/sw/bin/rofi -dmenu -p dunst

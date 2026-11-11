@@ -40,8 +40,10 @@ vim.opt.clipboard = ""
 vim.g.netrw_bufsettings = "noma nomod nu nobl nowrap ro"
 
 vim.filetype.add({
-    pattern = {
-        [".*/*/config"] = "conf",
+    filename = {
+        conf = "conf",
+        config = "conf",
+        dunstrc = "conf",
     },
 })
 
