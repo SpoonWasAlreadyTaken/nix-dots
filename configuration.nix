@@ -2,14 +2,20 @@
 { config, lib, pkgs, blender-bin, ... }:
 
 let
+    theme = import ./colors.nix { inherit lib; };
+    themeVars = theme.colors;
+
+    sddmcolors = pkgs.replaceVars ./templates/colors.js themeVars;
+    
     spoonsert.fractal-theme = pkgs.stdenv.mkDerivation {
         pname = "spoonsert.fractal-theme";
-        version = "1.4";
+        version = "1.5";
         src = ./config/sddm-theme;
 
         installPhase = ''
             mkdir -p $out/share/sddm/themes/fractal
             cp -r $src/* $out/share/sddm/themes/fractal/
+            cp ${sddmcolors}$out/share/sddm/themes/fractal/colors.js
         '';
     };
 in

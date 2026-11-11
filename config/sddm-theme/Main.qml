@@ -3,21 +3,14 @@ import QtQuick.Controls 2.15
 import QtQuick.Effects
 import SddmComponents 2.0
 
+import "colors.js" as Theme
+
 Rectangle {
     id: root
     focus: true
     anchors.fill: parent
     width: Screen.width
     height: Screen.height
-
-    property color colorBG: "#040405"
-    property color colorFG: "#f38ba8"
-    property color colorText: "#f1cfff"
-    property color colorAccent: "#ff005d"
-    property color colorSecondary: "#938bb4"
-    property color colorWarning: "#ff7c36"
-    property color colorDark: "#16161c"
-    property color colorDim: "#424242"
 
     property string fontFamily: "Cascadia Mono"
     property string fontIcon: "JetBrainsMono Nerd Font Mono"
@@ -31,7 +24,7 @@ Rectangle {
     }
 
     property int currentField: 0
-    property var fields: [ userBorder, input, loginBorder ]
+    property var fields: [ userBorder, input, optionsBorder ]
     Keys.onPressed: function(event) {
         if (event.key === Qt.Key_Right || event.key === Qt.Key_L) {
             currentField = (currentField + 1) % fields.length
@@ -49,11 +42,12 @@ Rectangle {
         if (event.key === Qt.Key_Escape) root.forceActiveFocus()
     }
 
+
     Connections {
         target: sddm
 
         function onLoginFailed() {
-            loginText.color = colorWarning
+            optionsText.color = Theme.colorAccent
             input.enabled = false
             input.text = ""
             passwordText.text = "Fuck You"
@@ -61,7 +55,7 @@ Rectangle {
         }
 
         function onLoginSucceeded() {
-            loginText.color = root.colorAccent
+            optionsText.color = Theme.colorTertiary
             loginTimer.restart()
         }
     }
@@ -74,7 +68,7 @@ Rectangle {
         onTriggered: {
             input.enabled = true
             passwordText.text = "Password"
-            loginText.color = root.colorText
+            optionsText.color = Theme.colorFGLighter
         }
     }
 
@@ -83,7 +77,7 @@ Rectangle {
         interval: 1500
         running: true
         repeat: false
-        onTriggered: loginText.color = root.colorText
+        onTriggered: optionsText.color = Theme.colorFGLighter
     }
 
     Column {
@@ -146,11 +140,11 @@ Rectangle {
                     orientation: Gradient.Horizontal
                     GradientStop {
                         position: 0.0
-                        color: colorSecondary
+                        color: Theme.colorSecondary
                     }
                     GradientStop {
                         position: 1.0
-                        color: colorAccent
+                        color: Theme.colorTertiary
                     }
                 }
 
@@ -160,7 +154,7 @@ Rectangle {
                     anchors.fill: parent
                     anchors.margins: -2
                     radius: parent.radius + 2
-                    color: root.colorAccent
+                    color: Theme.colorTertiary
 
                     visible: false
                 }
@@ -188,7 +182,7 @@ Rectangle {
                     anchors.fill: parent
                     anchors.margins: 1
 
-                    color: userBorder.focused ? root.colorDark : root.colorBG
+                    color: userBorder.focused ? Theme.colorDark : Theme.colorBG
                     radius: parent.radius - 1
 
 
@@ -208,7 +202,7 @@ Rectangle {
                         id: userText
 
                         text: userBorder.username
-                        color: root.colorText
+                        color: Theme.colorFGLighter
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
 
                         anchors.centerIn: parent
@@ -230,11 +224,11 @@ Rectangle {
                     orientation: Gradient.Horizontal
                     GradientStop {
                         position: 0.0
-                        color: colorSecondary
+                        color: Theme.colorSecondary
                     }
                     GradientStop {
                         position: 1.0
-                        color: colorAccent
+                        color: Theme.colorTertiary
                     }
                 }
 
@@ -244,7 +238,7 @@ Rectangle {
                     anchors.fill: parent
                     anchors.margins: -2
                     radius: parent.radius + 2
-                    color: root.colorAccent
+                    color: Theme.colorTertiary
 
                     visible: false
                 }
@@ -272,7 +266,7 @@ Rectangle {
                     anchors.fill: parent
                     anchors.margins: 1
 
-                    color: passwordBorder.focused ? root.colorDark : root.colorBG
+                    color: passwordBorder.focused ? Theme.colorDark : Theme.colorBG
                     radius: parent.radius - 1
 
 
@@ -292,7 +286,7 @@ Rectangle {
                         id: passwordText
 
                         text: "Password"
-                        color: root.colorDim
+                        color: Theme.colorDim
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true; italic: true }
 
                         anchors.centerIn: parent
@@ -321,7 +315,7 @@ Rectangle {
                         horizontalAlignment: TextInput.AlignHCenter
                         verticalAlignment: TextInput.AlignVCenter
 
-                        color: root.colorText
+                        color: Theme.colorFGLighter
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
 
                         echoMode: TextInput.Password
@@ -335,52 +329,67 @@ Rectangle {
 
 
             Rectangle {
-                id: loginBorder
+                id: optionsBorder
 
                 focus: false
-                onFocusChanged: focused = loginBorder.focus
+                onFocusChanged: focused = optionsBorder.focus
+                property int currentOption: 0
+                property var options: [ "Login", "Shutdown" ]
 
                 property bool focused: false
 
-                Keys.onPressed: function(event) { 
-                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Y) sddm.login(userField.text, passwordField.text, sessionModel.lastIndex) 
+                function cycleOptions(direction) {
+                    if (options.length === 0) return
+
+                    currentOption = (currentOption + direction) % options.length
+                    if (currentOption < 0) currentOption = options.length - 1
+                    optionsText.text = options[currentOption]
                 }
 
-                implicitWidth: loginText.width + 25
-                implicitHeight: loginText.height + 15
-                radius: loginBorder.height * 0.2
+                Keys.onPressed: function(event) { 
+                    if (event.key === Qt.Key_Up || event.key === Qt.Key_J) cycleOptions(1)
+                    if (event.key === Qt.Key_Down || event.key === Qt.Key_K) cycleOptions(-1)
+                    if (event.key === Qt.Key_Return || event.key === Qt.Key_Y) {
+                        if (options[currentOption] === "Login") sddm.login(userField.text, passwordField.text, sessionModel.lastIndex) 
+                        if (options[currentOption] === "Shutdown") sddm.powerOff()
+                    }
+                }
+
+                implicitWidth: optionsText.width + 25
+                implicitHeight: optionsText.height + 15
+                radius: optionsBorder.height * 0.2
 
                 gradient: Gradient {
                     orientation: Gradient.Horizontal
                     GradientStop {
                         position: 0.0
-                        color: colorSecondary
+                        color: Theme.colorSecondary
                     }
                     GradientStop {
                         position: 1.0
-                        color: colorAccent
+                        color: Theme.colorTertiary
                     }
                 }
 
                 Rectangle {
-                    id: loginGlow
+                    id: optionsGlow
 
                     anchors.fill: parent
                     anchors.margins: -2
                     radius: parent.radius + 2
-                    color: root.colorAccent
+                    color: Theme.colorTertiary
 
                     visible: false
                 }
 
                 MultiEffect {
-                    anchors.fill: loginGlow
-                    source: loginGlow
+                    anchors.fill: optionsGlow
+                    source: optionsGlow
 
                     blurEnabled: true
                     blur: 0.8
 
-                    opacity: loginBorder.focused ? 0.5 : 0.0
+                    opacity: optionsBorder.focused ? 0.5 : 0.0
                     Behavior on opacity {
                         NumberAnimation { duration: 180 }
                     }
@@ -389,12 +398,12 @@ Rectangle {
 
 
                 Rectangle {
-                    id: loginButton
+                    id: optionsButton
 
                     anchors.fill: parent
                     anchors.margins: 1
 
-                    color: loginBorder.focused ? root.colorDark : root.colorBG
+                    color: optionsBorder.focused ? Theme.colorDark : Theme.colorBG
                     radius: parent.radius - 1
 
                     MouseArea {
@@ -402,17 +411,17 @@ Rectangle {
                         anchors.margins: -4
                         hoverEnabled: true
 
-                        onEntered: loginBorder.focused = true
-                        onExited: loginBorder.focused = false
+                        onEntered: optionsBorder.focused = true
+                        onExited: optionsBorder.focused = false
 
                         onClicked: sddm.login(userField.text, passwordField.text, sessionModel.lastIndex)
                     }
 
                     Text {
-                        id: loginText
+                        id: optionsText
 
                         text: "Login"
-                        color: root.colorText
+                        color: Theme.colorFGLighter
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
 
                         anchors.centerIn: parent
@@ -436,11 +445,11 @@ Rectangle {
                 orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
-                    color: colorSecondary
+                    color: Theme.colorSecondary
                 }
                 GradientStop {
                     position: 1.0
-                    color: colorAccent
+                    color: Theme.colorTertiary
                 }
             }
 
@@ -451,7 +460,7 @@ Rectangle {
                 anchors.fill: parent
                 anchors.margins: -2
                 radius: parent.radius + 2
-                color: root.colorAccent
+                color: Theme.colorTertiary
 
                 visible: false
             }

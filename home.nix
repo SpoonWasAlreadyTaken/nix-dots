@@ -25,6 +25,13 @@ let
         conf = pkgs.replaceVars ./templates/colors.conf themeVars;
         gtk = pkgs.replaceVars ./templates/gtk.css themeVars;
         dunst = pkgs.replaceVars ./templates/dunstrc themeVars;
+
+        hypr = pkgs.replaceVars ./templates/hyprcolors.conf {
+            primary = lib.removePrefix "#" themeVars.primary;
+            background = lib.removePrefix "#" themeVars.background;
+            tertiary = lib.removePrefix "#" themeVars.tertiary;
+            sPrimary = lib.removePrefix "#" themeVars.sPrimary;
+        };
     };
 in
 {
@@ -122,6 +129,7 @@ in
         "theme/Colors.qml".source = generated.qml;
         "theme/colors.rasi".source = generated.rasi;
         "theme/colors.conf".source = generated.conf;
+        "theme/hyprcolors.conf".source = generated.hypr;
 
         "starship.toml".source = generated.starship;
         "tmux/tmux.conf".source = generated.tmux;

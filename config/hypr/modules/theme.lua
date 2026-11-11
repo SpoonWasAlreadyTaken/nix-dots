@@ -58,6 +58,11 @@ hl.config({
     animations = {
         enabled = true,
     },
+
+    misc = {
+        session_lock_xray = true,
+        session_lock_blur = true,
+    },
 })
 
 
