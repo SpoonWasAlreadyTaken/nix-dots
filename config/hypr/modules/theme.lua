@@ -132,3 +132,12 @@ hl.layer_rule ({
 })
 
 
+-- test firefox
+hl.layer_rule ({
+    name = "firefox",
+    match = { namespace = "" },
+    blur = true,
+    blur_popups = true,
+    ignore_alpha = 0,
+})
+

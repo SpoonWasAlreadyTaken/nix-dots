@@ -14,7 +14,7 @@
     origin = top-right
     width = 360
     height = (20,200)
-    offset = (20,50)
+    offset = (10,10)
     corner_radius = 12
 
     icon_corner_radius = 12
