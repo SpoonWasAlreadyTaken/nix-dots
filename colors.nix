@@ -79,7 +79,7 @@ let
             primary = "#b58fff";
             secondary = "#938bb4";
             tertiary = "#ff005d";
-            accent = "#ff7c36";
+            accent = "#6f009c";
             background = "#040405";
             dark = "#16161c";
             saturated = "#422549";
