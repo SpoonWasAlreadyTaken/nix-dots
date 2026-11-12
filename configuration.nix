@@ -150,8 +150,9 @@ in
             gcc
             nil
             luajit
-            luarocks
+            luajitPackages.luarocks
             lua-language-server
+            luajitPackages.jsregexp
             fastfetch
             vlc
             easyeffects
