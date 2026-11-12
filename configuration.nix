@@ -137,9 +137,11 @@ in
             dunst
             hyprpaper
             hyprpicker
-            hyprshot
             hyprlock
             hyprshutdown
+            grim
+            slurp
+            satty
             fzf
             clang
             cmake

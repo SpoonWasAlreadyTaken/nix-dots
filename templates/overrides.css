@@ -1,0 +1,93 @@
+@define-color colorBG @background@;
+@define-color colorFG @primary@;
+@define-color colorDim @dim@;
+@define-color colorSaturated @saturated@;
+@define-color colorAccent @accent@;
+@define-color colorSecondary @secondary@;
+@define-color colorTertiary @tertiary@;
+@define-color colorDark @dark@;
+
+@define-color colorFGDark @pDark@;
+@define-color colorFGDarker @pDarker@;
+@define-color colorFGVeryDark @pVeryDark@;
+@define-color colorFGLight @pLight@;
+@define-color colorFGLighter @pLighter@;
+@define-color colorFGVeryLight @pVeryLight@;
+
+@define-color colorSaturatedPrimary @sPrimary@;
+@define-color colorSaturatedSecondary @sSecondary@;
+@define-color colorSaturatedTertiary @sTertiary@;
+
+@define-color colorDarker @darker@;
+
+
+
+.root {
+    min-width: 65rem;
+    min-height: 10rem;
+}
+
+.outer_box {
+    background-color: @colorBG;
+}
+
+.inner_box {
+    background-color: @colorDarker;
+}
+
+.toolbar {
+    color: @colorFG;
+    background-color: @colorBG;
+}
+
+image.grouped-tools-menu-indicator-hover {
+    color: @colorAccent;
+}
+
+.toast {
+    color: @colorSecondary;
+    background-color: alpha(@colorBG, 0.3);
+    border-radius: 6px;
+    margin-top: 50px;
+}
+
+.outer_box .toolbar-bottom,
+.outer_box .toolbar-top {
+    border-radius: 0px 0px 0px 0px;
+}
+
+.overlay .toolbar-bottom {
+    border-radius: 6px 6px 0px 0px;
+}
+
+.overlay .toolbar-top {
+    border-radius: 0px 0px 6px 6px;
+}
+
+button.editing {
+    color: @colorAccent;
+}
+
+.size-button {
+    min-width: 35px;
+    min-height: 35px;
+    padding: 0;
+    margin: 0;
+}
+
+/* adw toast */
+toast {
+    background-color: alpha(@colorBG, 0.3);
+    color: @colorSecondary;
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-bottom: 50px;
+}
+
+.colorchooser {
+    background-color: alpha(@colorBG, 0.3);
+    color: @colorFG;
+}
+
+
+/* background colorchooser csd dialog maximized resizable-bottom resizable-left resizable-right resizable-top tiled-bottom tiled-left tiled-right tiled-top*/ 

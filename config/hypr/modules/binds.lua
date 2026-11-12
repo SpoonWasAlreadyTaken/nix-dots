@@ -13,10 +13,6 @@ hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
 
 
--- dunst
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))
-
-
 
 -- pane management
 --hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -84,8 +80,8 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 
 --software shortcuts
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -z -o ~/Downloads"))
-
+hl.bind("PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp -o)\" - | satty -f -"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop"))
 
 
 

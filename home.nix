@@ -25,6 +25,8 @@ let
         conf = pkgs.replaceVars ./templates/colors.conf themeVars;
         gtk = pkgs.replaceVars ./templates/gtk.css themeVars;
         dunst = pkgs.replaceVars ./templates/dunstrc themeVars;
+        sattyconf = pkgs.replaceVars ./templates/config.toml themeVars;
+        sattycss = pkgs.replaceVars ./templates/overrides.css themeVars;
 
         hypr = pkgs.replaceVars ./templates/hyprcolors.conf {
             primary = lib.removePrefix "#" themeVars.primary;
@@ -135,6 +137,8 @@ in
         "tmux/tmux.conf".source = generated.tmux;
         "yazi/theme.toml".source = generated.yazi;
         "dunst/dunstrc".source = generated.dunst;
+        "satty/config.toml".source = generated.sattyconf;
+        "satty/overrides.css".source = generated.sattycss;
     };
 
 
