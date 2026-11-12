@@ -135,6 +135,7 @@ in
             quickshell
             rofi
             dunst
+            libnotify
             hyprpaper
             hyprpicker
             hyprlock

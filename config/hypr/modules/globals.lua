@@ -3,7 +3,7 @@ local G = {}
 
 
 G.terminal    = "ghostty"
-G.fileManager = "ghostty -e yazi"
+G.fileManager = "ghostty +new-window -e yazi"
 G.menu        = "rofi -show drun"
 
 G.mainMonitor = "DP-2" -- "DP-1"
