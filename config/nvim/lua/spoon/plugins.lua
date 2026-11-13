@@ -29,7 +29,7 @@ local plugins = {
     },
     {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
     },
     {
         'nvim-tree/nvim-web-devicons',
@@ -137,6 +137,10 @@ local plugins = {
     },
 }
 
-local opts = {}
+local opts = {
+    rocks = {
+        enabled = false,
+    },
+}
 
 require("lazy").setup(plugins, opts)
