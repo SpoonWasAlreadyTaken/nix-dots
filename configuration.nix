@@ -124,11 +124,12 @@ in
 
     programs.nix-ld.enable = true;
 
-    
+
+
     environment.systemPackages = with pkgs; [
             vim 
-            wget
             neovim
+            wget
             ghostty
             tmux
             git
@@ -150,9 +151,7 @@ in
             gcc
             nil
             luajit
-            luajitPackages.luarocks
             lua-language-server
-            luajitPackages.jsregexp
             fastfetch
             vlc
             easyeffects
