@@ -77,7 +77,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd('firefox')
     hl.exec_cmd('vesktop')
     hl.exec_cmd('steam')
-    hl.exec_cmd(G.fileManager, { workspace = '6 silent' })
+    hl.exec_cmd(G.fileManagerStandalone, { workspace = '6 silent' })
 end)
 
 
