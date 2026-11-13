@@ -72,7 +72,7 @@ hl.window_rule({
 hl.on("hyprland.start", function ()
     hl.exec_cmd(G.terminal, { workspace = '3 silent' })
     hl.exec_cmd('dunst')
-    hl.exec_cmd('quickshell -p ~/.config/hypr/quickshell')
+    hl.exec_cmd('quickshell')
     hl.exec_cmd('hyprpaper')
     hl.exec_cmd('firefox')
     hl.exec_cmd('vesktop')

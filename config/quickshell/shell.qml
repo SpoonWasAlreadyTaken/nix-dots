@@ -7,12 +7,11 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 
-import "file:///home/spoon/.config/theme/" as Theme
 
 ShellRoot {
     id: root
 
-    Theme.Colors {
+    Colors {
         id: colors
     }
     

@@ -126,13 +126,15 @@ in
 		recursive = true;
 	}) configs)
     // {
+        "quickshell/shell.qml".source = create_symlink "${dotfiles}/quickshell/shell.qml";
+
         "theme/colors.css".source = generated.css;
         "theme/colors.lua".source = generated.lua;
-        "theme/Colors.qml".source = generated.qml;
         "theme/colors.rasi".source = generated.rasi;
         "theme/colors.conf".source = generated.conf;
         "theme/hyprcolors.conf".source = generated.hypr;
 
+        "quickshell/Colors.qml".source = generated.qml;
         "starship.toml".source = generated.starship;
         "tmux/tmux.conf".source = generated.tmux;
         "yazi/theme.toml".source = generated.yazi;
