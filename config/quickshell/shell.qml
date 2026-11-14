@@ -7,11 +7,13 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 
+import "file:///home/spoon/.config/theme/" as Theme
+
 
 ShellRoot {
     id: root
 
-    Colors {
+    Theme.Colors {
         id: colors
     }
     
@@ -385,7 +387,7 @@ ShellRoot {
                     } 
 
                     Text { /* ICON */
-                        text: "󰩪"
+                        text: "󰐮"
                         color: lerpColor(colors.colorFGLight, colors.colorTertiary, gpuUsage / 100)
 
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
