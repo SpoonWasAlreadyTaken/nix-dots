@@ -105,6 +105,12 @@ ShellRoot {
     }
 
 
+    IpcHandler {
+        target: "shell"
+        function reloadConfig(): void { Quickshell.reload(false) }
+    }
+
+
     Process {
         id: cpuProcess
         command: [ "sh", "-c", "head -1 /proc/stat " ]

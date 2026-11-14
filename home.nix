@@ -336,5 +336,6 @@ in
         r2modman
     ];
 
+
 	programs.home-manager.enable = true;
 }
