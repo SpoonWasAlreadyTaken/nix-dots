@@ -18,7 +18,6 @@ let
     generated = {
         css = pkgs.replaceVars ./templates/colors.css themeVars;
         lua = pkgs.replaceVars ./templates/colors.lua themeVars;
-        qml = pkgs.replaceVars ./templates/colors.qml themeVars;
         starship = pkgs.replaceVars ./templates/starship.toml themeVars;
         tmux = pkgs.replaceVars ./templates/tmux.conf themeVars;
         rasi = pkgs.replaceVars ./templates/colors.rasi themeVars;
@@ -28,6 +27,7 @@ let
         dunst = pkgs.replaceVars ./templates/dunstrc themeVars;
         sattyconf = pkgs.replaceVars ./templates/config.toml themeVars;
         sattycss = pkgs.replaceVars ./templates/overrides.css themeVars;
+        json = pkgs.replaceVars ./templates/colors.json themeVars;
 
         hypr = pkgs.replaceVars ./templates/hyprcolors.conf {
             primary = lib.removePrefix "#" themeVars.primary;
@@ -132,7 +132,7 @@ in
         "theme/colors.rasi".source = generated.rasi;
         "theme/colors.conf".source = generated.conf;
         "theme/hyprcolors.conf".source = generated.hypr;
-        "theme/Colors.qml".source = generated.qml;
+        "theme/colors.json".source = generated.json;
 
         "starship.toml".source = generated.starship;
         "tmux/tmux.conf".source = generated.tmux;

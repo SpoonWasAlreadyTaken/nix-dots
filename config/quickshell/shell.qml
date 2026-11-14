@@ -7,16 +7,11 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 
-import "file:///home/spoon/.config/theme/" as Theme
 
 
 ShellRoot {
     id: root
 
-    Theme.Colors {
-        id: colors
-    }
-    
     property string fontFamily: "Cascadia Mono"
     property string fontIcon: "JetBrainsMono Nerd Font"
     property string fontIconSmall: "Hack Nerd Font Mono"
@@ -313,7 +308,7 @@ ShellRoot {
             anchors.left: true
             anchors.right: true
             implicitHeight: 32
-            color: colors.colorBG
+            color: Theme.colors.colorBG
 
 
             Item {
@@ -328,14 +323,14 @@ ShellRoot {
 
                     Text { /* CPU */
                         text: cpuUsage + "%"
-                        color: lerpColor(colors.colorFGLight, colors.colorTertiary, cpuUsage / 100)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, cpuUsage / 100)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                         Layout.alignment: Qt.AlignBaseline
                     } 
 
                     Text { /* ICON */
                         text: ""
-                        color: lerpColor(colors.colorFGLight, colors.colorTertiary, cpuUsage / 100)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, cpuUsage / 100)
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
                     }
 
@@ -345,12 +340,12 @@ ShellRoot {
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
-                        color: colors.colorDark
+                        color: Theme.colors.colorDark
                     }
 
                     Text { /* MEMORY */
                         text: showMemoryPrecentage ? Math.round(100 * memUsed / memTotal) + "%" : (memUsed / 1024 / 1024).toFixed(2) + "G"
-                        color: lerpColor(colors.colorFGLight, colors.colorTertiary, memUsed / memTotal)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, memUsed / memTotal)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
 
                         MouseArea {
@@ -361,7 +356,7 @@ ShellRoot {
 
                     Text { /* ICON */
                         text: ""
-                        color: lerpColor(colors.colorFGLight, colors.colorTertiary, memUsed / memTotal)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, memUsed / memTotal)
 
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
 
@@ -377,18 +372,18 @@ ShellRoot {
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
-                        color: colors.colorDark
+                        color: Theme.colors.colorDark
                     }
 
                     Text { /* GPU */
                         text: gpuUsage + "%"
-                        color: lerpColor(colors.colorFGLight, colors.colorTertiary, gpuUsage / 100)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, gpuUsage / 100)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                     } 
 
                     Text { /* ICON */
                         text: "󰐮"
-                        color: lerpColor(colors.colorFGLight, colors.colorTertiary, gpuUsage / 100)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, gpuUsage / 100)
 
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
                     }
@@ -412,7 +407,7 @@ ShellRoot {
                                 property bool isUrgent: ws?.urgent ?? false
 
                                 text: isActive ? "" : ""
-                                color: isActive ? colors.colorFG : (ws ? (isUrgent ? colors.colorAccent : colors.colorFGDarker) : colors.colorDim)
+                                color: isActive ? Theme.colors.colorFG : (ws ? (isUrgent ? Theme.colors.colorAccent : Theme.colors.colorFGDarker) : Theme.colors.colorDim)
                                 font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
 
                                 Layout.preferredWidth: 12
@@ -436,7 +431,7 @@ ShellRoot {
                             rightPadding: getIconPadding(activeWindow)
 
                             text: getIcon(activeWindow)
-                            color: colors.colorFG
+                            color: Theme.colors.colorFG
                             font { family: root.fontIcon; pixelSize: root.iconSize; bold: true }
                         }
                     }
@@ -452,7 +447,7 @@ ShellRoot {
                                 property bool isUrgent: ws?.urgent ?? false
 
                                 text: isActive ? "" : ""
-                                color: isActive ? colors.colorFG : (ws ? (isUrgent ? colors.colorAccent : colors.colorFGDarker) : colors.colorDim)
+                                color: isActive ? Theme.colors.colorFG : (ws ? (isUrgent ? Theme.colors.colorAccent : Theme.colors.colorFGDarker) : Theme.colors.colorDim)
                                 font { family: root.fontIconSmall; pixelSize: root.fontSize; bold: true }
 
                                 Layout.preferredWidth: 12
@@ -476,7 +471,7 @@ ShellRoot {
 
                     Text { /* NETWORK */
                         text: isOnline ? (showNetworkSpeed ? formatNetworkSpeed(downloadSpeed) + " 󰇚" + " | " + formatNetworkSpeed(uploadSpeed) + " 󰕒" : "online") : "offline"
-                        color: isOnline ? colors.colorFGLight : colors.colorDim
+                        color: isOnline ? Theme.colors.colorFGLight : Theme.colors.colorDim
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
 
                         MouseArea {
@@ -491,7 +486,7 @@ ShellRoot {
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
-                        color: colors.colorDark
+                        color: Theme.colors.colorDark
                     }
 
                     Item {
@@ -505,13 +500,13 @@ ShellRoot {
 
                             Text { /* AUDIO */
                                 text: volumeLevel + "%"
-                                color: colors.colorFGLight
+                                color: Theme.colors.colorFGLight
                                 font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                             }
 
                             Text { /* ICON */
                                 text: volumeIcon(Pipewire.defaultAudioSink ? Pipewire.defaultAudioSink.audio.muted : 0, volumeLevel)
-                                color: colors.colorFGLight
+                                color: Theme.colors.colorFGLight
                                 font { family: root.fontIcon; pixelSize: root.fontSize; bold: true } 
                             }
 
@@ -533,7 +528,7 @@ ShellRoot {
                             width: parent.width * 1.2
                             height: 2
                             radius: 2
-                            color: colors.colorDark
+                            color: Theme.colors.colorDark
                         }
                     }
 
@@ -543,12 +538,12 @@ ShellRoot {
                         Layout.alignment: Qt.AlignVCenter
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
-                        color: colors.colorDark
+                        color: Theme.colors.colorDark
                     }
 
                     Text { /* CLOCK */
                         text: clock
-                        color: colors.colorFGLight
+                        color: Theme.colors.colorFGLight
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
 
                         MouseArea {
@@ -617,11 +612,11 @@ ShellRoot {
                 orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
-                    color: colors.colorFG
+                    color: Theme.colors.colorFG
                 }
                 GradientStop {
                     position: 1.0
-                    color: colors.colorTertiary
+                    color: Theme.colors.colorTertiary
                 }
             }
         }
@@ -631,7 +626,7 @@ ShellRoot {
             radius: 10
             anchors.margins: 5
 
-            color: colors.colorDarker
+            color: Theme.colors.colorDarker
 
             Rectangle {
                 id: volumeButton
@@ -640,7 +635,7 @@ ShellRoot {
                 anchors.top: parent.top
 
                 border.width: 2
-                border.color: audioWindow.maxValueRaised ? colors.colorBG : colors.colorTertiary
+                border.color: audioWindow.maxValueRaised ? Theme.colors.colorBG : Theme.colors.colorTertiary
 
                 property bool focused: false
 
@@ -648,7 +643,7 @@ ShellRoot {
                 height: 15
                 radius: volumeButton.height / 2
 
-                color: audioWindow.maxValueRaised ? colors.colorTertiary : colors.colorBG
+                color: audioWindow.maxValueRaised ? Theme.colors.colorTertiary : Theme.colors.colorBG
 
                 Rectangle {
                     id: volumeButtonGlow
@@ -656,7 +651,7 @@ ShellRoot {
                     anchors.fill: parent
                     anchors.margins: -2
                     radius: parent.radius + 2
-                    color: colors.colorTertiary
+                    color: Theme.colors.colorTertiary
 
                     visible: false
                 }
@@ -722,7 +717,7 @@ ShellRoot {
 
                                 Text {
                                     text: modelData.name
-                                    color: colors.colorFGLight
+                                    color: Theme.colors.colorFGLight
                                     font { family: root.fontFamily; pixelSize: 14; bold: true }
                                     width: slider.width
                                     elide: Text.ElideRight
@@ -741,7 +736,7 @@ ShellRoot {
                                             anchors.fill: parent
                                             anchors.margins: -2
                                             radius: parent.radius + 2
-                                            color: colors.colorTertiary
+                                            color: Theme.colors.colorTertiary
 
                                             visible: false
                                         }
@@ -766,7 +761,7 @@ ShellRoot {
                                             width: slider.width
                                             height: 6
                                             radius: 3
-                                            color: colors.colorBG
+                                            color: Theme.colors.colorBG
 
 
 
@@ -778,11 +773,11 @@ ShellRoot {
                                                     orientation: Gradient.Horizontal
                                                     GradientStop {
                                                         position: 0.0
-                                                        color: colors.colorSecondary
+                                                        color: Theme.colors.colorSecondary
                                                     }
                                                     GradientStop {
                                                         position: 1.0
-                                                        color: colors.colorTertiary
+                                                        color: Theme.colors.colorTertiary
                                                     }
                                                 }
 
@@ -794,9 +789,9 @@ ShellRoot {
                                             width: 14
                                             height: 14
                                             radius: 7
-                                            color: colors.colorBG
+                                            color: Theme.colors.colorBG
                                             border.width: 2
-                                            border.color: colors.colorTertiary
+                                            border.color: Theme.colors.colorTertiary
                                             x: (slider.value * (parent.width - width)) / audioWindow.maxValue
                                             y: (parent.height - height) / 2
                                         }
@@ -843,7 +838,7 @@ ShellRoot {
 
                                     Text {
                                         text: Math.round(slider.value * 100) + "%"
-                                        color: slider.value > 1 ? colors.colorTertiary : colors.colorFGLight
+                                        color: slider.value > 1 ? Theme.colors.colorTertiary : Theme.colors.colorFGLight
                                         font { family: root.fontFamily; pixelSize: 14; bold: true }
                                         Layout.preferredWidth: 50
                                         horizontalAlignment: Text.AlignRight
@@ -851,7 +846,7 @@ ShellRoot {
 
                                     Text {
                                         text: volumeIcon(false, slider.value * 100)
-                                        color: slider.value > 1 ? colors.colorTertiary : colors.colorFGLight
+                                        color: slider.value > 1 ? Theme.colors.colorTertiary : Theme.colors.colorFGLight
                                         font { family: root.fontIcon; pixelSize: 14; bold: true } 
                                         Layout.preferredWidth: 15
                                     }
@@ -893,11 +888,11 @@ ShellRoot {
                 orientation: Gradient.Horizontal
                 GradientStop {
                     position: 0.0
-                    color: colors.colorFG
+                    color: Theme.colors.colorFG
                 }
                 GradientStop {
                     position: 1.0
-                    color: colors.colorTertiary
+                    color: Theme.colors.colorTertiary
                 }
             }
 
@@ -906,13 +901,13 @@ ShellRoot {
                 anchors.margins: 1
 
                 radius: 10
-                color: colors.colorDarker
+                color: Theme.colors.colorDarker
 
                 Text {
                     id: timeWindowText
                     anchors.centerIn: parent
                     text: Qt.formatDateTime(new Date(), "yyyy MMMM d dddd HH:mm:ss")
-                    color: colors.colorFGLight
+                    color: Theme.colors.colorFGLight
                     font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                 }
             }
@@ -945,7 +940,7 @@ ShellRoot {
             anchors.margins: 4
 
             radius: 10
-            color: colors.colorDark
+            color: Theme.colors.colorDark
 
             Column {
                 spacing: 8
@@ -954,7 +949,7 @@ ShellRoot {
 
                 Text {
                     text: activeWindow ?? "None"
-                    color: colors.colorFGLight
+                    color: Theme.colors.colorFGLight
                     font { family: root.fontIcon; pixelSize: root.fontSize; bold: true } 
                 }
 
