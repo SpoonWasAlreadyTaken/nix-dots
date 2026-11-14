@@ -47,6 +47,6 @@ vim.filetype.add({
     },
 })
 
-
+vim.opt.mouse = ''
 
 -- crazy, I was crazy once. They locked me in a room a rubber room with rats. Rats, rats make me crazy, crazy. I was crazy once they locked me in a room, a rubber room with rats. Rats, rats make me crazy, crazy I was crazy once they locked me in a room. A rubber room, a rubber room with rats. Rats, rats make me crazy, crazy I was crazy once they locked me in a room a rubber room with rats. Rats make me crazy, crazy I was crazy once. They locked me in a room a rubber room with rats. Rats, rats make me crazy, crazy. I was crazy once, they locked me in a room. A rubber room with rats, rats rats make me crazy. Crazy, I was crazy once they locked me in a room, a rubber room with rats. Rats, rats make me crazy, crazy I was crazy once they locked me in a room with rats. Rats make me crazy. Crazy, I was crazy once, they locked me in a room...
