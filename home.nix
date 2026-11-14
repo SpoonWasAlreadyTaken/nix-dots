@@ -66,6 +66,7 @@ in
 
             bindkey -M viins '^?' backward-delete-char
             bindkey -M viins '^H' backward-delete-char
+            bindkey -M viins '^F' autosuggest-accept
 
             function zle-line-init {
                 zle reset-prompt
