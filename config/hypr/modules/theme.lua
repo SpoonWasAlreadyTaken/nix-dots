@@ -45,6 +45,7 @@ hl.config({
             noise     = 0.001,
             popups    = true,
             input_methods = true,
+            variant = "frost",
         },
 
         glow = {

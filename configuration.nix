@@ -174,6 +174,7 @@ in
             vulkan-tools
             gamescope-wsi
             sfml
+            raylib
             glibc
             zlib
             ntfs3g

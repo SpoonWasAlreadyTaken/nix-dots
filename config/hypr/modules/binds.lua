@@ -80,17 +80,8 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 
 --software shortcuts
-hl.bind("PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp -o)\" - | satty -f -")) --screenshots
+hl.bind("PRINT", hl.dsp.exec_cmd("grim -g \"$(slurp -o)\" -t ppm - | satty -f -")) --screenshots
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop")) --dunst
-
-
-
-
-
-
-
-
-
 
 
 
