@@ -34,3 +34,8 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set({ "n", "i", "v" }, "<Up>", "<nop>")
+vim.keymap.set({ "n", "i", "v" }, "<Down>", "<nop>")
+vim.keymap.set({ "n", "i", "v" }, "<Left>", "<nop>")
+vim.keymap.set({ "n", "i", "v" }, "<Right>", "<nop>")
