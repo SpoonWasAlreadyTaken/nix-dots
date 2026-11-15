@@ -35,6 +35,12 @@ let
             tertiary = lib.removePrefix "#" themeVars.tertiary;
             sPrimary = lib.removePrefix "#" themeVars.sPrimary;
         };
+
+        krita = pkgs.replaceVars ./templates/Fractal.colors {
+            primary = themeVars.primary;
+            background = themeVars.background;
+            dark = themeVars.dark;
+        };
     };
 in
 {
@@ -111,6 +117,8 @@ in
         ".themes/gtk-fractal/index.theme".source = ./theming/gtk-fractal/index.theme;
         ".themes/gtk-fractal/gtk-3.0/gtk.css".source = generated.gtk;
         ".themes/gtk-fractal/gtk-4.0/gtk.css".source = generated.gtk;
+
+        ".local/share/krita/color-schemes/Fractal.colors".source = generated.krita;
     };
 
     

@@ -41,3 +41,4 @@ vim.keymap.set({ "n", "i", "v" }, "<Left>", "<nop>")
 vim.keymap.set({ "n", "i", "v" }, "<Right>", "<nop>")
 
 vim.keymap.set("i", "<C-k>", "<Up>")
+vim.keymap.set("i", "<C-j>", "<Down>")

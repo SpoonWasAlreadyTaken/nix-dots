@@ -1,0 +1,21 @@
+[Colors:Button]
+BackgroundAlternate = @dark@
+BackgroundNormal = @background@
+ForegroundNormal = @primary@
+
+
+[Colors:Selection]
+BackgroundNormal = @primary@
+ForegroundNormal = @background@
+
+[Colors:View]
+BackgroundAlternate = @dark@
+BackgroundNormal = @background@
+ForegroundNormal = @primary@
+
+[Colors:Window]
+BackgroundNormal = @background@
+ForegroundNormal = @primary@
+
+[General]
+Name = Fractal
