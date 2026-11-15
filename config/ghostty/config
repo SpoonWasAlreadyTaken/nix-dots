@@ -15,3 +15,4 @@ shell-integration = "zsh"
 
 
 keybind = ctrl+enter=unbind
+mouse-hide-while-typing = true

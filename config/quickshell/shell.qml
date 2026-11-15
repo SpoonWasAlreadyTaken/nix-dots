@@ -25,6 +25,9 @@ ShellRoot {
     property var lastCpuTotal: 0
 
     property int gpuUsage: 0
+    property int gpuTemp: 0
+    property bool showGPUUsage: true
+    function tempIcon (temp) { return temp >= 80 ? "" : (temp >= 60 ? "" : (temp >= 40 ? "" : "")) }
 
     property int memUsed: 0
     property int memTotal: 0
@@ -133,10 +136,13 @@ ShellRoot {
 
     Process {
         id: gpuProcess
-        command: [ "sh", "-c", "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits " ]
+        command: [ "sh", "-c", "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,noheader,nounits " ]
         stdout: SplitParser {
             onRead: data => {
-                gpuUsage = parseInt(data.trim()) || 0
+                let values = data.trim().split(",")
+                
+                gpuUsage = parseInt(values[0]) || 0
+                gpuTemp = parseInt(values[1]) || 0
             }
         }
 
@@ -268,7 +274,7 @@ ShellRoot {
 
     Timer {
         id: audioTimer
-        interval: 1000
+        interval: 333
         repeat: true
         running: audioWindow.visible
 
@@ -363,7 +369,6 @@ ShellRoot {
                     Text { /* ICON */
                         text: ""
                         color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, memUsed / memTotal)
-
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
 
                         MouseArea {
@@ -382,16 +387,25 @@ ShellRoot {
                     }
 
                     Text { /* GPU */
-                        text: gpuUsage + "%"
-                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, gpuUsage / 100)
+                        text: (showGPUUsage ? gpuUsage + "%" : gpuTemp + "󰔄")
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, (showGPUUsage ? gpuUsage : gpuTemp) / 100)
                         font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: showGPUUsage  = !showGPUUsage
+                        }
                     } 
 
                     Text { /* ICON */
-                        text: "󰐮"
-                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, gpuUsage / 100)
-
+                        text: showGPUUsage ? "󱔼" : tempIcon(gpuTemp)
+                        color: lerpColor(Theme.colors.colorFGLight, Theme.colors.colorTertiary, (showGPUUsage ? gpuUsage : gpuTemp) / 100)
                         font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: showGPUUsage = !showGPUUsage 
+                        }
                     }
                 }
 
