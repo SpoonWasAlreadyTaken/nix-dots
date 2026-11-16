@@ -1,4 +1,6 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.lsp.config('*', { capabilities = capabilities, })
+
 vim.lsp.config('clangd', {
     cmd = {
         "clangd",
@@ -7,7 +9,6 @@ vim.lsp.config('clangd', {
         "--completion-style=detailed",
         "--header-insertion=never",
     },
-    capabilities = capabilities,
 })
 
 
@@ -48,3 +49,13 @@ vim.diagnostic.config({
 })
 
 
+
+
+vim.api.nvim_create_user_command('LspRestart', function ()
+    local clients = vim.lsp.get_clients()
+
+    for _, client in ipairs(clients) do
+        client:stop(true)
+        vim.defer_fn(function() vim.lsp.enable(client.name, true) end, 500)
+    end
+end, {})
