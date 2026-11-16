@@ -140,10 +140,11 @@ hl.layer_rule ({
 
 -- test firefox
 hl.layer_rule ({
-    name = "firefox",
-    match = { namespace = "" },
+    name = "quickshell",
+    match = { namespace = "quickshell" },
+    animation = "popin",
     blur = true,
     blur_popups = true,
-    ignore_alpha = 0,
+    ignore_alpha = 0.1,
 })
 
