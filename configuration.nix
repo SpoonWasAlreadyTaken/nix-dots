@@ -126,24 +126,22 @@ in
 
 
     environment.systemPackages = with pkgs; [
+            # tools
             vim 
             neovim
-            wget
             ghostty
             tmux
             git
+            imv 
+            vlc
+            vesktop
+            prismlauncher
+            easyeffects
+            starship
             quickshell
-            rofi
-            dunst
-            libnotify
-            hyprpaper
-            hyprpicker
-            hyprlock
-            hyprshutdown
-            grim
-            slurp
-            satty
-            fzf
+
+
+            # programming
             clang
             cmake
             gnumake
@@ -153,40 +151,58 @@ in
             lua-language-server
             odin
             ols
-            fastfetch
-            vlc
-            easyeffects
-            starship
-            vesktop
-            pulseaudio
-            jq    
-            wineWow64Packages.stagingFull
-            winetricks
-            wine64Packages.fonts
-            imv 
+
+
+            # libraries
+            libnotify
+            raylib
+            sfml
+            zlib
+            glibc
+
+
+            # art
             krita
             blender-bin.packages.${pkgs.stdenv.hostPlatform.system}.default
             inkscape
-            hyprpolkitagent
-            ffmpeg
+
+
+            # utils
+            grim
+            slurp
+            satty
+            htop
+            rofi
+            dunst
+            fzf
+            jq    
+            fastfetch
             _7zz
             file
-            htop
             clang-tools
             vulkan-tools
             gamescope-wsi
-            sfml
-            raylib
-            glibc
-            zlib
-            ntfs3g
             ripgrep
+            ffmpeg
+            ntfs3g
             resvg
+
+
+            # system
+            wget
+            hyprpaper
+            hyprpicker
+            hyprlock
+            hyprshutdown
+            hyprpolkitagent
+            pulseaudio
+            wineWow64Packages.stagingFull
+            winetricks
+            wine64Packages.fonts
             protontricks
-            prismlauncher
 
 
-            /* custom */
+            # custom
             spoonsert.fractal-theme
 
             ];
