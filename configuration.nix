@@ -151,6 +151,8 @@ in
             nil
             luajit
             lua-language-server
+            odin
+            ols
             fastfetch
             vlc
             easyeffects
@@ -164,6 +166,7 @@ in
             imv 
             krita
             blender-bin.packages.${pkgs.stdenv.hostPlatform.system}.default
+            inkscape
             hyprpolkitagent
             ffmpeg
             _7zz
