@@ -168,6 +168,7 @@ in
 
 
             # utils
+            still
             grim
             slurp
             satty
