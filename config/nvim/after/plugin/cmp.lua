@@ -56,12 +56,18 @@ cmp.setup.filetype({ 'txt', 'text', }, {
 })
 
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
+    mapping = cmp.mapping.preset.cmdline({
+        ['<C-Space>'] = { c = cmp.mapping.complete(), },
+    }),
     sources = cmp.config.sources({ { name = 'path' }, { name = 'cmdline' }, }),
 })
 
 cmp.setup.cmdline({'/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
+    mapping = cmp.mapping.preset.cmdline({
+        ['<C-Space>'] = { c = cmp.mapping.complete(), },
+    }),
     sources = {{ name = 'buffer' }},
 })
 

@@ -11,13 +11,11 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(G.fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(G.menu))
 hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind("ALT + F4", hl.dsp.window.close())
-
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/hypr/rofi/powermenu.sh"))
 
 
 -- pane management
---hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/hypr/rofi/powermenu.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + V", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
@@ -79,9 +77,18 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 
 
---software shortcuts
+-- software shortcuts
 hl.bind("PRINT", hl.dsp.exec_cmd("still -c 'slurp -o | grim -g - -t ppm -' | satty -f -")) --screenshots
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop")) --dunst
+
+-- other rofi utils
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/hypr/rofi/quickmenu.sh"))
+
+
+
+
+
+
 
 
 
