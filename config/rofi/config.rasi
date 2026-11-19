@@ -6,6 +6,10 @@ configuration {
     modi: "window,run,drun";
     show-icons: true;
     icon-theme: "Papirus";
+
+    matching: "fuzzy";
+    sort: true;
+    sorting-method: "fzf-v2";
 }
 
 @theme "/dev/null"
