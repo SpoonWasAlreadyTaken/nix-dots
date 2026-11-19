@@ -108,9 +108,19 @@ ShellRoot {
     }
 
 
+    property var timers: []
+
+
     IpcHandler {
         target: "shell"
         function reloadConfig(): void { Quickshell.reload(false) }
+    }
+
+    IpcHandler {
+        target: "quickmenu"
+        function startTimer(duration: int, message: string): void {
+            timers = [...timers, { duration, message }]
+        }
     }
 
 
@@ -290,6 +300,29 @@ ShellRoot {
         onTriggered: if (!networkSpeedProcess.running) networkSpeedProcess.running = true
 
     }
+
+    Timer {
+        id: timersTimer
+        interval: 1000
+        repeat: true
+        running: timers.length !== 0
+
+        onTriggered: function() { 
+            let updated = [...timers]
+
+            for (let i = updated.length - 1; i >= 0; i--) {
+                updated[i].duration--
+
+                if (updated[i].duration <= 0) {
+                    Quickshell.execDetached([ "notify-send", "Timer", updated[i].message ])
+                    updated.splice(i,1)
+                }
+            }
+
+            timers = updated
+        }
+    }
+
 
     Connections {
         target: Hyprland 
@@ -487,6 +520,62 @@ ShellRoot {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 8
                     anchors.rightMargin: 12
+
+                    Item { /* TRAY */
+                        id: tray
+                        implicitWidth: trayRow.implicitWidth
+                        implicitHeight: trayRow.implicitHeight
+                        visible: timers.length !== 0
+
+                        RowLayout {
+                            id: trayRow
+                            Text {
+                                text: "["
+                                color: Theme.colors.colorFGLight
+                                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                            }
+
+                            Repeater {
+                                model: timers
+                                Item {
+                                    implicitWidth: timerRow.implicitWidth
+                                    implicitHeight: timerRow.implicitHeight
+
+                                    RowLayout {
+                                        id: timerRow
+
+                                        Text {
+                                            text: ""
+                                            color: Theme.colors.colorFGLight
+                                            font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
+                                        }
+
+                                        Text {
+                                            text: Math.round(modelData.duration / 3600) + ":" + Math.round((modelData.duration / 3600) / 60) + ":" + (modelData.duration % 3600)
+                                            color: Theme.colors.colorFGLight
+                                            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                                        }
+                                    }
+                                }
+                            }
+
+                            Text {
+                                text: "]"
+                                color: Theme.colors.colorFGLight
+                                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        Layout.preferredWidth: 2
+                        Layout.preferredHeight: 16
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 8
+                        Layout.rightMargin: 8
+                        color: Theme.colors.colorDark
+                        visible: tray.visible
+                    }
 
 
                     Text { /* NETWORK */

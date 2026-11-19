@@ -82,7 +82,7 @@ hl.bind("PRINT", hl.dsp.exec_cmd("still -c 'slurp -o | grim -g - -t ppm -' | sat
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("dunstctl history-pop")) --dunst
 
 -- other rofi utils
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("~/.config/hypr/rofi/quickmenu.sh"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("rofi -show command -modi \"command:~/.config/hypr/rofi/quickmenu.sh\""))
 
 
 
