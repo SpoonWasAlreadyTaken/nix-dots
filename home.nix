@@ -9,6 +9,7 @@ let
 		ghostty = "ghostty";
 		rofi = "rofi";
         quickshell = "quickshell";
+        scripts = "scripts";
 	};
 
     theme = import ./colors.nix { inherit lib; };

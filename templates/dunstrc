@@ -1,4 +1,5 @@
 [global]
+    enable_posix_regex = true
     monitor = 0
     follow = none
     notification_limit = 3
@@ -50,7 +51,16 @@ timeout = 0
 
 
 [experimental]
-    pause_on_mouse_over = true
+pause_on_mouse_over = true
+
+
+
+[notif_sound]
+summary = "^(Timer|NixOS)$"
+script = "~/.config/scripts/sounds/playNotif.sh"
+
+
+
 
 
 #@background@

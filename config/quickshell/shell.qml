@@ -551,7 +551,7 @@ ShellRoot {
                                         }
 
                                         Text {
-                                            text: Math.round(modelData.duration / 3600) + ":" + Math.round((modelData.duration / 3600) / 60) + ":" + (modelData.duration % 3600)
+                                            text: Math.floor(modelData.duration / 3600) + ":" + Math.floor((modelData.duration % 3600) / 60) + ":" + (modelData.duration % 60)
                                             color: Theme.colors.colorFGLight
                                             font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                                         }
