@@ -38,9 +38,9 @@ if [[ "$lower" =~ ^timer[[:space:]]+(([0-9]+h)?([0-9]+m)?([0-9]+s)?)([[:space:]]
         exit 1
     fi
 
-    if ((message == "silent")); then
+    if [[ "${message%% *}" == "silent" ]]; then
         notify-send "Timer" "$duration timer started"
-        (sleep $total && notify-send "Timer" "$duration timer finished") >/dev/null 2>&1 </dev/null &
+        (sleep $total && notify-send "Timer" "${message#* }") >/dev/null 2>&1 </dev/null &
         exit 0
     fi
     

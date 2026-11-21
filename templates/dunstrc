@@ -8,7 +8,7 @@
     horizontal_padding = 12
     text_icon_padding = 8
     line_height = 3
-    sort = false
+    sort = update
 
     font = "Cascadia Mono"
 

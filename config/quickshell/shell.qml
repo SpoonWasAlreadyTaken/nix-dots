@@ -109,6 +109,47 @@ ShellRoot {
 
 
     property var timers: []
+    function getClock(value) {
+        value = value % 12
+        switch (value) {
+            case 0:
+            return "󱑖"
+            break
+            case 1:
+            return "󱑕"
+            break
+            case 2:
+            return "󱑔"
+            break
+            case 3:
+            return "󱑓"
+            break
+            case 4:
+            return "󱑒"
+            break
+            case 5:
+            return "󱑑"
+            break
+            case 6:
+            return "󱑐"
+            break
+            case 7:
+            return "󱑏"
+            break
+            case 8:
+            return "󱑎"
+            break
+            case 9:
+            return "󱑍"
+            break
+            case 10:
+            return "󱑌"
+            break
+            case 11:
+            return "󱑋"
+            break
+        }
+    }
 
 
     IpcHandler {
@@ -545,15 +586,28 @@ ShellRoot {
                                         id: timerRow
 
                                         Text {
-                                            text: ""
+                                            text: getClock(modelData.duration)
                                             color: Theme.colors.colorFGLight
                                             font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
+
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                anchors.centerIn: parent
+                                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                                                onPressed: (mouse) => {
+                                                    if (mouse.button === Qt.RightButton) { timers = timers.filter((timer, i) => i !== index) } 
+                                                    else if (mouse.button === Qt.LeftButton) { timerText.visible = !timerText.visible }
+                                                }
+                                            }
                                         }
 
                                         Text {
+                                            id: timerText
                                             text: Math.floor(modelData.duration / 3600) + ":" + Math.floor((modelData.duration % 3600) / 60) + ":" + (modelData.duration % 60)
                                             color: Theme.colors.colorFGLight
                                             font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                                            visible: false
                                         }
                                     }
                                 }
@@ -1065,7 +1119,6 @@ ShellRoot {
             }
         }
     }
-
 
 }
 
