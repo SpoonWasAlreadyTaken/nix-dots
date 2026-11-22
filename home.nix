@@ -29,6 +29,7 @@ let
         sattyconf = pkgs.replaceVars ./templates/config.toml themeVars;
         sattycss = pkgs.replaceVars ./templates/overrides.css themeVars;
         json = pkgs.replaceVars ./templates/colors.json themeVars;
+        lazygit = pkgs.replaceVars ./templates/lazygit.yml themeVars;
 
         hypr = pkgs.replaceVars ./templates/hyprcolors.conf {
             primary = lib.removePrefix "#" themeVars.primary;
@@ -150,6 +151,7 @@ in
         "dunst/dunstrc".source = generated.dunst;
         "satty/config.toml".source = generated.sattyconf;
         "satty/overrides.css".source = generated.sattycss;
+        "lazygit/config.yml".source = generated.lazygit;
     };
 
 

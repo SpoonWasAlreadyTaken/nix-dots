@@ -113,40 +113,40 @@ ShellRoot {
         value = value % 12
         switch (value) {
             case 0:
-            return "󱑖"
+            return " 󱑖 "
             break
             case 1:
-            return "󱑕"
+            return " 󱑕 "
             break
             case 2:
-            return "󱑔"
+            return " 󱑔 "
             break
             case 3:
-            return "󱑓"
+            return " 󱑓 "
             break
             case 4:
-            return "󱑒"
+            return " 󱑒 "
             break
             case 5:
-            return "󱑑"
+            return " 󱑑 "
             break
             case 6:
-            return "󱑐"
+            return " 󱑐 "
             break
             case 7:
-            return "󱑏"
+            return " 󱑏 "
             break
             case 8:
-            return "󱑎"
+            return " 󱑎 "
             break
             case 9:
-            return "󱑍"
+            return " 󱑍 "
             break
-            case 10:
-            return "󱑌"
+            case 10: 
+            return " 󱑌 "
             break
-            case 11:
-            return "󱑋"
+            case 11: 
+            return " 󱑋 "
             break
         }
     }
@@ -557,6 +557,7 @@ ShellRoot {
 
 
                 RowLayout { /* RIGHT */
+                    id: barRight
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 8
@@ -575,17 +576,20 @@ ShellRoot {
                                 color: Theme.colors.colorFGLight
                                 font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
                             }
+                            
+                            Item {
+                                id: timersBody
+                                implicitWidth: timersRow.width
+                                implicitHeight: timersRow.height
 
-                            Repeater {
-                                model: timers
-                                Item {
-                                    implicitWidth: timerRow.implicitWidth
-                                    implicitHeight: timerRow.implicitHeight
+                                RowLayout {
+                                    id: timersRow
 
-                                    RowLayout {
-                                        id: timerRow
+                                    Repeater {
+                                        model: timers
 
                                         Text {
+                                            padding: -8
                                             text: getClock(modelData.duration)
                                             color: Theme.colors.colorFGLight
                                             font { family: root.fontIcon; pixelSize: root.fontSize; bold: true }
@@ -593,23 +597,20 @@ ShellRoot {
                                             MouseArea {
                                                 anchors.fill: parent
                                                 anchors.centerIn: parent
-                                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                                acceptedButtons: Qt.RightButton
 
-                                                onPressed: (mouse) => {
-                                                    if (mouse.button === Qt.RightButton) { timers = timers.filter((timer, i) => i !== index) } 
-                                                    else if (mouse.button === Qt.LeftButton) { timerText.visible = !timerText.visible }
-                                                }
+                                                onPressed: (mouse) => { timers = timers.filter((timer, i) => i !== index) }
                                             }
                                         }
-
-                                        Text {
-                                            id: timerText
-                                            text: Math.floor(modelData.duration / 3600) + ":" + Math.floor((modelData.duration % 3600) / 60) + ":" + (modelData.duration % 60)
-                                            color: Theme.colors.colorFGLight
-                                            font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
-                                            visible: false
-                                        }
                                     }
+                                }
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    anchors.centerIn: parent
+                                    
+                                    onPressed: (mouse) => { timerPopup.visible = true; timerPopup.offsetX = barRight.width - tray.width / 2 }
+                                    onReleased: (mouse) => { timerPopup.visible = false }
                                 }
                             }
 
@@ -721,7 +722,14 @@ ShellRoot {
 
                 }
             }
+
+
+
+
         }
+
+
+
     }
 
     PanelWindow { /* FOCUS REMOVER */
@@ -1116,6 +1124,78 @@ ShellRoot {
                     font { family: root.fontIcon; pixelSize: root.fontSize; bold: true } 
                 }
 
+            }
+        }
+    }
+
+
+    PanelWindow { /* TIMER POPUP // make it like the audio window that has a column of timers and their timers and how to cancel them and pause them. Only one clock in top */
+        id: timerPopup
+        visible: false
+
+        anchors.top: true
+        anchors.right: true
+        implicitWidth: timerColumn.width + 30
+        implicitHeight: timerColumn.height + 30
+        color: "transparent"
+
+        margins.right: offsetX - width / 3 - 5
+
+        property int offsetX: 0
+
+
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 4
+
+            radius: 11
+
+            gradient: Gradient {
+                orientation: Gradient.Horizontal
+                GradientStop {
+                    position: 0.0
+                    color: Theme.colors.colorFG
+                }
+                GradientStop {
+                    position: 1.0
+                    color: Theme.colors.colorTertiary
+                }
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                anchors.margins: 1
+
+                radius: 10
+                color: Theme.colors.colorDarker
+
+                Column {
+                    id: timerColumn
+                    anchors.centerIn: parent
+                    anchors.margins: 8
+                    spacing: 8
+
+                    Repeater {
+                        model: timers
+
+                        Column {
+
+                            Text {
+                                id: timerText
+                                text: Math.floor(modelData.duration / 3600) + ":" + Math.floor((modelData.duration % 3600) / 60) + ":" + (modelData.duration % 60)
+                                color: Theme.colors.colorFGLight
+                                font { family: root.fontFamily; pixelSize: root.fontSize; bold: true }
+                            }
+
+                            Rectangle {
+                                width: timerColumn.width * 0.95
+                                height: 2
+                                color: Theme.colors.colorDark
+                                anchors.horizontalCenter: parent.horizontalCenter
+                            }
+                        }
+                    }
+                }
             }
         }
     }

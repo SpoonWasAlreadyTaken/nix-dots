@@ -1,0 +1,49 @@
+gui:
+  theme:
+    activeBorderColor:
+      - '@primary@'
+      - bold
+    inactiveBorderColor:
+      - '@dim@'
+    searchingActiveBorderColor:
+      - '@tertiary@'
+    optionsTextColor:
+      - '@secondary@'
+    selectedLineBgColor:
+      - '@dark@'
+    inactiveViewSelectedLineBgColor:
+      - '@darker@'
+    cherryPickedCommitFgColor:
+      - '@primary@'
+    cherryPickedCommitBgColor:
+      - '@pVeryDark@'
+    markedBaseCommitFgColor:
+      - '@pLighter@'
+    markedBaseCommitBgColor:
+      - '@pDarker@'
+    unstagedChangesColor:
+      - '@accent@'
+    defaultFgColor:
+      - '@primary@'
+    authorColors:
+      '*': '@primary@'
+
+
+#@background@
+#@primary@
+#@dim@
+#@saturated@
+#@accent@
+#@secondary@
+#@tertiary@
+#@dark@
+#@pDark@
+#@pDarker@
+#@pVeryDark@
+#@pLight@
+#@pLighter@
+#@pVeryLight@
+#@sPrimary@
+#@sSecondary@
+#@sTertiary@
+#@darker@

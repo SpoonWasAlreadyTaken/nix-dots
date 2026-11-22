@@ -139,6 +139,7 @@ in
             easyeffects
             starship
             quickshell
+            lazygit
 
 
             # programming
@@ -159,6 +160,7 @@ in
             sfml
             zlib
             glibc
+            libtexprintf
 
 
             # art
@@ -234,8 +236,8 @@ in
             Restart = "on-failure";
             RestartSec = "5min";
 
-            ExecStartPre = [ "${pkgs.util-linux}/bin/runuser -u spoon -- ${pkgs.coreutils}/bin/env XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus ${pkgs.libnotify}/bin/notify-send -u critical 'NixOS' 'System upgrade started.'" ];
-            ExecStartPost = [ "${pkgs.util-linux}/bin/runuser -u spoon -- ${pkgs.coreutils}/bin/env XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus ${pkgs.libnotify}/bin/notify-send -u critical 'NixOS' 'System upgrade finished.'" ];
+            ExecStartPre = [ "${pkgs.util-linux}/bin/runuser -u spoon -- ${pkgs.coreutils}/bin/env XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus ${pkgs.libnotify}/bin/notify-send -u critical 'NixOS' 'Flake update started.'" ];
+            ExecStartPost = [ "${pkgs.util-linux}/bin/runuser -u spoon -- ${pkgs.coreutils}/bin/env XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus ${pkgs.libnotify}/bin/notify-send -u critical 'NixOS' 'Flake update finished.'" ];
         };
 
         path = with pkgs; [ git ];
