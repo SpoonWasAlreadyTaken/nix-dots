@@ -14,11 +14,12 @@ cmp.setup({
 
     window = {
         completion = cmp.config.window.bordered({
-        border = "rounded",
-        winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder",
+            border = "rounded",
+            winhighlight = "Normal:CmpNormal,FloatBorder:CmpBorder,CursorLine:CmpSelection",
         }),
+
         documentation = cmp.config.window.bordered({
-        border = "rounded",
+            border = "rounded",
         }),
     },
 
@@ -30,6 +31,9 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<Tab>'] = cmp.mapping.select_next_item(),
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     }),
 
     sources = cmp.config.sources({
@@ -42,9 +46,9 @@ cmp.setup({
 
     formatting = {
         format = lspkind.cmp_format({
-        mode = 'symbol_text',
-        maxwidth = 50,
-        ellipsis_char = '...',
+            mode = 'symbol_text',
+            maxwidth = 50,
+            ellipsis_char = '...',
         }),
     },
 })

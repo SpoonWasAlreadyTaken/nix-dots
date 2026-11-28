@@ -27,6 +27,8 @@ local function setup_custom_highlights()
     vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#26324d",bg = colors.background,italic=true })
     vim.api.nvim_set_hl(0, "Pmenu", { fg="#e2e2e2", bg= colors.background })
     vim.api.nvim_set_hl(0, "PmenuSel", { fg= colors.background, bg="#e2e2e2",bold=true })
+    vim.api.nvim_set_hl(0, "CmpSelection", { bg = colors.darker, bold = true })
+
     vim.api.nvim_set_hl(0, "G1", { fg = colors.background, bg = colors.primaryVeryDark })
     vim.api.nvim_set_hl(0, "G2", { fg = colors.primaryVeryDark, bg = colors.primaryDarker })
     vim.api.nvim_set_hl(0, "G3", { fg = colors.primaryDarker, bg = colors.primaryDark })
